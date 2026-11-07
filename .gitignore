@@ -1,0 +1,5 @@
+.superpowers/
+.firebase/
+firebase-debug.log*
+node_modules/
+referencias-instagram/
