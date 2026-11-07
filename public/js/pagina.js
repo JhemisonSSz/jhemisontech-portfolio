@@ -33,7 +33,10 @@ const imagensPainel = (p) => p.painel.map((arq, i) =>
 function card(p) {
   return `
     <article class="projeto" data-projeto="${esc(p.id)}">
-      <div class="print">${printSite(p)}${imagensPainel(p)}</div>
+      <div class="print" role="button" tabindex="0" aria-label="Ampliar print de ${esc(p.nome)}">
+        ${printSite(p)}${imagensPainel(p)}
+        <span class="ampliar" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M11 8v6M8 11h6"/></svg>Ampliar</span>
+      </div>
       ${abasPainel(p)}
       <div class="projeto-corpo">
         <h3>${esc(p.nome)}</h3>
@@ -61,15 +64,33 @@ function mostrar(artigo, foto) {
   artigo.querySelectorAll("[data-foto]").forEach((b) => b.classList.toggle("ativa", Number(b.dataset.foto) === foto));
 }
 
+// ---- Print ampliado ----
+// Abre em tamanho grande o print que está à mostra no card (no site, sempre o print de computador, que é o maior)
+const zoom = $("#zoom");
+function ampliar(print) {
+  const painel = [...print.querySelectorAll("[data-painel]")].find((img) => !img.hidden);
+  const img = painel || print.querySelector("picture img");
+  zoom.querySelector("img").src = img.getAttribute("src");
+  zoom.querySelector("img").alt = img.alt;
+  zoom.showModal();
+}
+zoom.addEventListener("click", (e) => { if (e.target === zoom || e.target.closest(".fechar")) zoom.close(); });
+
 function aoClicar(evento) {
   const aba = evento.target.closest("[data-aba]");
   const bolinha = evento.target.closest("[data-foto]");
+  const print = evento.target.closest(".print");
   if (aba) mostrar(aba.closest(".projeto"), aba.dataset.aba === "painel" ? 0 : null);
   if (bolinha) mostrar(bolinha.closest(".projeto"), Number(bolinha.dataset.foto));
+  if (print) ampliar(print);
 }
 
 $("#lista-projetos").innerHTML = PROJETOS.map(card).join("");
 $("#lista-projetos").addEventListener("click", aoClicar);
+$("#lista-projetos").addEventListener("keydown", (e) => {
+  const print = e.target.closest(".print");
+  if (print && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); ampliar(print); }
+});
 
 $("#zap-topo").href = linkWhatsApp("Olá! Vim pelo seu portfólio e quero um orçamento.");
 $("#zap-contato").href = linkWhatsApp("Olá! Vim pelo seu portfólio.");

@@ -74,6 +74,17 @@ nav a:hover { color: var(--azul-escuro); }
 .projeto:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(47, 143, 230, .32); }
 .print { aspect-ratio: 16 / 10; background: linear-gradient(120deg, var(--azul-fundo), #c9e3fa); overflow: hidden; }
 .print img { width: 100%; height: 100%; object-fit: cover; object-position: top; color: var(--texto-suave); font-size: .85rem; }
+.print { position: relative; cursor: zoom-in; }
+.ampliar { position: absolute; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 4px; font-size: .75rem; font-weight: 600;
+  color: var(--azul-escuro); background: rgba(255, 255, 255, .92); border: 1px solid var(--azul-borda); border-radius: 999px; padding: 4px 10px;
+  box-shadow: 0 2px 8px rgba(15, 27, 45, .15); pointer-events: none; }
+
+/* Janela do print ampliado */
+#zoom { margin: auto; padding: 0; border: 0; border-radius: 12px; background: #fff; max-width: 96vw; max-height: 94vh; overflow: auto; box-shadow: 0 20px 60px rgba(0, 0, 0, .4); }
+#zoom::backdrop { background: rgba(10, 20, 35, .75); }
+#zoom img { display: block; width: auto; max-width: min(1400px, 96vw); height: auto; }
+#zoom .fechar { position: sticky; top: 8px; float: right; margin: 8px 8px -48px 0; z-index: 1; width: 40px; height: 40px; border-radius: 50%;
+  border: 0; background: rgba(15, 27, 45, .8); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
 .print img[data-painel] { object-position: left top; } /* prints do painel são largos: mostra o menu da esquerda */
 .abas { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px 0; }
 .abas-botoes { display: flex; gap: 6px; }
