@@ -42,10 +42,10 @@ docs/               design aprovado e plano de construção
 
 ## Publicar
 
-Faça o commit primeiro e depois publique, **sempre com `--project`**:
+Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d`, e o site dentro dele se chama `jhemisontech`, que fica em jhemisontech.web.app. O `firebase.json` já aponta para esse site.
 
 ```
-firebase deploy --project jhemisontech --only hosting
+firebase deploy --project jhemisontech-a080d --only hosting
 ```
 
 ## Ligar um domínio próprio (quando tiver)
