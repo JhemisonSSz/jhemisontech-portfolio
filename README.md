@@ -30,7 +30,9 @@ docs/               design aprovado e plano de construção
 
    O Claude tem um script que tira os dois automaticamente. Se for tirar à mão, use a primeira tela do site, sem rolar.
 3. Em `public/js/projetos.js`, copie um bloco e troque `id`, `nome`, `frase`, `etiquetas` (3 ou 4) e `url`.
-4. Opcional: coloque prints do painel em `public/img/painel/` e liste os arquivos em `painel: [...]`. O card ganha sozinho as abas **Site | Painel**.
+4. Opcional: coloque prints de **dentro** do painel em `public/img/prints/painel/` (nome em minúsculas, sem espaço, por exemplo `loja-estoque.jpg`) e liste os arquivos em `painel: painel("loja-estoque.jpg", ...)`. O card ganha sozinho as abas **Site | Painel**, e com 2 ou mais prints aparecem as bolinhas.
+   - **Antes de colocar, confira o print.** Não use a tela de login. Não use print da tela inteira, que mostra as abas do navegador, os favoritos e a barra do Windows. Tudo o que está em `public/` vai para a internet.
+   - Os prints que não vão para o site ficam em `prints-painel-nao-usados/`, que fica fora do Git e fora do site.
 5. Rode `npm test`. Ele confere se todo print citado existe.
 
 ## Testar no computador

@@ -74,7 +74,13 @@ nav a:hover { color: var(--azul-escuro); }
 .projeto:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(47, 143, 230, .32); }
 .print { aspect-ratio: 16 / 10; background: linear-gradient(120deg, var(--azul-fundo), #c9e3fa); overflow: hidden; }
 .print img { width: 100%; height: 100%; object-fit: cover; object-position: top; color: var(--texto-suave); font-size: .85rem; }
-.abas { display: flex; gap: 6px; padding: 10px 16px 0; }
+.print img[data-painel] { object-position: left top; } /* prints do painel são largos: mostra o menu da esquerda */
+.abas { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px 0; }
+.abas-botoes { display: flex; gap: 6px; }
+.bolinhas { display: flex; gap: 2px; }
+.bolinha { width: 24px; height: 24px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.bolinha::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--azul-borda); transition: background .2s, transform .2s; }
+.bolinha.ativa::before { background: var(--azul-escuro); transform: scale(1.2); }
 .aba { font: inherit; font-size: .85rem; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--azul-borda); background: #fff; color: var(--azul-escuro); cursor: pointer; }
 .aba.ativa { background: var(--azul-escuro); color: #fff; border-color: var(--azul-escuro); }
 .projeto-corpo { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }

@@ -15,15 +15,20 @@ const printSite = (p) => `
     <img src="${esc(p.prints.pc)}" alt="Print do site ${esc(p.nome)}" loading="lazy" width="1280" height="800">
   </picture>`;
 
-// Só aparece quando o projeto tem prints do painel
+// Abas "Site | Painel": só aparecem quando o projeto tem prints do painel.
+// Com 2 ou mais prints do painel, aparecem bolinhas para passar de um para outro.
 const abasPainel = (p) => !p.painel.length ? "" : `
-  <div class="abas" role="tablist">
-    <button class="aba ativa" data-aba="site" role="tab" aria-selected="true">Site</button>
-    <button class="aba" data-aba="painel" role="tab" aria-selected="false">Painel</button>
+  <div class="abas">
+    <div role="tablist" class="abas-botoes">
+      <button class="aba ativa" data-aba="site" role="tab" aria-selected="true">Site</button>
+      <button class="aba" data-aba="painel" role="tab" aria-selected="false">Painel</button>
+    </div>
+    ${p.painel.length < 2 ? "" : `<div class="bolinhas" hidden>${p.painel.map((_, i) =>
+      `<button class="bolinha${i ? "" : " ativa"}" data-foto="${i}" aria-label="Print ${i + 1} do painel"></button>`).join("")}</div>`}
   </div>`;
 
 const imagensPainel = (p) => p.painel.map((arq, i) =>
-  `<img src="${esc(arq)}" alt="Print do painel ${esc(p.nome)} ${i + 1}" loading="lazy" hidden data-painel>`).join("");
+  `<img src="${esc(arq)}" alt="Print do painel ${esc(p.nome)} ${i + 1}" loading="lazy" hidden data-painel="${i}">`).join("");
 
 function card(p) {
   return `
@@ -41,23 +46,30 @@ function card(p) {
     </article>`;
 }
 
-// Troca entre o print do site e os do painel
-function trocarAba(evento) {
-  const botao = evento.target.closest("[data-aba]");
-  if (!botao) return;
-  const artigo = botao.closest(".projeto");
-  const painel = botao.dataset.aba === "painel";
+// Mostra no card o print do site (foto = null) ou o print número "foto" do painel
+function mostrar(artigo, foto) {
+  const painel = foto !== null;
   artigo.querySelectorAll("[data-aba]").forEach((b) => {
-    const ativo = b === botao;
+    const ativo = (b.dataset.aba === "painel") === painel;
     b.classList.toggle("ativa", ativo);
     b.setAttribute("aria-selected", String(ativo));
   });
   artigo.querySelector("picture").hidden = painel;
-  artigo.querySelectorAll("[data-painel]").forEach((img) => { img.hidden = !painel; });
+  artigo.querySelectorAll("[data-painel]").forEach((img) => { img.hidden = Number(img.dataset.painel) !== foto; });
+  const bolinhas = artigo.querySelector(".bolinhas");
+  if (bolinhas) bolinhas.hidden = !painel;
+  artigo.querySelectorAll("[data-foto]").forEach((b) => b.classList.toggle("ativa", Number(b.dataset.foto) === foto));
+}
+
+function aoClicar(evento) {
+  const aba = evento.target.closest("[data-aba]");
+  const bolinha = evento.target.closest("[data-foto]");
+  if (aba) mostrar(aba.closest(".projeto"), aba.dataset.aba === "painel" ? 0 : null);
+  if (bolinha) mostrar(bolinha.closest(".projeto"), Number(bolinha.dataset.foto));
 }
 
 $("#lista-projetos").innerHTML = PROJETOS.map(card).join("");
-$("#lista-projetos").addEventListener("click", trocarAba);
+$("#lista-projetos").addEventListener("click", aoClicar);
 
 $("#zap-topo").href = linkWhatsApp("Olá! Vim pelo seu portfólio e quero um orçamento.");
 $("#zap-contato").href = linkWhatsApp("Olá! Vim pelo seu portfólio.");

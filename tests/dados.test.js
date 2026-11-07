@@ -53,6 +53,14 @@ test("todo projeto tem os campos e 3 a 4 etiquetas", () => {
   }
 });
 
+test("prints do painel de cada projeto (só telas de dentro do painel)", () => {
+  assert.deepEqual(PROJETOS.map((p) => p.painel), [
+    ["img/prints/painel/loja-estoque.jpg", "img/prints/painel/loja-dashboard.jpg"],
+    ["img/prints/painel/barbearia-agenda.jpg", "img/prints/painel/barbearia-relatorios.jpg"],
+    ["img/prints/painel/espetaria-editar-cardapio.jpg"],
+  ]);
+});
+
 test("todos os prints citados existem em public/", () => {
   for (const p of PROJETOS) {
     for (const arquivo of [p.prints.pc, p.prints.cel, ...p.painel]) {

@@ -8,9 +8,12 @@
 //   etiquetas  3 ou 4 funções principais
 //   url        endereço do site publicado
 //   prints     print do site no computador (pc) e no celular (cel), dentro de public/
-//   painel     prints do painel (opcional). Se tiver algum, o card ganha as abas "Site | Painel".
+//   painel     prints de DENTRO do painel (opcional), em img/prints/painel/.
+//              Se tiver algum, o card ganha as abas "Site | Painel"; com 2 ou mais, aparecem bolinhas.
+//              Não use print da tela de login nem print com abas do navegador ou barra do Windows.
 
 const prints = (id) => ({ pc: `img/prints/${id}-pc.jpg`, cel: `img/prints/${id}-cel.jpg` });
+const painel = (...arquivos) => arquivos.map((a) => `img/prints/painel/${a}`);
 
 export const PROJETOS = [
   {
@@ -20,7 +23,7 @@ export const PROJETOS = [
     etiquetas: ["Catálogo", "Acompanhamento", "PDV", "Estoque"],
     url: "https://jtech-loja-online.web.app/",
     prints: prints("loja"),
-    painel: [],
+    painel: painel("loja-estoque.jpg", "loja-dashboard.jpg"),
   },
   {
     id: "barbearia",
@@ -29,7 +32,7 @@ export const PROJETOS = [
     etiquetas: ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"],
     url: "https://jtech-barbearia.web.app/",
     prints: prints("barbearia"),
-    painel: [],
+    painel: painel("barbearia-agenda.jpg", "barbearia-relatorios.jpg"),
   },
   {
     id: "espetaria",
@@ -38,6 +41,6 @@ export const PROJETOS = [
     etiquetas: ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"],
     url: "https://jtech-espetaria.web.app/",
     prints: prints("espetaria"),
-    painel: [],
+    painel: painel("espetaria-editar-cardapio.jpg"),
   },
 ];
