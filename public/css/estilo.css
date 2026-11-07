@@ -1,0 +1,123 @@
+/* estilo.css — Visual do portfólio JhemisonTech (aprovado no mockup v20).
+   Branco + traço fino + aquarela azul. As cores ficam aqui no topo. */
+:root {
+  --azul-escuro: #0b5cad;
+  --azul: #2f8fe6;
+  --azul-claro: #38a3f5;
+  --azul-borda: #cfe4f8;
+  --azul-fundo: #e3f1fd;
+  --texto: #0f1b2d;
+  --texto-suave: #3d5a80;
+  --texto-fraco: #7a93b0;
+  --fundo: #ffffff;
+  --fonte: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { font-family: var(--fonte); color: var(--texto); background: var(--fundo); line-height: 1.5; overflow-x: clip; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+main, .cabecalho, .rodape { position: relative; z-index: 1; }
+
+/* ---- Manchas de aquarela que flutuam no fundo ---- */
+.mancha { position: fixed; border-radius: 50%; filter: blur(40px); z-index: 0; pointer-events: none; animation: flutuar 14s ease-in-out infinite; }
+.m1 { width: 340px; height: 280px; top: -80px; right: -90px; background: rgba(90, 170, 240, .5); }
+.m2 { width: 280px; height: 240px; top: 45%; left: -120px; background: rgba(120, 195, 250, .4); animation-delay: -5s; animation-duration: 18s; }
+.m3 { width: 260px; height: 220px; bottom: -60px; right: -60px; background: rgba(60, 140, 230, .3); animation-delay: -9s; animation-duration: 16s; }
+@keyframes flutuar { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(-25px, 18px) scale(1.12); } 66% { transform: translate(18px, -14px) scale(.92); } }
+
+/* ---- Cabeçalho ---- */
+.cabecalho { max-width: 1100px; margin: 0 auto; padding: 20px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.marca { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; text-decoration: none; }
+.nome1 { color: var(--texto); font-weight: 600; }
+.nome2 { color: var(--azul-escuro); font-weight: 300; }
+nav { display: flex; gap: 18px; font-size: .95rem; }
+nav a { color: var(--texto-suave); text-decoration: none; }
+nav a:hover { color: var(--azul-escuro); }
+
+/* Logo: flutua e acende uma vez no ponto mais alto (os dois ciclos têm 4s) */
+.logo { width: 56px; height: 56px; display: grid; place-items: center; position: relative; animation: flutuarLogo 4s ease-in-out infinite; }
+.logo::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; z-index: -1;
+  background: radial-gradient(circle, rgba(47, 143, 230, .45) 0%, rgba(90, 170, 240, .25) 40%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(4px); animation: aura 3.5s ease-in-out infinite; }
+.logo img { width: 56px; height: 56px; animation: ideia 4s ease-in-out infinite; }
+@keyframes flutuarLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes aura { 0%, 100% { transform: scale(1); opacity: .85; } 50% { transform: scale(1.15); opacity: 1; } }
+@keyframes ideia {
+  0%, 30% { filter: drop-shadow(0 0 2px rgba(40, 140, 240, .3)) brightness(1); }
+  50% { filter: drop-shadow(0 0 14px rgba(40, 140, 240, 1)) drop-shadow(0 0 4px rgba(140, 200, 255, .9)) brightness(1.08); }
+  75%, 100% { filter: drop-shadow(0 0 2px rgba(40, 140, 240, .3)) brightness(1); }
+}
+
+/* ---- Topo ---- */
+.topo { max-width: 1100px; margin: 0 auto; padding: 48px 16px 64px; }
+.topo h1 { font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.12; }
+.brilho { background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro), #8fd0ff, var(--azul-claro), var(--azul-escuro));
+  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: correr 6s linear infinite; }
+@keyframes correr { to { background-position: 300% 0; } }
+.para-quem { font-size: clamp(1.05rem, 2.6vw, 1.35rem); margin: 10px 0 6px; }
+.sub { color: var(--texto-suave); margin-bottom: 22px; }
+.btn { display: inline-block; color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 999px; font-weight: 600;
+  background: linear-gradient(90deg, var(--azul-escuro), var(--azul), var(--azul-escuro)); background-size: 200% 100%;
+  animation: correr 4s linear infinite; box-shadow: 0 6px 20px rgba(47, 143, 230, .4); }
+
+/* ---- Seções ---- */
+.secao { max-width: 1100px; margin: 0 auto; padding: 40px 16px; scroll-margin-top: 8px; }
+.secao h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 4px; }
+
+/* ---- Cards de projeto ---- */
+.projetos { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.projeto { background: #fff; border: 1px solid var(--azul-borda); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 8px 30px rgba(47, 143, 230, .18); transition: transform .3s, box-shadow .3s; }
+.projeto:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(47, 143, 230, .32); }
+.print { aspect-ratio: 16 / 10; background: linear-gradient(120deg, var(--azul-fundo), #c9e3fa); overflow: hidden; }
+.print img { width: 100%; height: 100%; object-fit: cover; object-position: top; color: var(--texto-suave); font-size: .85rem; }
+.abas { display: flex; gap: 6px; padding: 10px 16px 0; }
+.aba { font: inherit; font-size: .85rem; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--azul-borda); background: #fff; color: var(--azul-escuro); cursor: pointer; }
+.aba.ativa { background: var(--azul-escuro); color: #fff; border-color: var(--azul-escuro); }
+.projeto-corpo { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.projeto-corpo h3 { font-size: 1.1rem; }
+.projeto-corpo > p { color: var(--texto-suave); font-size: .95rem; }
+.etiquetas { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.etiquetas li { font-size: .78rem; background: var(--azul-fundo); color: var(--azul-escuro); padding: 3px 10px; border-radius: 999px; }
+.ver-site { align-self: flex-start; margin-top: auto; border: 1.5px solid var(--azul); color: var(--azul-escuro); text-decoration: none; padding: 7px 18px; border-radius: 999px; font-weight: 600; }
+.ver-site:hover { background: var(--azul-fundo); }
+.conhecer { font-size: .85rem; color: var(--texto-fraco); }
+.conhecer a { color: var(--azul-escuro); font-weight: 600; text-decoration: none; border-bottom: 1px solid #9fcbf3; }
+
+/* ---- Serviços ---- */
+.servicos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-top: 16px; }
+.servico { background: rgba(255, 255, 255, .75); border: 1px solid var(--azul-borda); border-radius: 14px; padding: 16px; display: flex; gap: 12px; align-items: flex-start;
+  transition: transform .3s, box-shadow .3s; }
+.servico:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(47, 143, 230, .25); }
+.servico svg { stroke: var(--azul-escuro); flex-shrink: 0; animation: boiar 3.5s ease-in-out infinite; }
+.servico:nth-child(2) svg { animation-delay: -.9s; }
+.servico:nth-child(3) svg { animation-delay: -1.8s; }
+.servico:nth-child(4) svg { animation-delay: -2.7s; }
+@keyframes boiar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.servico h3 { font-size: 1rem; }
+.servico p { color: var(--texto-suave); font-size: .9rem; }
+
+/* ---- Contato ---- */
+.contatos { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.contato-item { display: flex; align-items: center; gap: 10px; text-decoration: none; background: #fff; border: 1px solid var(--azul-borda);
+  border-radius: 999px; padding: 10px 18px; max-width: 100%; overflow-wrap: anywhere; }
+.contato-item svg { stroke: var(--azul-escuro); flex-shrink: 0; }
+.contato-item:hover { border-color: var(--azul); }
+
+.rodape { text-align: center; color: var(--texto-fraco); font-size: .85rem; padding: 32px 16px; }
+
+/* Quem pediu "reduzir movimento": fica só o movimento suave (manchas, brilho e logo) */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .servico svg { animation: none; }
+  .projeto:hover, .servico:hover { transform: none; }
+}
+
+@media (max-width: 600px) {
+  .print { aspect-ratio: 4 / 3; }
+  nav { gap: 14px; font-size: .9rem; }
+  .topo { padding-top: 28px; }
+}
