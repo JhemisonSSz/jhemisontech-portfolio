@@ -23,7 +23,7 @@ export const PROJETOS = [
     etiquetas: ["Catálogo", "Acompanhamento", "PDV", "Estoque"],
     url: "https://jtech-loja-online.web.app/",
     prints: prints("loja"),
-    painel: painel("loja-estoque.jpg", "loja-dashboard.jpg"),
+    painel: painel("loja-pdv.png", "loja-dashboard.png", "loja-pedidos.png", "loja-produtos.png", "loja-relatorios.png"),
   },
   {
     id: "barbearia",
@@ -32,7 +32,7 @@ export const PROJETOS = [
     etiquetas: ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"],
     url: "https://jtech-barbearia.web.app/",
     prints: prints("barbearia"),
-    painel: painel("barbearia-agenda.jpg", "barbearia-relatorios.jpg"),
+    painel: painel("barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"),
   },
   {
     id: "espetaria",

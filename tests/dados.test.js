@@ -55,8 +55,8 @@ test("todo projeto tem os campos e 3 a 4 etiquetas", () => {
 
 test("prints do painel de cada projeto (só telas de dentro do painel)", () => {
   assert.deepEqual(PROJETOS.map((p) => p.painel), [
-    ["img/prints/painel/loja-estoque.jpg", "img/prints/painel/loja-dashboard.jpg"],
-    ["img/prints/painel/barbearia-agenda.jpg", "img/prints/painel/barbearia-relatorios.jpg"],
+    ["loja-pdv.png", "loja-dashboard.png", "loja-pedidos.png", "loja-produtos.png", "loja-relatorios.png"].map((a) => "img/prints/painel/" + a),
+    ["barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"].map((a) => "img/prints/painel/" + a),
     ["img/prints/painel/espetaria-editar-cardapio.jpg"],
   ]);
 });
