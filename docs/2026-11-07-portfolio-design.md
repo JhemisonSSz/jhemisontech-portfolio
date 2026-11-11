@@ -7,7 +7,7 @@ O portfólio é a página que o Jhemison manda a potenciais clientes (pequenos n
 
 ## Objetivos
 - Mostrar a marca JhemisonTech com o visual dos destaques do Instagram: traço fino preto, aquarela azul e fundo branco.
-- Mostrar três projetos publicados (Loja, Barbearia e Espetaria), cada um com print e o botão **Ver site**.
+- Mostrar os projetos publicados (Loja, Barbearia, Espetaria e, desde 2026-11-11, a **Volt Academia**, um projeto de demonstração), cada um com print e o botão **Ver site**.
 - Levar o visitante a falar no WhatsApp.
 
 ## Fora do escopo

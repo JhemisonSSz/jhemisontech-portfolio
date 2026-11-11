@@ -43,4 +43,13 @@ export const PROJETOS = [
     prints: prints("espetaria"),
     painel: painel("espetaria-editar-cardapio.jpg"),
   },
+  {
+    id: "volt",
+    nome: "Volt Academia",
+    frase: "Reserva de aulas e controle de mensalidade para academias.",
+    etiquetas: ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"],
+    url: "https://volt-academia.web.app/",
+    prints: prints("volt"),
+    painel: painel("volt-agenda.png", "volt-alunos.png", "volt-resumo.png"),
+  },
 ];

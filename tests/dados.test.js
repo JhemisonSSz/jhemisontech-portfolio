@@ -23,9 +23,9 @@ test("mensagem do card cita o projeto", () => {
   assert.equal(mensagemProjeto("Jtech Barbearia"), "Olá! Vi o projeto Jtech Barbearia no seu portfólio e quero saber mais.");
 });
 
-test("três projetos com os textos aprovados no design", () => {
-  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "espetaria"]);
-  const [loja, barbearia, espetaria] = PROJETOS;
+test("quatro projetos com os textos aprovados no design", () => {
+  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "espetaria", "volt"]);
+  const [loja, barbearia, espetaria, volt] = PROJETOS;
   assert.equal(loja.nome, "Jtech Loja Online");
   assert.equal(loja.frase, "Loja virtual com carrinho e acompanhamento do pedido.");
   assert.deepEqual(loja.etiquetas, ["Catálogo", "Acompanhamento", "PDV", "Estoque"]);
@@ -35,6 +35,9 @@ test("três projetos com os textos aprovados no design", () => {
   assert.equal(espetaria.nome, "Jtech Espetaria");
   assert.equal(espetaria.frase, "Cardápio digital com pedido pelo WhatsApp.");
   assert.deepEqual(espetaria.etiquetas, ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"]);
+  assert.equal(volt.nome, "Volt Academia");
+  assert.equal(volt.frase, "Reserva de aulas e controle de mensalidade para academias.");
+  assert.deepEqual(volt.etiquetas, ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"]);
 });
 
 test("links dos sites publicados", () => {
@@ -42,6 +45,7 @@ test("links dos sites publicados", () => {
     "https://jtech-loja-online.web.app/",
     "https://jtech-barbearia.web.app/",
     "https://jtech-espetaria.web.app/",
+    "https://volt-academia.web.app/",
   ]);
 });
 
@@ -58,6 +62,7 @@ test("prints do painel de cada projeto (só telas de dentro do painel)", () => {
     ["loja-pdv.png", "loja-dashboard.png", "loja-pedidos.png", "loja-produtos.png", "loja-relatorios.png"].map((a) => "img/prints/painel/" + a),
     ["barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"].map((a) => "img/prints/painel/" + a),
     ["img/prints/painel/espetaria-editar-cardapio.jpg"],
+    ["volt-agenda.png", "volt-alunos.png", "volt-resumo.png"].map((a) => "img/prints/painel/" + a),
   ]);
 });
 
