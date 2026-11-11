@@ -11,8 +11,6 @@
 //   painel     prints de DENTRO do painel (opcional), em img/prints/painel/.
 //              Se tiver algum, o card ganha as abas "Site | Painel"; com 2 ou mais, aparecem bolinhas.
 //              Não use print da tela de login nem print com abas do navegador ou barra do Windows.
-//   painelAberto  (opcional) true quando o visitante pode entrar no painel sozinho, sem login:
-//              o card não mostra o convite "Me chama no WhatsApp" (esse convite é para quem quer ver o painel).
 
 const prints = (id) => ({ pc: `img/prints/${id}-pc.jpg`, cel: `img/prints/${id}-cel.jpg` });
 const painel = (...arquivos) => arquivos.map((a) => `img/prints/painel/${a}`);
@@ -53,6 +51,5 @@ export const PROJETOS = [
     url: "https://volt-academia.web.app/",
     prints: prints("volt"),
     painel: painel("volt-agenda.png", "volt-alunos.png", "volt-resumo.png"),
-    painelAberto: true,
   },
 ];

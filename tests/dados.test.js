@@ -40,10 +40,6 @@ test("quatro projetos com os textos aprovados no design", () => {
   assert.deepEqual(volt.etiquetas, ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"]);
 });
 
-test("só a Volt tem o painel aberto (sem o convite do WhatsApp no card)", () => {
-  assert.deepEqual(PROJETOS.map((p) => Boolean(p.painelAberto)), [false, false, false, true]);
-});
-
 test("links dos sites publicados", () => {
   assert.deepEqual(PROJETOS.map((p) => p.url), [
     "https://jtech-loja-online.web.app/",

@@ -43,8 +43,8 @@ function card(p) {
         <p>${esc(p.frase)}</p>
         <ul class="etiquetas">${p.etiquetas.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>
         <a class="ver-site" href="${esc(p.url)}" target="_blank" rel="noopener">Ver site</a>
-        ${p.painelAberto ? "" : `<p class="conhecer">Quer conhecer mais do projeto?
-          <a class="zap-projeto" href="${esc(linkWhatsApp(mensagemProjeto(p.nome)))}" target="_blank" rel="noopener">Me chama no WhatsApp</a></p>`}
+        <p class="conhecer">Quer conhecer mais do projeto?
+          <a class="zap-projeto" href="${esc(linkWhatsApp(mensagemProjeto(p.nome)))}" target="_blank" rel="noopener">Me chama no WhatsApp</a></p>
       </div>
     </article>`;
 }
