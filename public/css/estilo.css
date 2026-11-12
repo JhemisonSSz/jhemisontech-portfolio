@@ -109,7 +109,7 @@ nav a:hover { color: var(--azul-escuro); }
 .conhecer a { color: var(--azul-escuro); font-weight: 600; text-decoration: none; border-bottom: 1px solid #9fcbf3; }
 
 /* ---- Serviços ---- */
-.servicos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-top: 16px; }
+.servicos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 16px; }
 .servico { background: rgba(255, 255, 255, .75); border: 1px solid var(--azul-borda); border-radius: 14px; padding: 16px; display: flex; gap: 12px; align-items: flex-start;
   transition: transform .3s, box-shadow .3s; }
 .servico:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(47, 143, 230, .25); }
@@ -117,9 +117,12 @@ nav a:hover { color: var(--azul-escuro); }
 .servico:nth-child(2) svg { animation-delay: -.9s; }
 .servico:nth-child(3) svg { animation-delay: -1.8s; }
 .servico:nth-child(4) svg { animation-delay: -2.7s; }
+.servico:nth-child(5) svg { animation-delay: -3.2s; }
 @keyframes boiar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 .servico h3 { font-size: 1rem; }
 .servico p { color: var(--texto-suave); font-size: .9rem; }
+.servico .inclui { margin: 8px 0 0; padding-left: 18px; color: var(--texto-suave); font-size: .88rem; }
+.servico .inclui li { margin-bottom: 2px; }
 .servico .ideal { margin-top: 6px; font-size: .85rem; color: var(--azul-escuro); }
 .servico-acao { display: inline-block; margin-top: 8px; font-size: .9rem; font-weight: 600; color: var(--azul-escuro); text-decoration: none; border-bottom: 1px solid #9fcbf3; }
 .servico-acao:hover { border-bottom-color: var(--azul); }

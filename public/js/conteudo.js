@@ -70,6 +70,7 @@ export const htmlServicos = () => SERVICOS.map((s) => `
           <div>
             <h3>${esc(s.titulo)}</h3>
             <p>${esc(s.texto)}</p>
+            <ul class="inclui">${s.inclui.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
             <p class="ideal">${esc(s.ideal)}</p>
             <a class="servico-acao" href="${esc(linkWhatsApp(s.mensagem))}" ${ZAP}>Quero isso →</a>
           </div>

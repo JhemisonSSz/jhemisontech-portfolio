@@ -12,13 +12,13 @@ const INDEX = fileURLToPath(new URL("../public/index.html", import.meta.url));
 const lf = (t) => t.replace(/\r\n/g, "\n");
 const html = lf(readFileSync(INDEX, "utf8"));
 
-test("serviços: quatro, cada um com o 'ideal para' e uma mensagem própria", () => {
-  assert.deepEqual(SERVICOS.map((s) => s.titulo), ["Landing pages", "Sites", "Sistemas com painel admin", "Agentes de IA"]);
+test("serviços: cinco, em escada de valor, cada um com o 'ideal para' e uma mensagem própria", () => {
+  assert.deepEqual(SERVICOS.map((s) => s.titulo), ["Landing Pages", "Sites Institucionais", "Lojas Virtuais", "Sistemas Web Sob Medida", "Agentes de IA e Automações"]);
   for (const s of SERVICOS) {
     assert.match(s.ideal, /^Ideal para /, s.titulo);
-    assert.ok(s.texto && s.mensagem && s.icone, s.titulo);
+    assert.ok(s.texto && s.mensagem && s.icone && s.inclui.length >= 3, s.titulo);
   }
-  assert.match(SERVICOS[2].ideal, /barbearias, clínicas/);
+  assert.match(SERVICOS[3].ideal, /barbearias, clínicas/);
 });
 
 test("o index.html está em dia com os dados (rode 'npm run gerar' se este teste falhar)", () => {
