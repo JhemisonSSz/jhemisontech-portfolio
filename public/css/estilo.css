@@ -101,9 +101,11 @@ nav a:hover { color: var(--azul-escuro); }
 .projeto-corpo > p { color: var(--texto-suave); font-size: .95rem; }
 .etiquetas { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
 .etiquetas li { font-size: .78rem; background: var(--azul-fundo); color: var(--azul-escuro); padding: 3px 10px; border-radius: 999px; }
-.ver-site { align-self: flex-start; margin-top: auto; border: 1.5px solid var(--azul); color: var(--azul-escuro); text-decoration: none; padding: 7px 18px; border-radius: 999px; font-weight: 600; }
-.ver-site:hover { background: var(--azul-fundo); }
-.conhecer { font-size: .85rem; color: var(--texto-fraco); }
+.projeto-corpo > .demo { font-size: .8rem; color: var(--texto-fraco); margin-top: -6px; }
+.acoes { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+.ver-site, .pedir-painel { border: 1.5px solid var(--azul); color: var(--azul-escuro); text-decoration: none; padding: 7px 18px; border-radius: 999px; font-weight: 600; }
+.ver-site:hover, .pedir-painel:hover { background: var(--azul-fundo); }
+.conhecer { font-size: .9rem; }
 .conhecer a { color: var(--azul-escuro); font-weight: 600; text-decoration: none; border-bottom: 1px solid #9fcbf3; }
 
 /* ---- Serviços ---- */
@@ -118,8 +120,13 @@ nav a:hover { color: var(--azul-escuro); }
 @keyframes boiar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 .servico h3 { font-size: 1rem; }
 .servico p { color: var(--texto-suave); font-size: .9rem; }
+.servico .ideal { margin-top: 6px; font-size: .85rem; color: var(--azul-escuro); }
+.servico-acao { display: inline-block; margin-top: 8px; font-size: .9rem; font-weight: 600; color: var(--azul-escuro); text-decoration: none; border-bottom: 1px solid #9fcbf3; }
+.servico-acao:hover { border-bottom-color: var(--azul); }
 
 /* ---- Contato ---- */
+.btn-grande { font-size: 1.1rem; padding: 14px 28px; }
+.contato-numero { margin: 14px 0 4px; color: var(--texto-suave); font-size: .95rem; }
 .contatos { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
 .contato-item { display: flex; align-items: center; gap: 10px; text-decoration: none; background: #fff; border: 1px solid var(--azul-borda);
   border-radius: 999px; padding: 10px 18px; max-width: 100%; overflow-wrap: anywhere; }

@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { CONTATO, linkWhatsApp, mensagemProjeto } from "../public/js/contato.js";
+import { CONTATO, linkWhatsApp, mensagemConvite, mensagemPainel } from "../public/js/contato.js";
 import { PROJETOS } from "../public/js/projetos.js";
 
 const PUBLIC = fileURLToPath(new URL("../public/", import.meta.url));
@@ -19,25 +19,41 @@ test("link do WhatsApp com a mensagem codificada", () => {
   assert.equal(linkWhatsApp("Olá!"), "https://wa.me/5573988045634?text=Ol%C3%A1!");
 });
 
-test("mensagem do card cita o projeto", () => {
-  assert.equal(mensagemProjeto("Jtech Barbearia"), "Olá! Vi o projeto Jtech Barbearia no seu portfólio e quero saber mais.");
+test("mensagens do card citam o projeto e o que a pessoa quer", () => {
+  const barbearia = PROJETOS.find((p) => p.id === "barbearia");
+  assert.equal(mensagemConvite(barbearia),
+    "Olá! Vi o Sistema para Barbearias e Salões (demonstração Jtech Barbearia) no seu portfólio. Quero um sistema assim para minha barbearia.");
+  assert.equal(mensagemPainel(barbearia),
+    "Olá! Vi o painel da demonstração Jtech Barbearia no seu portfólio e quero pedir acesso para testar.");
 });
 
-test("quatro projetos com os textos aprovados no design", () => {
+test("quatro projetos com título pelo nicho, a demonstração e a frase com o benefício", () => {
   assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "volt", "espetaria"]);
   const [loja, barbearia, volt, espetaria] = PROJETOS;
-  assert.equal(loja.nome, "Jtech Loja Online");
-  assert.equal(loja.frase, "Loja virtual com carrinho e acompanhamento do pedido.");
+
+  assert.equal(loja.titulo, "Loja Virtual com PDV e Estoque");
+  assert.equal(loja.nome, "Jtech Loja Online"); // nome da demonstração (o nome verdadeiro, não "Jtech Store")
+  assert.equal(loja.frase, "Venda pela internet e no balcão em um só lugar. Controle seu estoque automaticamente e deixe o cliente acompanhar o pedido.");
   assert.deepEqual(loja.etiquetas, ["Catálogo", "Acompanhamento", "PDV", "Estoque"]);
+  assert.equal(loja.convite, "Quero uma loja virtual assim para o meu negócio");
+
+  assert.equal(barbearia.titulo, "Sistema para Barbearias e Salões");
   assert.equal(barbearia.nome, "Jtech Barbearia");
-  assert.equal(barbearia.frase, "Agendamento online com painel para o barbeiro.");
+  assert.equal(barbearia.frase, "Acabe com os furos na agenda. Seus clientes marcam horário sozinhos e você gerencia assinaturas e faturamento no painel.");
   assert.deepEqual(barbearia.etiquetas, ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"]);
-  assert.equal(espetaria.nome, "Jtech Espetaria");
-  assert.equal(espetaria.frase, "Cardápio digital com pedido pelo WhatsApp.");
-  assert.deepEqual(espetaria.etiquetas, ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"]);
+  assert.equal(barbearia.convite, "Quero um sistema assim para minha barbearia");
+
+  assert.equal(volt.titulo, "Sistema para Academias");
   assert.equal(volt.nome, "Volt Academia");
-  assert.equal(volt.frase, "Reserva de aulas e controle de mensalidade para academias.");
+  assert.equal(volt.frase, "Seus alunos reservam aula sozinhos e você controla vagas, lista de espera e mensalidades no painel.");
   assert.deepEqual(volt.etiquetas, ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"]);
+  assert.equal(volt.convite, "Quero um sistema assim para minha academia");
+
+  assert.equal(espetaria.titulo, "Cardápio Digital com Pedido pelo WhatsApp");
+  assert.equal(espetaria.nome, "Jtech Espetaria");
+  assert.equal(espetaria.frase, "Receba pedidos organizados direto no WhatsApp, sem pagar taxas de aplicativos e com painel fácil para atualizar preços.");
+  assert.deepEqual(espetaria.etiquetas, ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"]);
+  assert.equal(espetaria.convite, "Quero um cardápio digital assim para o meu negócio");
 });
 
 test("links dos sites publicados", () => {
@@ -51,7 +67,7 @@ test("links dos sites publicados", () => {
 
 test("todo projeto tem os campos e 3 a 4 etiquetas", () => {
   for (const p of PROJETOS) {
-    for (const campo of ["id", "nome", "frase", "url"]) assert.ok(typeof p[campo] === "string" && p[campo], `${p.id}: ${campo}`);
+    for (const campo of ["id", "titulo", "nome", "frase", "url", "convite"]) assert.ok(typeof p[campo] === "string" && p[campo], `${p.id}: ${campo}`);
     assert.ok(p.etiquetas.length >= 3 && p.etiquetas.length <= 4, `${p.id}: etiquetas`);
     assert.ok(Array.isArray(p.painel), `${p.id}: painel`);
   }
