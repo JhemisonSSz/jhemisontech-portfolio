@@ -13,12 +13,12 @@ const lf = (t) => t.replace(/\r\n/g, "\n");
 const html = lf(readFileSync(INDEX, "utf8"));
 
 test("serviços: quatro, cada um com o 'ideal para' e uma mensagem própria", () => {
-  assert.deepEqual(SERVICOS.map((s) => s.titulo), ["Sites e landing pages", "Agendamento online", "Loja + PDV", "Agentes de IA"]);
+  assert.deepEqual(SERVICOS.map((s) => s.titulo), ["Landing pages", "Sites", "Sistemas com painel admin", "Agentes de IA"]);
   for (const s of SERVICOS) {
     assert.match(s.ideal, /^Ideal para /, s.titulo);
     assert.ok(s.texto && s.mensagem && s.icone, s.titulo);
   }
-  assert.match(SERVICOS[1].ideal, /barbearias, clínicas/);
+  assert.match(SERVICOS[2].ideal, /barbearias, clínicas/);
 });
 
 test("o index.html está em dia com os dados (rode 'npm run gerar' se este teste falhar)", () => {
