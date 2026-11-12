@@ -79,7 +79,8 @@ export const htmlServicos = () => SERVICOS.map((s) => `
 // ---- Topo e contato ----
 
 export const htmlTopoCta = () =>
-  `<a id="zap-topo" class="btn" href="${esc(linkWhatsApp("Olá, Jhemison! Vim pelo seu site e gostaria de fazer um orçamento sem compromisso."))}" ${ZAP}>Falar no WhatsApp</a>`;
+  `<a id="zap-topo" class="btn" href="${esc(linkWhatsApp("Olá, Jhemison! Vim pelo seu site e gostaria de fazer um orçamento sem compromisso."))}" ${ZAP}>Falar no WhatsApp</a>
+   <a id="ver-projetos" class="btn-secundario" href="#projetos">Ver projetos funcionando</a>`;
 
 export const htmlContato = () => `
       <h2>Peça seu orçamento sem compromisso</h2>

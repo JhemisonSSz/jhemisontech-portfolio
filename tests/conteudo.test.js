@@ -71,3 +71,8 @@ test("Sobre mim: foto, texto e SEO local (Itamaraju, extremo sul da Bahia)", () 
   assert.match(descricao, /extremo sul da Bahia/);
   assert.match(html, /"addressLocality":"Itamaraju"/);
 });
+
+test("topo: subtítulo por benefício e botão que leva aos projetos", () => {
+  assert.ok(html.includes("Ferramentas prontas para você vender mais, organizar sua rotina e atender clientes no WhatsApp 24 horas por dia."));
+  assert.ok(html.includes("<a id=\"ver-projetos\" class=\"btn-secundario\" href=\"#projetos\">Ver projetos funcionando</a>"));
+});
