@@ -12,7 +12,7 @@ export const CONTATO = {
 export const linkWhatsApp = (mensagem) => `https://wa.me/${CONTATO.whatsapp}?text=${encodeURIComponent(mensagem)}`;
 
 // Mensagens prontas dos botões de cada card de projeto
-// Convite do nicho: "Olá! Vi o Sistema para Barbearias e Salões (demonstração Jtech Barbearia) no seu portfólio. Quero um sistema assim para minha barbearia."
-export const mensagemConvite = (p) => `Olá! Vi o ${p.titulo} (demonstração ${p.nome}) no seu portfólio. ${p.convite}.`;
+// Convite do nicho: o texto fica em cada projeto (campo "mensagem" do projetos.js)
+export const mensagemConvite = (p) => p.mensagem;
 // Botão "Pedir acesso ao painel" (os painéis pedem login de propósito: quem quer ver, pede)
 export const mensagemPainel = (p) => `Olá! Vi o painel da demonstração ${p.nome} no seu portfólio e quero pedir acesso para testar.`;

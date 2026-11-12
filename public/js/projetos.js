@@ -8,7 +8,8 @@
 //   nome       nome da demonstração, que aparece em letra menor embaixo do título
 //   frase      o benefício em uma ou duas frases curtas
 //   etiquetas  3 ou 4 funções principais
-//   convite    o que o visitante diz no convite do WhatsApp (sem a seta): "Quero um sistema assim para minha barbearia"
+//   convite    o texto do link do card (sem a seta): "Quero um sistema assim para minha agenda"
+//   mensagem   o texto que já aparece escrito no WhatsApp quando o visitante clica no convite
 //   url        endereço do site publicado
 //   prints     print do site no computador (pc) e no celular (cel), dentro de public/
 //   painel     prints de DENTRO do painel (opcional), em img/prints/painel/.
@@ -26,7 +27,8 @@ export const PROJETOS = [
     nome: "Jtech Loja Online",
     frase: "Venda pela internet e no balcão em um só lugar. Controle seu estoque automaticamente e deixe o cliente acompanhar o pedido.",
     etiquetas: ["Catálogo", "Acompanhamento", "PDV", "Estoque"],
-    convite: "Quero uma loja virtual assim para o meu negócio",
+    convite: "Quero uma loja virtual assim",
+    mensagem: "Olá, Jhemison! Vi a demonstração da Loja Virtual com PDV no seu portfólio e gostaria de saber como funciona para o meu negócio.",
     url: "https://jtech-loja-online.web.app/",
     prints: prints("loja"),
     painel: painel("loja-pdv.png", "loja-dashboard.png", "loja-pedidos.png", "loja-produtos.png", "loja-relatorios.png"),
@@ -37,7 +39,8 @@ export const PROJETOS = [
     nome: "Jtech Barbearia",
     frase: "Acabe com os furos na agenda. Seus clientes marcam horário sozinhos e você gerencia assinaturas e faturamento no painel.",
     etiquetas: ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"],
-    convite: "Quero um sistema assim para minha barbearia",
+    convite: "Quero um sistema assim para minha agenda",
+    mensagem: "Olá, Jhemison! Testei o Sistema de Agendamento (Barbearia) no seu site e tenho interesse em colocar no meu negócio. Podemos conversar?",
     url: "https://jtech-barbearia.web.app/",
     prints: prints("barbearia"),
     painel: painel("barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"),
@@ -49,6 +52,7 @@ export const PROJETOS = [
     frase: "Seus alunos reservam aula sozinhos e você controla vagas, lista de espera e mensalidades no painel.",
     etiquetas: ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"],
     convite: "Quero um sistema assim para minha academia",
+    mensagem: "Olá, Jhemison! Vi a demonstração da Volt Academia no seu portfólio e tenho interesse em um sistema assim para a minha academia. Podemos conversar?",
     url: "https://volt-academia.web.app/",
     prints: prints("volt"),
     painel: painel("volt-agenda.png", "volt-alunos.png", "volt-resumo.png"),
@@ -59,7 +63,8 @@ export const PROJETOS = [
     nome: "Jtech Espetaria",
     frase: "Receba pedidos organizados direto no WhatsApp, sem pagar taxas de aplicativos e com painel fácil para atualizar preços.",
     etiquetas: ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"],
-    convite: "Quero um cardápio digital assim para o meu negócio",
+    convite: "Quero um cardápio digital assim",
+    mensagem: "Olá, Jhemison! Vi o modelo de Cardápio Digital com pedido pelo WhatsApp no seu portfólio e queria tirar algumas dúvidas sobre valores e prazos.",
     url: "https://jtech-espetaria.web.app/",
     prints: prints("espetaria"),
     painel: painel("espetaria-editar-cardapio.jpg"),

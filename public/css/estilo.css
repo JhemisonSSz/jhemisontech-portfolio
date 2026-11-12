@@ -124,6 +124,12 @@ nav a:hover { color: var(--azul-escuro); }
 .servico-acao { display: inline-block; margin-top: 8px; font-size: .9rem; font-weight: 600; color: var(--azul-escuro); text-decoration: none; border-bottom: 1px solid #9fcbf3; }
 .servico-acao:hover { border-bottom-color: var(--azul); }
 
+/* ---- Sobre mim ---- */
+.sobre { display: flex; gap: 28px; align-items: center; }
+.foto-sobre { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid var(--azul-borda); box-shadow: 0 8px 24px rgba(11, 92, 173, .15); flex-shrink: 0; }
+.sobre-texto p { color: var(--texto-suave); margin-top: 10px; max-width: 62ch; }
+@media (max-width: 700px) { .sobre { flex-direction: column; text-align: center; } .foto-sobre { width: 160px; height: 160px; } }
+
 /* ---- Contato ---- */
 .btn-grande { font-size: 1.1rem; padding: 14px 28px; }
 .contato-numero { margin: 14px 0 4px; color: var(--texto-suave); font-size: .95rem; }

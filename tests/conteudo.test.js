@@ -37,8 +37,8 @@ test("os cards dos projetos estão escritos no HTML, com título pelo nicho e a 
 });
 
 test("cada card tem o convite do nicho e o botão 'Pedir acesso ao painel' (o painel pede login de propósito)", () => {
-  assert.ok(html.includes("Quero um sistema assim para minha barbearia →"));
-  assert.ok(html.includes("Quero uma loja virtual assim para o meu negócio →"));
+  assert.ok(html.includes("Quero um sistema assim para minha agenda →"));
+  assert.ok(html.includes("Quero uma loja virtual assim →"));
   assert.equal((html.match(/Pedir acesso ao painel/g) || []).length, 4);
   assert.ok(!html.includes("Testar painel"), "não oferecemos 'testar painel': ele pede login");
   assert.ok(!html.includes("Quer conhecer mais do projeto?"), "o convite genérico saiu");
@@ -60,4 +60,14 @@ test("SEO: description rica, com o que é oferecido, e tamanho de resumo do Goog
     assert.ok(descricao.toLowerCase().includes(palavra.toLowerCase()), palavra);
   }
   assert.match(html, /<link rel="canonical" href="https:\/\/jhemisontech\.web\.app\/">/);
+});
+
+test("Sobre mim: foto, texto e SEO local (Itamaraju, extremo sul da Bahia)", () => {
+  assert.match(html, /<section id="sobre"/);
+  assert.match(html, /img\/jhemison\.jpg/);
+  assert.match(html, /Quem está por trás da JhemisonTech\?/);
+  const descricao = html.match(/<meta name="description" content="([^"]+)"/)[1];
+  assert.match(descricao, /Itamaraju/);
+  assert.match(descricao, /extremo sul da Bahia/);
+  assert.match(html, /"addressLocality":"Itamaraju"/);
 });

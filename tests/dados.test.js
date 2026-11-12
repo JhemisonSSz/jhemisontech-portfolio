@@ -22,7 +22,7 @@ test("link do WhatsApp com a mensagem codificada", () => {
 test("mensagens do card citam o projeto e o que a pessoa quer", () => {
   const barbearia = PROJETOS.find((p) => p.id === "barbearia");
   assert.equal(mensagemConvite(barbearia),
-    "Olá! Vi o Sistema para Barbearias e Salões (demonstração Jtech Barbearia) no seu portfólio. Quero um sistema assim para minha barbearia.");
+    "Olá, Jhemison! Testei o Sistema de Agendamento (Barbearia) no seu site e tenho interesse em colocar no meu negócio. Podemos conversar?");
   assert.equal(mensagemPainel(barbearia),
     "Olá! Vi o painel da demonstração Jtech Barbearia no seu portfólio e quero pedir acesso para testar.");
 });
@@ -35,25 +35,29 @@ test("quatro projetos com título pelo nicho, a demonstração e a frase com o b
   assert.equal(loja.nome, "Jtech Loja Online"); // nome da demonstração (o nome verdadeiro, não "Jtech Store")
   assert.equal(loja.frase, "Venda pela internet e no balcão em um só lugar. Controle seu estoque automaticamente e deixe o cliente acompanhar o pedido.");
   assert.deepEqual(loja.etiquetas, ["Catálogo", "Acompanhamento", "PDV", "Estoque"]);
-  assert.equal(loja.convite, "Quero uma loja virtual assim para o meu negócio");
+  assert.equal(loja.convite, "Quero uma loja virtual assim");
+  assert.equal(loja.mensagem, "Olá, Jhemison! Vi a demonstração da Loja Virtual com PDV no seu portfólio e gostaria de saber como funciona para o meu negócio.");
 
   assert.equal(barbearia.titulo, "Sistema para Barbearias e Salões");
   assert.equal(barbearia.nome, "Jtech Barbearia");
   assert.equal(barbearia.frase, "Acabe com os furos na agenda. Seus clientes marcam horário sozinhos e você gerencia assinaturas e faturamento no painel.");
   assert.deepEqual(barbearia.etiquetas, ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"]);
-  assert.equal(barbearia.convite, "Quero um sistema assim para minha barbearia");
+  assert.equal(barbearia.convite, "Quero um sistema assim para minha agenda");
+  assert.equal(barbearia.mensagem, "Olá, Jhemison! Testei o Sistema de Agendamento (Barbearia) no seu site e tenho interesse em colocar no meu negócio. Podemos conversar?");
 
   assert.equal(volt.titulo, "Sistema para Academias");
   assert.equal(volt.nome, "Volt Academia");
   assert.equal(volt.frase, "Seus alunos reservam aula sozinhos e você controla vagas, lista de espera e mensalidades no painel.");
   assert.deepEqual(volt.etiquetas, ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"]);
   assert.equal(volt.convite, "Quero um sistema assim para minha academia");
+  assert.equal(volt.mensagem, "Olá, Jhemison! Vi a demonstração da Volt Academia no seu portfólio e tenho interesse em um sistema assim para a minha academia. Podemos conversar?");
 
   assert.equal(espetaria.titulo, "Cardápio Digital com Pedido pelo WhatsApp");
   assert.equal(espetaria.nome, "Jtech Espetaria");
   assert.equal(espetaria.frase, "Receba pedidos organizados direto no WhatsApp, sem pagar taxas de aplicativos e com painel fácil para atualizar preços.");
   assert.deepEqual(espetaria.etiquetas, ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"]);
-  assert.equal(espetaria.convite, "Quero um cardápio digital assim para o meu negócio");
+  assert.equal(espetaria.convite, "Quero um cardápio digital assim");
+  assert.equal(espetaria.mensagem, "Olá, Jhemison! Vi o modelo de Cardápio Digital com pedido pelo WhatsApp no seu portfólio e queria tirar algumas dúvidas sobre valores e prazos.");
 });
 
 test("links dos sites publicados", () => {

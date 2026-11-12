@@ -78,12 +78,12 @@ export const htmlServicos = () => SERVICOS.map((s) => `
 // ---- Topo e contato ----
 
 export const htmlTopoCta = () =>
-  `<a id="zap-topo" class="btn" href="${esc(linkWhatsApp("Olá! Vim pelo seu portfólio e quero um orçamento."))}" ${ZAP}>Falar no WhatsApp</a>`;
+  `<a id="zap-topo" class="btn" href="${esc(linkWhatsApp("Olá, Jhemison! Vim pelo seu site e gostaria de fazer um orçamento sem compromisso."))}" ${ZAP}>Falar no WhatsApp</a>`;
 
 export const htmlContato = () => `
       <h2>Peça seu orçamento sem compromisso</h2>
       <p class="sub">Me conta o que você precisa. Respondo rapidinho, e o orçamento é sem compromisso.</p>
-      <a id="zap-contato" class="btn btn-grande" href="${esc(linkWhatsApp("Olá! Vim pelo seu portfólio e quero um orçamento sem compromisso."))}" ${ZAP}>Chamar no WhatsApp</a>
+      <a id="zap-contato" class="btn btn-grande" href="${esc(linkWhatsApp("Olá, Jhemison! Vim pelo seu site e gostaria de fazer um orçamento sem compromisso."))}" ${ZAP}>Chamar no WhatsApp</a>
       <p class="contato-numero">${esc(CONTATO.whatsappTexto)} · ou se preferir:</p>
       <div class="contatos">
         <a id="insta" class="contato-item" href="https://instagram.com/${esc(CONTATO.instagram)}" ${ZAP}>
