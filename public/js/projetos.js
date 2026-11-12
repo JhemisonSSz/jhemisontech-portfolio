@@ -35,15 +35,6 @@ export const PROJETOS = [
     painel: painel("barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"),
   },
   {
-    id: "espetaria",
-    nome: "Jtech Espetaria",
-    frase: "Cardápio digital com pedido pelo WhatsApp.",
-    etiquetas: ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"],
-    url: "https://jtech-espetaria.web.app/",
-    prints: prints("espetaria"),
-    painel: painel("espetaria-editar-cardapio.jpg"),
-  },
-  {
     id: "volt",
     nome: "Volt Academia",
     frase: "Reserva de aulas e controle de mensalidade para academias.",
@@ -51,5 +42,14 @@ export const PROJETOS = [
     url: "https://volt-academia.web.app/",
     prints: prints("volt"),
     painel: painel("volt-agenda.png", "volt-alunos.png", "volt-resumo.png"),
+  },
+  {
+    id: "espetaria",
+    nome: "Jtech Espetaria",
+    frase: "Cardápio digital com pedido pelo WhatsApp.",
+    etiquetas: ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"],
+    url: "https://jtech-espetaria.web.app/",
+    prints: prints("espetaria"),
+    painel: painel("espetaria-editar-cardapio.jpg"),
   },
 ];

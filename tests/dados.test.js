@@ -24,8 +24,8 @@ test("mensagem do card cita o projeto", () => {
 });
 
 test("quatro projetos com os textos aprovados no design", () => {
-  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "espetaria", "volt"]);
-  const [loja, barbearia, espetaria, volt] = PROJETOS;
+  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "volt", "espetaria"]);
+  const [loja, barbearia, volt, espetaria] = PROJETOS;
   assert.equal(loja.nome, "Jtech Loja Online");
   assert.equal(loja.frase, "Loja virtual com carrinho e acompanhamento do pedido.");
   assert.deepEqual(loja.etiquetas, ["Catálogo", "Acompanhamento", "PDV", "Estoque"]);
@@ -44,8 +44,8 @@ test("links dos sites publicados", () => {
   assert.deepEqual(PROJETOS.map((p) => p.url), [
     "https://jtech-loja-online.web.app/",
     "https://jtech-barbearia.web.app/",
-    "https://jtech-espetaria.web.app/",
     "https://volt-academia.web.app/",
+    "https://jtech-espetaria.web.app/",
   ]);
 });
 
@@ -61,8 +61,8 @@ test("prints do painel de cada projeto (só telas de dentro do painel)", () => {
   assert.deepEqual(PROJETOS.map((p) => p.painel), [
     ["loja-pdv.png", "loja-dashboard.png", "loja-pedidos.png", "loja-produtos.png", "loja-relatorios.png"].map((a) => "img/prints/painel/" + a),
     ["barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"].map((a) => "img/prints/painel/" + a),
-    ["img/prints/painel/espetaria-editar-cardapio.jpg"],
     ["volt-agenda.png", "volt-alunos.png", "volt-resumo.png"].map((a) => "img/prints/painel/" + a),
+    ["img/prints/painel/espetaria-editar-cardapio.jpg"],
   ]);
 });
 
