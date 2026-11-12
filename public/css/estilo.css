@@ -69,6 +69,8 @@ nav a:hover { color: var(--azul-escuro); }
 
 /* ---- Cards de projeto ---- */
 .projetos { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+/* No computador, 2 por linha: com 4 projetos fica 2 x 2, sem card sozinho na última linha */
+@media (min-width: 900px) { .projetos { grid-template-columns: repeat(2, 1fr); } }
 .projeto { background: #fff; border: 1px solid var(--azul-borda); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
   box-shadow: 0 8px 30px rgba(47, 143, 230, .18); transition: transform .3s, box-shadow .3s; }
 .projeto:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(47, 143, 230, .32); }
