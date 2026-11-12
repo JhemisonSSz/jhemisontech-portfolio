@@ -8,10 +8,10 @@
 
 export const SERVICOS = [
   {
-    titulo: "Sites com painel",
-    texto: "Seu site com uma área para você mesmo mudar textos, fotos e preços.",
+    titulo: "Sites e landing pages",
+    texto: "Landing page ou site completo, com uma área para você mesmo mudar textos, fotos e preços.",
     ideal: "Ideal para quem quer aparecer no Google e atualizar tudo sozinho.",
-    mensagem: "Olá! Vim pelo seu portfólio e quero saber mais sobre Sites com painel.",
+    mensagem: "Olá! Vim pelo seu portfólio e quero saber mais sobre Sites e landing pages.",
     icone: '<rect x="2" y="4" width="18" height="12" rx="2"/><path d="M8 20h6M11 16v4"/>',
   },
   {
