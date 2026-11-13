@@ -26,20 +26,20 @@ test("o index.html está em dia com os dados (rode 'npm run gerar' se este teste
 });
 
 test("os cards dos projetos estão escritos no HTML, com título pelo nicho e a demonstração", () => {
-  for (const titulo of ["Loja Virtual com PDV e Estoque", "Sistema para Barbearias e Salões", "Sistema para Academias", "Cardápio Digital com Pedido pelo WhatsApp"]) {
+  for (const titulo of ["Loja Virtual com PDV e Estoque", "Sistema para Barbearias e Salões", "Sistema para Academias", "Cardápio Digital com Pedido pelo WhatsApp", "Site para Clínicas Odontológicas"]) {
     assert.ok(html.includes(`<h3>${titulo}</h3>`), titulo);
   }
-  for (const demo of ["Jtech Loja Online", "Jtech Barbearia", "Volt Academia", "Jtech Espetaria"]) {
+  for (const demo of ["Jtech Loja Online", "Jtech Barbearia", "Volt Academia", "Jtech Espetaria", "Serena Odonto"]) {
     assert.ok(html.includes(`Demonstração: ${demo}`), demo);
   }
   assert.ok(!/<h3>Jtech /.test(html), "o título do card não começa mais com 'Jtech'");
-  assert.equal((html.match(/class="ver-site"/g) || []).length, 4);
+  assert.equal((html.match(/class="ver-site"/g) || []).length, 5);
 });
 
 test("cada card tem o convite do nicho e o botão 'Pedir acesso ao painel' (o painel pede login de propósito)", () => {
   assert.ok(html.includes("Quero um sistema assim para minha agenda →"));
   assert.ok(html.includes("Quero uma loja virtual assim →"));
-  assert.equal((html.match(/Pedir acesso ao painel/g) || []).length, 4);
+  assert.equal((html.match(/Pedir acesso ao painel/g) || []).length, 5);
   assert.ok(!html.includes("Testar painel"), "não oferecemos 'testar painel': ele pede login");
   assert.ok(!html.includes("Quer conhecer mais do projeto?"), "o convite genérico saiu");
   const links = html.match(/href="https:\/\/wa\.me\/5573988045634\?text=[^"]+"/g) || [];

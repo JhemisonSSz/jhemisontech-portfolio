@@ -69,4 +69,16 @@ export const PROJETOS = [
     prints: prints("espetaria"),
     painel: painel("espetaria-editar-cardapio.jpg"),
   },
+  {
+    id: "serena",
+    titulo: "Site para Clínicas Odontológicas",
+    nome: "Serena Odonto",
+    frase: "Apresente sua clínica com um site rápido e transmita confiança. O paciente conhece os serviços e agenda a consulta direto pelo WhatsApp.",
+    etiquetas: ["Site da clínica", "Agendamento pelo WhatsApp", "Mapa de localização", "Rápido no celular"],
+    convite: "Quero um site assim para minha clínica",
+    mensagem: "Olá, Jhemison! Vi o site da Serena Odonto no seu portfólio e tenho interesse em um site assim para a minha clínica. Podemos conversar?",
+    url: "https://serena-odonto.web.app/",
+    prints: prints("serena"),
+    painel: [], // site institucional: não tem painel
+  },
 ];

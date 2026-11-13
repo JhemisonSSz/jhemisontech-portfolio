@@ -27,9 +27,9 @@ test("mensagens do card citam o projeto e o que a pessoa quer", () => {
     "Olá! Vi o painel da demonstração Jtech Barbearia no seu portfólio e quero pedir acesso para testar.");
 });
 
-test("quatro projetos com título pelo nicho, a demonstração e a frase com o benefício", () => {
-  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "volt", "espetaria"]);
-  const [loja, barbearia, volt, espetaria] = PROJETOS;
+test("cinco projetos com título pelo nicho, a demonstração e a frase com o benefício", () => {
+  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "volt", "espetaria", "serena"]);
+  const [loja, barbearia, volt, espetaria, serena] = PROJETOS;
 
   assert.equal(loja.titulo, "Loja Virtual com PDV e Estoque");
   assert.equal(loja.nome, "Jtech Loja Online"); // nome da demonstração (o nome verdadeiro, não "Jtech Store")
@@ -58,6 +58,13 @@ test("quatro projetos com título pelo nicho, a demonstração e a frase com o b
   assert.deepEqual(espetaria.etiquetas, ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"]);
   assert.equal(espetaria.convite, "Quero um cardápio digital assim");
   assert.equal(espetaria.mensagem, "Olá, Jhemison! Vi o modelo de Cardápio Digital com pedido pelo WhatsApp no seu portfólio e queria tirar algumas dúvidas sobre valores e prazos.");
+
+  assert.equal(serena.titulo, "Site para Clínicas Odontológicas");
+  assert.equal(serena.nome, "Serena Odonto");
+  assert.equal(serena.frase, "Apresente sua clínica com um site rápido e transmita confiança. O paciente conhece os serviços e agenda a consulta direto pelo WhatsApp.");
+  assert.deepEqual(serena.etiquetas, ["Site da clínica", "Agendamento pelo WhatsApp", "Mapa de localização", "Rápido no celular"]);
+  assert.equal(serena.convite, "Quero um site assim para minha clínica");
+  assert.equal(serena.mensagem, "Olá, Jhemison! Vi o site da Serena Odonto no seu portfólio e tenho interesse em um site assim para a minha clínica. Podemos conversar?");
 });
 
 test("links dos sites publicados", () => {
@@ -66,6 +73,7 @@ test("links dos sites publicados", () => {
     "https://jtech-barbearia.web.app/",
     "https://volt-academia.web.app/",
     "https://jtech-espetaria.web.app/",
+    "https://serena-odonto.web.app/",
   ]);
 });
 
@@ -83,6 +91,7 @@ test("prints do painel de cada projeto (só telas de dentro do painel)", () => {
     ["barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"].map((a) => "img/prints/painel/" + a),
     ["volt-agenda.png", "volt-alunos.png", "volt-resumo.png"].map((a) => "img/prints/painel/" + a),
     ["img/prints/painel/espetaria-editar-cardapio.jpg"],
+    [], // serena: site institucional, sem painel
   ]);
 });
 
