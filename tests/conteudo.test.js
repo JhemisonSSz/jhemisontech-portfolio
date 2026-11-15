@@ -12,13 +12,28 @@ const INDEX = fileURLToPath(new URL("../public/index.html", import.meta.url));
 const lf = (t) => t.replace(/\r\n/g, "\n");
 const html = lf(readFileSync(INDEX, "utf8"));
 
-test("serviços: cinco, em escada de valor, cada um com o 'ideal para' e uma mensagem própria", () => {
-  assert.deepEqual(SERVICOS.map((s) => s.titulo), ["Landing Pages", "Sites Institucionais", "Lojas Virtuais", "Sistemas Web Sob Medida", "Agentes de IA e Automações"]);
+test("serviços: quatro (sem landing page), em escada de valor, cada um com o 'ideal para' e uma mensagem própria", () => {
+  assert.deepEqual(SERVICOS.map((s) => s.titulo), ["Sites", "Lojas Virtuais", "Sistemas Sob Medida", "Agentes de IA e Automações"]);
+  assert.ok(!/landing page/i.test(html), "landing page saiu da página");
+  // "Sites" engloba os planos Site do negócio (agendar pelo WhatsApp) e Site + agendamento (agenda online)
+  const sites = SERVICOS[0].inclui.join(" ");
+  assert.match(sites, /WhatsApp/);
+  assert.match(sites, /agenda online/i);
+  assert.ok(!html.includes("Sites Institucionais"));
+  // "Sistemas Sob Medida" são os sistemas completos que o Jhemison já tem e adapta (a loja tem card próprio)
+  const sob = SERVICOS[2].inclui.join(" ");
+  for (const nicho of ["Barbearia", "Academia", "Lanchonete"]) assert.ok(sob.includes(nicho), nicho);
+  assert.ok(!/Loja/.test(sob), "a loja fica no card Lojas Virtuais");
+  // A loja não tem pagamento online: o card não pode prometer "Pix e cartão de crédito"
+  const loja = SERVICOS[1].inclui.join(" ");
+  assert.match(loja, /PDV/);
+  assert.match(loja, /Pagamento combinado/);
+  assert.ok(!html.includes("Pix e cartão de crédito"));
   for (const s of SERVICOS) {
     assert.match(s.ideal, /^Ideal para /, s.titulo);
     assert.ok(s.texto && s.mensagem && s.icone && s.inclui.length >= 3, s.titulo);
   }
-  assert.match(SERVICOS[3].ideal, /barbearias, clínicas/);
+  assert.match(SERVICOS[2].ideal, /barbearias, academias/);
 });
 
 test("o index.html está em dia com os dados (rode 'npm run gerar' se este teste falhar)", () => {
@@ -47,7 +62,7 @@ test("cada card tem o convite do nicho e o botão 'Pedir acesso ao painel' (o pa
 });
 
 test("os serviços e o contato aparecem escritos no HTML", () => {
-  assert.ok(html.includes("(ideal para barbearias, clínicas, salões e estúdios)") || html.includes("Ideal para barbearias, clínicas"));
+  assert.ok(html.includes("Ideal para barbearias, academias"));
   assert.match(html, /orçamento sem compromisso/i);
   assert.ok(html.includes("Chamar no WhatsApp"));
   assert.ok(html.includes("(73) 98804-5634"));
@@ -62,14 +77,17 @@ test("SEO: description rica, com o que é oferecido, e tamanho de resumo do Goog
   assert.match(html, /<link rel="canonical" href="https:\/\/jhemisontech\.web\.app\/">/);
 });
 
-test("Sobre mim: foto, texto e SEO local (Itamaraju, extremo sul da Bahia)", () => {
+test("Sobre mim: foto e texto, sem prender a página a uma cidade", () => {
   assert.match(html, /<section id="sobre"/);
   assert.match(html, /img\/jhemison\.jpg/);
   assert.match(html, /Quem está por trás da JhemisonTech\?/);
-  const descricao = html.match(/<meta name="description" content="([^"]+)"/)[1];
-  assert.match(descricao, /Itamaraju/);
-  assert.match(descricao, /extremo sul da Bahia/);
+  assert.ok(html.includes("sem intermediários e sem enrolação"));
+  assert.ok(!/sem robôs/i.test(html), "a página vende agentes de IA: não dá para prometer 'sem robôs'");
+  // Itamaraju fica só no endereço dos dados estruturados (o Google usa, o visitante não vê)
+  const visivel = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, "");
+  assert.ok(!/Itamaraju|extremo sul/i.test(visivel), "Itamaraju e extremo sul saíram do texto da página");
   assert.match(html, /"addressLocality":"Itamaraju"/);
+  assert.match(html, /"areaServed":"Brasil"/);
 });
 
 test("topo: título da vitrine, para quem é, benefício e botão que leva aos projetos", () => {

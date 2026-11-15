@@ -115,6 +115,8 @@ nav a:hover { color: var(--azul-escuro); }
 
 /* ---- Serviços ---- */
 .servicos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 16px; }
+/* No computador, 2 por linha: com 4 serviços fica 2 x 2, sem card sozinho na última linha */
+@media (min-width: 900px) { .servicos { grid-template-columns: repeat(2, 1fr); } }
 .servico { background: rgba(255, 255, 255, .75); border: 1px solid var(--azul-borda); border-radius: 14px; padding: 16px; display: flex; gap: 12px; align-items: flex-start;
   transition: transform .3s, box-shadow .3s; }
 .servico:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(47, 143, 230, .25); }

@@ -20,6 +20,11 @@ test("planos: quatro, com mensalidade e implantação, e só um em destaque", ()
   }
 });
 
+test("o plano Sistema sob medida cita os sistemas prontos para adaptar", () => {
+  const sob = PLANOS[3].inclui.join(" ");
+  for (const nicho of ["Barbearia", "Academia", "Loja", "Lanchonete"]) assert.ok(sob.includes(nicho), nicho);
+});
+
 test("o que a mensalidade inclui e a observação sobre custos extras", () => {
   assert.ok(INCLUSO.some((i) => /hospedagem e domínio/i.test(i)));
   assert.ok(INCLUSO.some((i) => /2 alterações pequenas/i.test(i)));

@@ -45,7 +45,7 @@ export const PLANOS = [
     mensal: "R$ 350",
     aPartirDe: true,
     implantacao: "R$ 1.500",
-    inclui: ["Loja online com PDV no balcão", "Academia: alunos, aulas e mensalidades", "Cardápio digital com painel", "Com as regras do seu negócio"],
+    inclui: ["Barbearia com assinatura e PDV", "Academia: alunos, aulas e mensalidades", "Loja online com PDV e estoque", "Lanchonete e restaurante com pedidos", "Adaptado às regras do seu negócio"],
     botao: "Pedir orçamento",
     mensagem: "Olá, Jhemison! Vi os planos no seu site e quero um orçamento de um sistema sob medida.",
   },
@@ -81,6 +81,6 @@ export const PERGUNTAS = [
     resposta: "Sim. No agendamento e nos sistemas com painel, você mesmo muda pelo celular. No site, é só me mandar uma mensagem." },
   { pergunta: "O endereço do site fica no meu nome?",
     resposta: "Sim. O domínio é registrado no seu nome ou no CNPJ do seu negócio. Eu cuido da parte técnica, mas o endereço é seu." },
-  { pergunta: "Você atende fora de Itamaraju?",
-    resposta: "Sim. Atendo todo o extremo sul da Bahia, e o trabalho também pode ser feito todo pelo WhatsApp, para qualquer cidade." },
+  { pergunta: "Você atende na minha cidade?",
+    resposta: "Sim. O trabalho pode ser feito todo pelo WhatsApp, então atendo negócios de qualquer cidade do Brasil." },
 ];
