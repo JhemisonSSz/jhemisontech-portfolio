@@ -9,11 +9,11 @@ Este é o portfólio da JhemisonTech, que faz Sites, sistemas de agendamento e a
 
 ```
 public/
-  index.html        a página: topo, projetos, "O que eu faço", planos, como funciona, sobre, perguntas, contato
+  index.html        a página: topo, projetos, "O que eu faço" (com os valores), como funciona, sobre, perguntas, contato
   css/estilo.css    visual (cores no topo do arquivo) e animações
   js/projetos.js    LISTA DE PROJETOS dos cards: título pelo nicho, benefício, convite, link e prints
-  js/servicos.js    cards de "O que eu faço" (texto, "ideal para" e mensagem do WhatsApp)
-  js/planos.js      PLANOS E PREÇOS, o que a mensalidade inclui, "Como funciona" e perguntas frequentes
+  js/servicos.js    cards de "O que eu faço": texto, "ideal para" e mensagem do WhatsApp (sem preços: cada card pede orçamento)
+  js/planos.js      o que a mensalidade inclui, "Como funciona" e perguntas frequentes
   js/conteudo.js    monta o HTML dos cards, serviços e contato (usado por `npm run gerar`)
   scripts/gerar.mjs grava esse HTML direto no index.html (para o Google e quem está sem JavaScript)
   js/contato.js     WhatsApp, Instagram e e-mail (mude só aqui)
@@ -40,9 +40,9 @@ docs/               design aprovado e plano de construção
    - Os prints que não vão para o site ficam em `prints-painel-nao-usados/`, que fica fora do Git e fora do site.
 5. Rode **`npm run gerar`**: ele grava os cards no `index.html`. Depois rode `npm test`. Ele confere se todo print citado existe e **avisa se você esqueceu de rodar o `gerar`**.
 
-## Mudar um preço ou uma pergunta
+## Mudar um serviço ou uma pergunta
 
-Edite `public/js/planos.js`, rode `npm run gerar` e depois `npm test`.
+Serviços: edite `public/js/servicos.js`. Perguntas e "Como funciona": edite `public/js/planos.js`. Depois rode `npm run gerar` e `npm test`.
 
 > Os cards, os serviços e o contato ficam escritos direto no HTML de propósito: assim o Google e quem abre a página sem JavaScript já veem tudo. Na aba **Painel** de cada card o botão vira "Pedir acesso ao painel" (os painéis pedem login de propósito: quem quer ver, pede).
 

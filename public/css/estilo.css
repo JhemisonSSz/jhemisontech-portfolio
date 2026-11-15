@@ -134,25 +134,10 @@ nav a:hover { color: var(--azul-escuro); }
 .servico-acao { display: inline-block; margin-top: 8px; font-size: .9rem; font-weight: 600; color: var(--azul-escuro); text-decoration: none; border-bottom: 1px solid #9fcbf3; }
 .servico-acao:hover { border-bottom-color: var(--azul); }
 
-/* ---- Planos ---- */
-.planos { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-top: 20px; align-items: stretch; }
-@media (min-width: 1000px) { .planos { grid-template-columns: repeat(4, 1fr); } }
-.plano { position: relative; background: rgba(255, 255, 255, .85); border: 1px solid var(--azul-borda); border-radius: 16px; padding: 22px 18px 18px;
-  display: flex; flex-direction: column; gap: 8px; }
-.plano-destaque { border: 2px solid var(--azul); box-shadow: 0 10px 30px rgba(47, 143, 230, .25); }
+/* ---- Card de serviço em destaque ---- */
+.servico { position: relative; }
+.servico-destaque { border: 2px solid var(--azul); box-shadow: 0 10px 30px rgba(47, 143, 230, .22); }
 .selo { position: absolute; top: -12px; left: 18px; background: var(--azul-escuro); color: #fff; font-size: .78rem; font-weight: 600; padding: 3px 12px; border-radius: 999px; }
-.plano h3 { font-size: 1.05rem; }
-.preco { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 4px; color: var(--azul-escuro); }
-.preco strong { font-size: 1.9rem; line-height: 1.1; }
-.a-partir { flex-basis: 100%; font-size: .8rem; color: var(--texto-fraco); }
-.mes { font-size: .9rem; color: var(--texto-suave); }
-.implantacao { font-size: .85rem; color: var(--texto-fraco); }
-.implantacao .valor { white-space: nowrap; }
-.plano .inclui { margin: 6px 0 12px; padding-left: 18px; color: var(--texto-suave); font-size: .9rem; flex: 1; }
-.plano .inclui li { margin-bottom: 4px; }
-.plano .btn, .btn-plano { text-align: center; }
-.btn-plano { display: inline-block; border: 1.5px solid var(--azul); color: var(--azul-escuro); text-decoration: none; padding: 10px 18px; border-radius: 999px; font-weight: 600; }
-.btn-plano:hover { background: var(--azul-fundo); }
 .incluso { margin-top: 20px; padding: 18px 20px; border-radius: 14px; background: var(--azul-fundo); border: 1px solid var(--azul-borda); }
 .incluso h3 { font-size: 1rem; margin-bottom: 8px; }
 .incluso ul { padding-left: 18px; display: grid; gap: 4px 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); color: var(--texto-suave); font-size: .92rem; }
@@ -205,14 +190,14 @@ nav a:hover { color: var(--azul-escuro); }
   transition: opacity .7s cubic-bezier(.2, .8, .2, 1), transform .7s cubic-bezier(.2, .8, .2, 1); transition-delay: var(--atraso, 0ms); }
 .com-movimento [data-revela].visivel { opacity: 1; transform: none; }
 /* Cards com hover: depois de aparecer, o hover volta a ser rápido */
-.com-movimento .projeto.visivel, .com-movimento .servico.visivel, .com-movimento .plano.visivel { transition-delay: 0ms; transition-duration: .3s; }
+.com-movimento .projeto.visivel, .com-movimento .servico.visivel { transition-delay: 0ms; transition-duration: .3s; }
 
 /* Passos: o número "pula" quando o passo aparece */
 .com-movimento .passos li.visivel::before { animation: pular .6s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: var(--atraso, 0ms); }
 @keyframes pular { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 
 /* Plano em destaque: brilho que pulsa devagar e selo com reflexo passando */
-.plano-destaque { animation: pulsar 3.2s ease-in-out infinite; }
+.servico-destaque { animation: pulsar 3.2s ease-in-out infinite; }
 @keyframes pulsar { 0%, 100% { box-shadow: 0 10px 30px rgba(47, 143, 230, .22); } 50% { box-shadow: 0 12px 42px rgba(47, 143, 230, .48); } }
 .selo { overflow: hidden; }
 .selo::after { content: ""; position: absolute; inset: 0; transform: translateX(-120%);
@@ -220,12 +205,10 @@ nav a:hover { color: var(--azul-escuro); }
 @keyframes reflexo { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
 
 /* Cards: levantam no hover; o print do projeto aproxima um pouco */
-.plano { transition: transform .3s, box-shadow .3s; }
-.plano:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(47, 143, 230, .28); }
 .print img { transition: transform .6s ease; }
 .projeto:hover .print img { transform: scale(1.04); }
-.btn, .btn-plano, .btn-secundario, .ver-site { transition: transform .2s, box-shadow .2s, background .2s; }
-.btn:hover, .btn-plano:hover, .btn-secundario:hover { transform: translateY(-2px); }
+.btn, .btn-secundario, .ver-site { transition: transform .2s, box-shadow .2s, background .2s; }
+.btn:hover, .btn-secundario:hover { transform: translateY(-2px); }
 
 /* Perguntas: a resposta desliza ao abrir; o "+" gira */
 .pergunta[open] p { animation: abrir .35s ease both; }
@@ -238,9 +221,9 @@ nav a:hover { color: var(--azul-escuro); }
   html { scroll-behavior: auto; }
   .servico svg { animation: none; }
   .projeto:hover, .servico:hover { transform: none; }
-  .topo > *, .plano-destaque, .selo::after, .pergunta[open] p, .passos li::before { animation: none; }
+  .topo > *, .servico-destaque, .selo::after, .pergunta[open] p, .passos li::before { animation: none; }
   [data-revela] { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .plano:hover, .btn:hover, .btn-plano:hover, .btn-secundario:hover, .projeto:hover .print img { transform: none; }
+  .btn:hover, .btn-secundario:hover, .projeto:hover .print img { transform: none; }
 }
 
 @media (max-width: 600px) {

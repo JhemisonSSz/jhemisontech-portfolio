@@ -1,11 +1,11 @@
 // Testes do movimento da página (public/js/movimento.js e as animações do estilo.css).
 // O movimento é um enfeite: a página precisa funcionar e mostrar tudo mesmo sem JavaScript,
-// e quem pediu "reduzir movimento" no aparelho não pode ver animação de entrada nem contagem.
+// e quem pediu "reduzir movimento" no aparelho não pode ver animação de entrada.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ALVOS, numeroDoPreco, formatarPreco } from "../public/js/movimento.js";
+import { ALVOS } from "../public/js/movimento.js";
 
 const ler = (caminho) => readFileSync(fileURLToPath(new URL(caminho, import.meta.url)), "utf8").replace(/\r\n/g, "\n");
 const html = ler("../public/index.html");
@@ -25,18 +25,11 @@ test("quem pediu 'reduzir movimento' vê tudo parado", () => {
   const bloco = css.match(/@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?\n\}/g).join("\n");
   assert.match(bloco, /\[data-revela\]/);
   assert.match(bloco, /\.topo > \*/);
-  assert.match(bloco, /\.plano-destaque/);
+  assert.match(bloco, /\.servico-destaque/);
 });
 
 test("revela os blocos principais da página", () => {
-  for (const alvo of [".projeto", ".servico", ".plano", ".passos li", ".pergunta"]) {
+  for (const alvo of [".projeto", ".servico", ".incluso", ".passos li", ".pergunta"]) {
     assert.ok(ALVOS.includes(alvo), alvo);
   }
-});
-
-test("contagem dos preços: lê e escreve no formato brasileiro", () => {
-  assert.equal(numeroDoPreco("R$ 39"), 39);
-  assert.equal(numeroDoPreco("R$ 1.500"), 1500);
-  assert.equal(formatarPreco(350), "R$ 350");
-  assert.equal(formatarPreco(1500), "R$ 1.500");
 });

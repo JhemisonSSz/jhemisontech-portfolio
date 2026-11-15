@@ -1,10 +1,12 @@
-// servicos.js — Os cards de "O que eu faço". Para mudar um texto, edite aqui e rode "npm run gerar".
+// servicos.js — Os cards de "O que eu faço". Os valores não aparecem na página: cada card leva a um orçamento.
+// Para mudar um texto, edite aqui e rode "npm run gerar".
 //
 // Campos:
 //   titulo, texto   o nome do serviço e o que ele faz
 //   inclui          o que está incluído (aparece em marcadores)
 //   ideal           para quem serve (ajuda o visitante a se reconhecer)
 //   mensagem        o que vai escrito no WhatsApp quando o visitante clica em "Quero isso"
+//   destaque        true em UM serviço só: ganha o selo "Mais procurado"
 //   icone           o desenho (traços SVG, dentro de um quadro de 22 x 22)
 
 export const SERVICOS = [
@@ -14,6 +16,7 @@ export const SERVICOS = [
     inclui: ["Botão para agendar ou pedir pelo WhatsApp","Ou agenda online: o cliente marca o horário sozinho","Pronto para aparecer no Google","Rápido e bonito no celular"],
     ideal: "Ideal para salões, manicures, barbearias, clínicas e prestadores de serviço.",
     mensagem: "Olá, Jhemison! Vi seu portfólio e quero saber mais sobre Sites.",
+    destaque: true,
     icone: '<circle cx="11" cy="11" r="8"/><path d="M3 11h16M11 3c3 3 3 13 0 16M11 3c-3 3-3 13 0 16"/>',
   },
   {
