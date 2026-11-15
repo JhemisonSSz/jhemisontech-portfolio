@@ -72,7 +72,9 @@ test("Sobre mim: foto, texto e SEO local (Itamaraju, extremo sul da Bahia)", () 
   assert.match(html, /"addressLocality":"Itamaraju"/);
 });
 
-test("topo: subtítulo por benefício e botão que leva aos projetos", () => {
-  assert.ok(html.includes("Ferramentas prontas para você vender mais, organizar sua rotina e atender clientes no WhatsApp 24 horas por dia."));
+test("topo: título da vitrine, para quem é, benefício e botão que leva aos projetos", () => {
+  assert.ok(html.includes('<h1>Seu negócio na <span class="brilho">vitrine da internet</span>.</h1>'));
+  assert.ok(html.includes("Sites, sistemas de agendamento e agentes de IA para barbearias, clínicas, restaurantes, lojas e prestadores de serviço."));
+  assert.ok(html.includes("Tudo para você vender mais, organizar sua rotina e atender clientes no WhatsApp 24 horas por dia."));
   assert.ok(html.includes("<a id=\"ver-projetos\" class=\"btn-secundario\" href=\"#projetos\">Ver projetos funcionando</a>"));
 });

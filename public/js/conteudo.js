@@ -7,6 +7,7 @@
 //   - pagina.js usa só como reserva, se por algum motivo os cards não estiverem no HTML.
 import { PROJETOS } from "./projetos.js";
 import { SERVICOS } from "./servicos.js";
+import { PLANOS, INCLUSO, OBSERVACAO, PASSOS, PERGUNTAS } from "./planos.js";
 import { CONTATO, linkWhatsApp, mensagemConvite, mensagemPainel } from "./contato.js";
 
 // Protege textos antes de colocar no HTML
@@ -76,6 +77,36 @@ export const htmlServicos = () => SERVICOS.map((s) => `
           </div>
         </div>`).join("");
 
+// ---- Planos, "Como funciona" e perguntas ----
+
+export const htmlPlanos = () => `
+        <div class="planos">${PLANOS.map((p) => `
+          <div class="plano${p.destaque ? " plano-destaque" : ""}">
+            ${p.destaque ? '<span class="selo">Mais procurado</span>' : ""}
+            <h3>${esc(p.titulo)}</h3>
+            <p class="preco">${p.aPartirDe ? '<span class="a-partir">a partir de</span>' : ""}<strong>${esc(p.mensal)}</strong><span class="mes">/mês</span></p>
+            <p class="implantacao">+ implantação a partir de <span class="valor">${esc(p.implantacao)}</span></p>
+            <ul class="inclui">${p.inclui.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
+            <a class="${p.destaque ? "btn" : "btn-plano"}" href="${esc(linkWhatsApp(p.mensagem))}" ${ZAP}>${esc(p.botao)}</a>
+          </div>`).join("")}
+        </div>
+        <div class="incluso">
+          <h3>Toda mensalidade inclui</h3>
+          <ul>${INCLUSO.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
+        </div>
+        <p class="obs">${esc(OBSERVACAO)}</p>`;
+
+export const htmlPassos = () => `
+        <ol class="passos">${PASSOS.map((p) => `
+          <li><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p></li>`).join("")}
+        </ol>`;
+
+export const htmlPerguntas = () => PERGUNTAS.map((q) => `
+        <details class="pergunta">
+          <summary>${esc(q.pergunta)}</summary>
+          <p>${esc(q.resposta)}</p>
+        </details>`).join("");
+
 // ---- Topo e contato ----
 
 export const htmlTopoCta = () =>
@@ -100,7 +131,7 @@ export const htmlContato = () => `
 
 // ---- Gravação no index.html ----
 
-const REGIOES = { "topo-cta": htmlTopoCta, projetos: htmlProjetos, servicos: htmlServicos, contato: htmlContato };
+const REGIOES = { "topo-cta": htmlTopoCta, projetos: htmlProjetos, servicos: htmlServicos, planos: htmlPlanos, passos: htmlPassos, perguntas: htmlPerguntas, contato: htmlContato };
 
 // Troca o que está entre os marcadores <!-- gerar:NOME --> e <!-- /gerar:NOME --> pelo conteúdo novo.
 // O texto do index.html precisa estar com quebras de linha "\n" (o gerar.mjs cuida disso).
