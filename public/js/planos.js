@@ -77,6 +77,8 @@ export const PERGUNTAS = [
     resposta: "Um site simples fica pronto em poucos dias. Sistemas e agentes de IA levam um pouco mais, e eu te passo o prazo certinho na nossa conversa." },
   { pergunta: "O que a mensalidade cobre?",
     resposta: "Hospedagem, domínio, manutenção para manter tudo no ar, suporte pelo WhatsApp e até 2 alterações pequenas por mês. Você não tem outro custo para manter funcionando." },
+  { pergunta: "Como funciona a mensalidade do atendente de IA?",
+    resposta: "Ela cobre a plataforma do atendente, a conexão com o WhatsApp, o suporte e os ajustes nas respostas. No WhatsApp comum, o valor é fixo todo mês. Na API oficial do WhatsApp, cada mensagem tem um custo: o plano já inclui uma quantidade, e se o seu volume passar dela, a diferença é paga por você. Tudo fica combinado em contrato." },
   { pergunta: "Posso mudar preços e horários depois?",
     resposta: "Sim. No agendamento e nos sistemas com painel, você mesmo muda pelo celular. No site, é só me mandar uma mensagem." },
   { pergunta: "O endereço do site fica no meu nome?",

@@ -39,6 +39,14 @@ test("como funciona: quatro passos em ordem; perguntas com resposta", () => {
   for (const q of PERGUNTAS) assert.ok(q.pergunta.endsWith("?") && q.resposta.length > 20, q.pergunta);
 });
 
+test("perguntas: explica a mensalidade do atendente de IA e o custo das mensagens na API oficial", () => {
+  const ia = PERGUNTAS.find((q) => /atendente de IA/i.test(q.pergunta));
+  assert.ok(ia, "falta a pergunta sobre o atendente de IA");
+  assert.match(ia.resposta, /WhatsApp comum/);
+  assert.match(ia.resposta, /API oficial/);
+  assert.match(ia.resposta, /contrato/);
+});
+
 test("planos, passos e perguntas estão escritos no HTML, com link no menu", () => {
   assert.ok(html.includes('<a href="#planos">Planos</a>'));
   assert.ok(html.includes('id="planos"') && html.includes('id="como-funciona"') && html.includes('id="perguntas"'));
