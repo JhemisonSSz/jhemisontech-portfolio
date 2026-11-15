@@ -192,11 +192,55 @@ nav a:hover { color: var(--azul-escuro); }
 
 .rodape { text-align: center; color: var(--texto-fraco); font-size: .85rem; padding: 32px 16px; }
 
+/* ---- Movimento (movimento.js liga a classe com-movimento no <html>) ---- */
+/* Topo: título, textos e botões entram um depois do outro ao abrir a página */
+.topo > * { animation: subir .8s cubic-bezier(.2, .8, .2, 1) both; }
+.topo > :nth-child(2) { animation-delay: .12s; }
+.topo > :nth-child(3) { animation-delay: .24s; }
+.topo > :nth-child(n+4) { animation-delay: .36s; }
+@keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* Ao rolar: cada bloco sobe e aparece; irmãos entram em sequência (--atraso vem do movimento.js) */
+.com-movimento [data-revela] { opacity: 0; transform: translateY(26px) scale(.98);
+  transition: opacity .7s cubic-bezier(.2, .8, .2, 1), transform .7s cubic-bezier(.2, .8, .2, 1); transition-delay: var(--atraso, 0ms); }
+.com-movimento [data-revela].visivel { opacity: 1; transform: none; }
+/* Cards com hover: depois de aparecer, o hover volta a ser rápido */
+.com-movimento .projeto.visivel, .com-movimento .servico.visivel, .com-movimento .plano.visivel { transition-delay: 0ms; transition-duration: .3s; }
+
+/* Passos: o número "pula" quando o passo aparece */
+.com-movimento .passos li.visivel::before { animation: pular .6s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: var(--atraso, 0ms); }
+@keyframes pular { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+
+/* Plano em destaque: brilho que pulsa devagar e selo com reflexo passando */
+.plano-destaque { animation: pulsar 3.2s ease-in-out infinite; }
+@keyframes pulsar { 0%, 100% { box-shadow: 0 10px 30px rgba(47, 143, 230, .22); } 50% { box-shadow: 0 12px 42px rgba(47, 143, 230, .48); } }
+.selo { overflow: hidden; }
+.selo::after { content: ""; position: absolute; inset: 0; transform: translateX(-120%);
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .6) 50%, transparent 70%); animation: reflexo 3.2s ease-in-out infinite; }
+@keyframes reflexo { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
+
+/* Cards: levantam no hover; o print do projeto aproxima um pouco */
+.plano { transition: transform .3s, box-shadow .3s; }
+.plano:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(47, 143, 230, .28); }
+.print img { transition: transform .6s ease; }
+.projeto:hover .print img { transform: scale(1.04); }
+.btn, .btn-plano, .btn-secundario, .ver-site { transition: transform .2s, box-shadow .2s, background .2s; }
+.btn:hover, .btn-plano:hover, .btn-secundario:hover { transform: translateY(-2px); }
+
+/* Perguntas: a resposta desliza ao abrir; o "+" gira */
+.pergunta[open] p { animation: abrir .35s ease both; }
+@keyframes abrir { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.pergunta summary::after { transition: transform .25s; }
+.pergunta[open] summary::after { transform: translateY(-50%) rotate(180deg); }
+
 /* Quem pediu "reduzir movimento": fica só o movimento suave (manchas, brilho e logo) */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .servico svg { animation: none; }
   .projeto:hover, .servico:hover { transform: none; }
+  .topo > *, .plano-destaque, .selo::after, .pergunta[open] p, .passos li::before { animation: none; }
+  [data-revela] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .plano:hover, .btn:hover, .btn-plano:hover, .btn-secundario:hover, .projeto:hover .print img { transform: none; }
 }
 
 @media (max-width: 600px) {

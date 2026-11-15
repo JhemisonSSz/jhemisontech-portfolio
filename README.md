@@ -18,6 +18,7 @@ public/
   scripts/gerar.mjs grava esse HTML direto no index.html (para o Google e quem está sem JavaScript)
   js/contato.js     WhatsApp, Instagram e e-mail (mude só aqui)
   js/pagina.js      monta os cards e preenche os contatos
+  js/movimento.js   movimento ao rolar: blocos aparecem em sequência e os preços contam até o valor
   img/logo-luz.png  logo (lâmpada + cérebro com a luz azul)
   img/og.jpg        imagem da prévia quando o link é enviado no WhatsApp
   img/prints/       prints dos sites: {id}-pc.jpg e {id}-cel.jpg
