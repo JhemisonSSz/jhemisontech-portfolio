@@ -1,6 +1,6 @@
 # JhemisonTech: portfólio
 
-Este é o portfólio da JhemisonTech, que faz sites, sistemas e agentes de IA para pequenos negócios e autônomos. É uma página única e fixa: não tem banco de dados nem login.
+Este é o portfólio da JhemisonTech, que faz Sites, sistemas de agendamento e agentes de IA para barbearias, clínicas, restaurantes, lojas e prestadores de serviço. É uma página única e fixa: não tem banco de dados nem login.
 
 - **Endereço:** https://jhemisontech.web.app (o domínio próprio entra depois, veja abaixo).
 - **Tecnologia:** HTML, CSS e JavaScript puros, sem build. A hospedagem é o Firebase Hosting.
