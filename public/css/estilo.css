@@ -161,7 +161,7 @@ nav a:hover { color: var(--azul-escuro); }
 .bloco-contratacao { padding: 16px 18px; border-radius: 14px; background: var(--azul-fundo); border: 1px solid var(--azul-borda); }
 .bloco-contratacao h3 { font-size: .95rem; margin-bottom: 6px; }
 .bloco-contratacao .inclui { padding-left: 18px; color: var(--texto-suave); font-size: .88rem; }
-.aviso { margin-top: 14px; font-size: .9rem; color: var(--texto-suave); max-width: 80ch; padding: 10px 14px; border-left: 3px solid var(--azul); background: rgba(255, 255, 255, .7); }
+.aviso { margin-top: 14px; font-size: .9rem; color: var(--texto-suave); max-width: 80ch; padding: 12px 16px; border: 1px solid var(--azul-borda); border-radius: 12px; background: rgba(255, 255, 255, .8); }
 .secao-cta { margin-top: 28px; }
 
 /* ---- Confiança e transparência: lista de "fica combinado" ---- */
@@ -193,7 +193,7 @@ nav a:hover { color: var(--azul-escuro); }
 .sobre { display: flex; gap: 28px; align-items: center; }
 .foto-sobre { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid var(--azul-borda); box-shadow: 0 8px 24px rgba(11, 92, 173, .15); flex-shrink: 0; }
 .sobre-texto p { color: var(--texto-suave); margin-top: 10px; max-width: 62ch; }
-.frase-destaque { margin-top: 16px; padding: 12px 16px; border-left: 3px solid var(--azul); background: var(--azul-fundo); border-radius: 0 10px 10px 0;
+.frase-destaque { margin-top: 16px; padding: 12px 16px; border: 1px solid var(--azul-borda); background: var(--azul-fundo); border-radius: 12px;
   font-weight: 600; color: var(--azul-escuro); max-width: 62ch; }
 @media (max-width: 700px) { .sobre { flex-direction: column; text-align: center; } .foto-sobre { width: 160px; height: 160px; } }
 
