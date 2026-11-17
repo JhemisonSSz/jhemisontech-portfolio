@@ -27,9 +27,9 @@ test("mensagens do card citam o projeto e o que a pessoa quer", () => {
     "Olá! Vi o painel da demonstração Jtech Barbearia no seu portfólio e quero pedir acesso para testar.");
 });
 
-test("cinco projetos com título pelo nicho, a demonstração e a frase com o benefício", () => {
-  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "volt", "espetaria", "serena"]);
-  const [loja, barbearia, volt, espetaria, serena] = PROJETOS;
+test("seis projetos com título pelo nicho, a demonstração e a frase com o benefício", () => {
+  assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "agendanov", "volt", "espetaria", "serena"]);
+  const [loja, barbearia, agendanov, volt, espetaria, serena] = PROJETOS;
 
   assert.equal(loja.titulo, "Loja Virtual com PDV e Estoque");
   assert.equal(loja.nome, "Jtech Loja Online"); // nome da demonstração (o nome verdadeiro, não "Jtech Store")
@@ -44,6 +44,13 @@ test("cinco projetos com título pelo nicho, a demonstração e a frase com o be
   assert.deepEqual(barbearia.etiquetas, ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"]);
   assert.equal(barbearia.convite, "Quero um sistema assim para minha agenda");
   assert.equal(barbearia.mensagem, "Olá, Jhemison! Testei o Sistema de Agendamento (Barbearia) no seu site e tenho interesse em colocar no meu negócio. Podemos conversar?");
+
+  assert.equal(agendanov.titulo, "Agendamento Online para Qualquer Negócio");
+  assert.equal(agendanov.nome, "Agendanov");
+  assert.equal(agendanov.frase, "Seu cliente marca o horário sozinho e a confirmação chega no seu WhatsApp. Serve para barbearia, salão, manicure, lash e clínica.");
+  assert.deepEqual(agendanov.etiquetas, ["Agendamento online", "Confirmação no WhatsApp", "Sem horário duplicado", "Painel simples"]);
+  assert.equal(agendanov.convite, "Quero um agendamento online assim");
+  assert.equal(agendanov.mensagem, "Olá, Jhemison! Vi o Agendanov no seu portfólio e tenho interesse em um agendamento online para o meu negócio. Podemos conversar?");
 
   assert.equal(volt.titulo, "Sistema para Academias");
   assert.equal(volt.nome, "Volt Academia");
@@ -71,6 +78,7 @@ test("links dos sites publicados", () => {
   assert.deepEqual(PROJETOS.map((p) => p.url), [
     "https://jtech-loja-online.web.app/",
     "https://jtech-barbearia.web.app/",
+    "https://seuagendamentofacil.web.app/",
     "https://volt-academia.web.app/",
     "https://jtech-espetaria.web.app/",
     "https://serena-odonto.web.app/",
@@ -89,6 +97,7 @@ test("prints do painel de cada projeto (só telas de dentro do painel)", () => {
   assert.deepEqual(PROJETOS.map((p) => p.painel), [
     ["loja-pdv.png", "loja-dashboard.png", "loja-pedidos.png", "loja-produtos.png", "loja-relatorios.png"].map((a) => "img/prints/painel/" + a),
     ["barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"].map((a) => "img/prints/painel/" + a),
+    [], // agendanov: o painel pede login e ainda não tem prints próprios
     ["volt-agenda.png", "volt-alunos.png", "volt-resumo.png"].map((a) => "img/prints/painel/" + a),
     ["img/prints/painel/espetaria-editar-cardapio.jpg"],
     [], // serena: site institucional, sem painel

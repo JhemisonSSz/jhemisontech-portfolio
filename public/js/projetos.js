@@ -46,6 +46,18 @@ export const PROJETOS = [
     painel: painel("barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"),
   },
   {
+    id: "agendanov",
+    titulo: "Agendamento Online para Qualquer Negócio",
+    nome: "Agendanov",
+    frase: "Seu cliente marca o horário sozinho e a confirmação chega no seu WhatsApp. Serve para barbearia, salão, manicure, lash e clínica.",
+    etiquetas: ["Agendamento online", "Confirmação no WhatsApp", "Sem horário duplicado", "Painel simples"],
+    convite: "Quero um agendamento online assim",
+    mensagem: "Olá, Jhemison! Vi o Agendanov no seu portfólio e tenho interesse em um agendamento online para o meu negócio. Podemos conversar?",
+    url: "https://seuagendamentofacil.web.app/",
+    prints: prints("agendanov"),
+    painel: [], // o painel pede login e ainda não tem prints próprios para mostrar
+  },
+  {
     id: "volt",
     titulo: "Sistema para Academias",
     nome: "Volt Academia",
