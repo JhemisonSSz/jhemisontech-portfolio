@@ -6,8 +6,8 @@
 // O que aparece ao rolar. Itens irmãos (ex.: os cards de um grid) entram um depois do outro.
 export const ALVOS = [
   ".secao > h2", ".secao > .sub",
-  ".projeto", ".servico", ".incluso", ".obs",
-  ".passos li", ".pergunta",
+  ".beneficio", ".projeto", ".servico", ".bloco-contratacao", ".aviso",
+  ".passos li", ".confianca-lista li", ".pergunta", ".frase-destaque",
   ".foto-sobre", ".sobre-texto", ".contato .btn-grande", ".contato-item",
 ];
 

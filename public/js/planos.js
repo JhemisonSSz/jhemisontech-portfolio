@@ -1,38 +1,78 @@
-// planos.js — O que toda mensalidade inclui, a observação sobre custos, o "Como funciona" e as perguntas frequentes.
-// Os serviços ficam em servicos.js. Para mudar um texto, edite aqui e rode "npm run gerar".
+// planos.js — Benefícios, modelo de contratação, "Como funciona", confiança e perguntas frequentes
+// (textos do documento "NOVAA On atualizado"). Os serviços ficam em servicos.js.
+// Para mudar um texto, edite aqui e rode "npm run gerar".
 
-// O que toda mensalidade cobre (aparece num quadro embaixo dos cards de serviço)
-export const INCLUSO = [
-  "Hospedagem e domínio, sem custo extra",
-  "Site ou sistema sempre no ar, seguro e atualizado",
-  "Até 2 alterações pequenas por mês, como trocar preço, foto, texto, horário ou respostas do atendente",
-  "Suporte direto comigo pelo WhatsApp",
+// Seção de benefícios, logo depois do topo
+export const BENEFICIOS = [
+  { titulo: "Mais profissionalismo", texto: "Apresente sua empresa com um site ou sistema que transmite confiança aos clientes." },
+  { titulo: "Mais organização", texto: "Centralize pedidos, agendamentos, informações, estoque ou mensalidades em um só lugar." },
+  { titulo: "Mais agilidade", texto: "Reduza o tempo gasto respondendo mensagens e realizando tarefas repetitivas." },
+  { titulo: "Suporte direto", texto: "Fale diretamente com Jhemison pelo WhatsApp, sem intermediários e sem atendimento impessoal." },
 ];
 
-export const OBSERVACAO =
-  "No atendente de IA com a API oficial do WhatsApp, as mensagens que passarem do que está incluído são pagas pelo cliente. Mudanças maiores, como uma página ou função nova, são orçadas à parte. Tudo fica combinado em contrato.";
+// Modelo de contratação: implantação paga uma vez + mensalidade
+export const CONTRATACAO = {
+  titulo: "Implantação uma vez. Suporte e manutenção todos os meses.",
+  texto: "Cada projeto começa com uma implantação, na qual a solução é configurada de acordo com o negócio. Depois, existe uma mensalidade para manter o site, sistema ou automação funcionando, atualizado e com suporte.",
+  blocos: [
+    { titulo: "A implantação pode incluir", itens: ["Conversa inicial", "Entendimento da rotina", "Definição da solução", "Configuração", "Personalização",
+      "Criação ou adaptação de páginas", "Cadastro inicial de informações", "Testes", "Publicação", "Orientação básica de uso"] },
+    { titulo: "A mensalidade pode incluir, conforme a proposta", itens: ["Hospedagem", "Domínio", "Manutenção básica", "Atualizações", "Site ou sistema no ar",
+      "Suporte direto pelo WhatsApp", "Até duas pequenas alterações por mês"] },
+    { titulo: "Exemplos de pequenas alterações", itens: ["Troca de preço", "Substituição de foto", "Alteração de texto", "Mudança de horário",
+      "Atualização de resposta do atendente", "Pequenas correções visuais"] },
+    { titulo: "O que pode ser cobrado à parte", itens: ["Novas páginas", "Novas áreas do sistema", "Novos módulos", "Mudanças estruturais", "Integrações adicionais",
+      "Funcionalidades que não estavam no escopo", "Grandes alterações de layout", "Migração de dados", "Desenvolvimento de uma nova solução"] },
+  ],
+  aviso: "Mudanças pequenas podem estar incluídas na mensalidade, conforme o plano contratado. Novas funções, páginas ou alterações maiores são avaliadas e orçadas separadamente. Tudo deve ser combinado antes da execução.",
+  cta: "Pedir orçamento",
+  mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e gostaria de pedir um orçamento sem compromisso.",
+};
 
 // "Como funciona": é uma sequência de verdade, por isso aparece numerado
 export const PASSOS = [
-  { titulo: "A gente conversa", texto: "Pelo WhatsApp ou pessoalmente. Você me conta como funciona o seu negócio." },
-  { titulo: "Você vê uma prévia", texto: "Em poucos dias você recebe um link para ver como vai ficar, já com a cara do seu negócio." },
-  { titulo: "Ajustamos juntos", texto: "Fotos, textos, preços e cores do jeito que você quiser." },
-  { titulo: "Seu negócio no ar", texto: "Com o seu endereço na internet e suporte direto comigo quando precisar." },
+  { titulo: "A gente conversa", texto: "Pelo WhatsApp ou pessoalmente, você explica como funciona o seu negócio, quais são suas dificuldades e o que precisa melhorar." },
+  { titulo: "Você vê uma prévia", texto: "Em poucos dias, você recebe um link ou uma demonstração para visualizar como a solução pode funcionar." },
+  { titulo: "Ajustamos juntos", texto: "Alteramos fotos, textos, preços, horários, cores e informações para deixar tudo de acordo com o seu negócio." },
+  { titulo: "Seu negócio fica no ar", texto: "Depois da aprovação, a solução é publicada. Você recebe o endereço e continua contando com suporte direto quando precisar." },
 ];
 
+export const PASSOS_CTA = {
+  texto: "Quero conversar sobre meu projeto",
+  mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e quero conversar sobre o meu projeto.",
+};
+
+// Confiança e transparência: o que fica combinado antes de começar
+export const CONFIANCA = {
+  texto: "Antes de começar, você recebe uma explicação sobre o que será desenvolvido, o que está incluído na implantação, o que faz parte da mensalidade e quais itens poderão ser cobrados à parte.",
+  itens: ["O que será entregue", "Prazo estimado", "Valor da implantação", "Valor da mensalidade", "Forma de pagamento", "O que está incluído",
+    "Limite de alterações", "Custos de plataformas externas", "Custos de mensagens do WhatsApp", "Responsabilidades do cliente", "Prazo de suporte",
+    "Regras de cancelamento", "Propriedade e acesso aos dados", "Condições para usar domínio próprio"],
+};
+
 export const PERGUNTAS = [
-  { pergunta: "Preciso entender de internet para ter um site?",
-    resposta: "Não. Eu cuido de tudo: criação, endereço na internet e publicação. Se você sabe usar o WhatsApp, consegue usar o painel." },
+  { pergunta: "Preciso entender de tecnologia para contratar?",
+    resposta: "Não. Você só precisa me explicar como funciona o seu negócio e o que deseja melhorar. Toda a parte técnica de criação, configuração e publicação fica por conta da NOVAA On." },
   { pergunta: "Quanto tempo leva para ficar pronto?",
-    resposta: "Um site simples fica pronto em poucos dias. Sistemas e agentes de IA levam um pouco mais, e eu te passo o prazo certinho na nossa conversa." },
-  { pergunta: "O que a mensalidade cobre?",
-    resposta: "Hospedagem, domínio, manutenção para manter tudo no ar, suporte pelo WhatsApp e até 2 alterações pequenas por mês. Você não tem outro custo para manter funcionando." },
-  { pergunta: "Como funciona a mensalidade do atendente de IA?",
-    resposta: "Ela cobre a plataforma do atendente, a conexão com o WhatsApp, o suporte e os ajustes nas respostas. No WhatsApp comum, o valor é fixo todo mês. Na API oficial do WhatsApp, cada mensagem tem um custo: a mensalidade já inclui uma quantidade, e se o seu volume passar dela, a diferença é paga por você. Tudo fica combinado em contrato." },
-  { pergunta: "Posso mudar preços e horários depois?",
-    resposta: "Sim. No agendamento e nos sistemas com painel, você mesmo muda pelo celular. No site, é só me mandar uma mensagem." },
-  { pergunta: "O endereço do site fica no meu nome?",
-    resposta: "Sim. O domínio é registrado no seu nome ou no CNPJ do seu negócio. Eu cuido da parte técnica, mas o endereço é seu." },
-  { pergunta: "Você atende na minha cidade?",
-    resposta: "Sim. O trabalho pode ser feito todo pelo WhatsApp, então atendo negócios de qualquer cidade do Brasil." },
+    resposta: "O prazo varia conforme o tipo de projeto (um site institucional é mais rápido que um sistema completo ou agente de IA) e a agilidade no envio das informações e aprovações. Antes de começarmos, eu passo a previsão exata de entrega na nossa conversa." },
+  { pergunta: "A solução fica no meu nome?",
+    resposta: "Sim. As condições de titularidade, registro do domínio e acessos ficam definidas claramente na proposta antes do início do projeto para garantir sua segurança e autonomia." },
+  { pergunta: "Posso usar um domínio que já tenho?",
+    resposta: "Sim, desde que o endereço seja compatível e você tenha os dados de acesso da conta onde ele foi registrado para fazermos a configuração técnica." },
+  { pergunta: "O que a mensalidade inclui?",
+    resposta: "Conforme o plano contratado, a mensalidade cobre a hospedagem para manter tudo no ar, manutenção básica, atualizações, suporte direto comigo pelo WhatsApp e até duas pequenas alterações por mês (como trocar preços, fotos, horários ou textos)." },
+  { pergunta: "O domínio está incluído na mensalidade?",
+    resposta: "O registro e a renovação do domínio podem estar incluídos dependendo do plano escolhido. Todos os detalhes sobre taxas de renovação ou condições do endereço ficam discriminados na proposta antes do fechamento." },
+  { pergunta: "Posso alterar preços e horários depois?",
+    resposta: "Sim. Nos sistemas com painel administrativo você mesmo atualiza pelo celular, e nos sites institucionais basta me enviar uma mensagem dentro do seu limite mensal de pequenas alterações." },
+  { pergunta: "O que não está incluído na mensalidade?",
+    resposta: "Criação de novas páginas, novos módulos no sistema, integrações extras ou grandes mudanças de estrutura e layout não fazem parte da manutenção básica e são orçados separadamente mediante aprovação prévia." },
+  { pergunta: "O atendente de IA funciona 24 horas?",
+    resposta: "Sim, o agente fica ativo continuamente para responder dúvidas, apresentar serviços e realizar agendamentos conforme as regras configuradas para a sua empresa. Quando surge um caso fora do padrão, ele encaminha a conversa para o atendimento humano." },
+  { pergunta: "O WhatsApp tem custo extra?",
+    resposta: "Quando o projeto utiliza a API oficial do WhatsApp, a Meta pode cobrar taxas de acordo com o volume e o tipo de mensagem enviada. Esses valores e limites são sempre informados com transparência antes da contratação." },
+  { pergunta: "Vocês atendem apenas na minha cidade?",
+    resposta: "Não. Todo o processo de criação, acompanhamento e suporte funciona de forma online pelo WhatsApp para negócios de qualquer lugar, com possibilidade de atendimento presencial conforme localização e disponibilidade de agenda." },
+  { pergunta: "Posso cancelar quando quiser?",
+    resposta: "Sim. As regras de cancelamento, prazos de aviso prévio e entrega dos acessos ou dados do seu negócio ficam registrados com clareza no contrato desde o início." },
 ];

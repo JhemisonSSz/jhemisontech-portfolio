@@ -1,6 +1,6 @@
-// Testes do conteúdo da página (public/js/servicos.js e public/js/conteudo.js) e do index.html já gravado.
-// O index.html traz os cards, os serviços e o contato escritos direto no HTML (para o Google e para quem
-// não roda JavaScript). Se alguém mudar os dados e esquecer de rodar "npm run gerar", o teste avisa.
+// Testes do conteúdo da página: a marca NOVAA On e as seções do documento "NOVAA On atualizado".
+// O index.html traz tudo escrito direto no HTML (para o Google e para quem não roda JavaScript).
+// Se alguém mudar os dados e esquecer de rodar "npm run gerar", o teste avisa.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -9,90 +9,140 @@ import { SERVICOS } from "../public/js/servicos.js";
 import { injetar } from "../public/js/conteudo.js";
 
 const INDEX = fileURLToPath(new URL("../public/index.html", import.meta.url));
-const lf = (t) => t.replace(/\r\n/g, "\n");
-const html = lf(readFileSync(INDEX, "utf8"));
-
-test("serviços: quatro (sem landing page), em escada de valor, cada um com o 'ideal para' e uma mensagem própria", () => {
-  assert.deepEqual(SERVICOS.map((s) => s.titulo), ["Sites", "Lojas Virtuais", "Sistemas Sob Medida", "Agentes de IA e Automações"]);
-  assert.ok(!/landing page/i.test(html), "landing page saiu da página");
-  // "Sites" engloba os planos Site do negócio (agendar pelo WhatsApp) e Site + agendamento (agenda online)
-  const sites = SERVICOS[0].inclui.join(" ");
-  assert.match(sites, /WhatsApp/);
-  assert.match(sites, /agenda online/i);
-  assert.ok(!html.includes("Sites Institucionais"));
-  // "Sistemas Sob Medida" são os sistemas completos que o Jhemison já tem e adapta (a loja tem card próprio)
-  const sob = SERVICOS[2].inclui.join(" ");
-  for (const nicho of ["Barbearia", "Academia", "Lanchonete"]) assert.ok(sob.includes(nicho), nicho);
-  assert.ok(!/Loja/.test(sob), "a loja fica no card Lojas Virtuais");
-  // A loja não tem pagamento online: o card não pode prometer "Pix e cartão de crédito"
-  const loja = SERVICOS[1].inclui.join(" ");
-  assert.match(loja, /PDV/);
-  assert.match(loja, /Pagamento combinado/);
-  assert.ok(!html.includes("Pix e cartão de crédito"));
-  for (const s of SERVICOS) {
-    assert.match(s.ideal, /^Ideal para /, s.titulo);
-    assert.ok(s.texto && s.mensagem && s.icone && s.inclui.length >= 3, s.titulo);
-  }
-  assert.match(SERVICOS[2].ideal, /barbearias, academias/);
-});
+const html = readFileSync(INDEX, "utf8").replace(/\r\n/g, "\n");
+// Só o que o visitante lê: sem os dados para o Google, sem as tags e com os espaços normalizados
+const corpo = html.split("<body>")[1];
+const texto = corpo.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ");
+const secao = (id) => {
+  const m = html.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`));
+  assert.ok(m, `falta a seção #${id}`);
+  return m[0].replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ");
+};
 
 test("o index.html está em dia com os dados (rode 'npm run gerar' se este teste falhar)", () => {
   assert.equal(injetar(html), html);
 });
 
-test("os cards dos projetos estão escritos no HTML, com título pelo nicho e a demonstração", () => {
-  for (const titulo of ["Loja Virtual com PDV e Estoque", "Sistema para Barbearias e Salões", "Sistema para Academias", "Cardápio Digital com Pedido pelo WhatsApp", "Site para Clínicas Odontológicas"]) {
+test("marca NOVAA On: nome, título da aba, rodapé e aviso da transição", () => {
+  assert.match(html, /<title>NOVAA On[^<]*<\/title>/);
+  assert.ok(html.includes('<span class="nome1">NOVAA</span> <span class="nome2">On</span>'), "nome com espaço: NOVAA On");
+  assert.ok(texto.includes("A JhemisonTech está evoluindo para NOVAA On."));
+  // "JhemisonTech" só aparece no aviso da transição (o @ e o e-mail continuam, em minúsculas)
+  assert.equal((texto.match(/JhemisonTech/g) || []).length, 1, "JhemisonTech fora do aviso");
+  assert.match(html, /<footer class="rodape">© 2026 NOVAA On<\/footer>/);
+  assert.ok(texto.includes("Seu negócio na vitrine da internet, sem complicação."));
+});
+
+test("menu com as sete seções, na ordem do documento", () => {
+  const nav = html.match(/<nav[^>]*>([\s\S]*?)<\/nav>/)[1];
+  const links = [...nav.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map((m) => [m[1], m[2]]);
+  assert.deepEqual(links, [
+    ["#topo", "Início"], ["#servicos", "Serviços"], ["#como-funciona", "Como funciona"], ["#projetos", "Projetos"],
+    ["#sobre", "Sobre"], ["#perguntas", "Perguntas frequentes"], ["#contato", "Contato"],
+  ]);
+});
+
+test("seções na ordem: topo, benefícios, serviços, contratação, como funciona, projetos, sobre, confiança, perguntas, contato", () => {
+  const ids = [...html.matchAll(/<section id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(ids, ["topo", "beneficios", "servicos", "contratacao", "como-funciona", "projetos", "sobre", "confianca", "perguntas", "contato"]);
+});
+
+test("topo: título, subtítulo, texto complementar e os dois botões", () => {
+  const t = secao("topo");
+  assert.ok(t.includes("Seu negócio na vitrine da internet , sem complicação.") || t.includes("Seu negócio na vitrine da internet, sem complicação."));
+  assert.ok(t.includes("Sites profissionais, lojas virtuais, sistemas sob medida e automações para ajudar pequenos negócios a vender mais, organizar a rotina e atender melhor seus clientes."));
+  assert.ok(t.includes("Você explica como funciona o seu negócio. A NOVAA On ajuda a transformar essa rotina em uma solução digital simples e funcional."));
+  assert.match(html, /<a id="zap-topo" class="btn" href="https:\/\/wa\.me\/5573988045634\?text=[^"]+"[^>]*>Falar pelo WhatsApp<\/a>/);
+  assert.ok(html.includes('<a id="ver-solucoes" class="btn-secundario" href="#servicos">Ver soluções</a>'));
+});
+
+test("benefícios: título, texto e os quatro benefícios", () => {
+  const b = secao("beneficios");
+  assert.ok(b.includes("Tecnologia feita para a realidade do seu negócio"));
+  assert.ok(b.includes("Você não precisa entender de programação para ter uma solução profissional."));
+  for (const t of ["Mais profissionalismo", "Mais organização", "Mais agilidade", "Suporte direto"]) assert.ok(b.includes(t), t);
+  assert.ok(b.includes("Fale diretamente com Jhemison pelo WhatsApp, sem intermediários e sem atendimento impessoal."));
+});
+
+test("serviços: os cinco do documento, cada um com título, lista e o botão próprio", () => {
+  assert.deepEqual(SERVICOS.map((s) => s.rotulo), ["Sites profissionais", "Lojas virtuais", "Sistemas sob medida", "Agendamento online", "Agentes de IA e automações"]);
+  assert.deepEqual(SERVICOS.map((s) => s.cta), ["Quero criar meu site", "Quero vender pela internet", "Quero organizar meu negócio", "Quero uma agenda online", "Quero automatizar meu atendimento"]);
+  const s = secao("servicos");
+  for (const titulo of ["Sites para colocar seu negócio na internet", "Venda seus produtos pela internet", "Um sistema adaptado ao seu negócio",
+    "Deixe o cliente marcar o horário sozinho", "Atenda melhor sem precisar responder tudo manualmente"]) {
     assert.ok(html.includes(`<h3>${titulo}</h3>`), titulo);
   }
-  for (const demo of ["Jtech Loja Online", "Jtech Barbearia", "Agendanov", "Volt Academia", "Jtech Espetaria", "Serena Odonto"]) {
-    assert.ok(html.includes(`Demonstração: ${demo}`), demo);
+  for (const cta of SERVICOS.map((x) => x.cta)) assert.ok(s.includes(`${cta} →`), cta);
+  assert.equal(SERVICOS[0].itens.length, 11);
+  assert.equal(SERVICOS[1].itens.length, 15);
+  assert.deepEqual(SERVICOS[2].grupos.map((g) => g.nome), ["Barbearias e salões", "Academias", "Lanchonetes e restaurantes"]);
+  assert.equal(SERVICOS[3].itens.length, 7);
+  assert.equal(SERVICOS[4].itens.length, 10);
+  assert.ok(s.includes("Público indicado"));
+  assert.ok(s.includes("Os recursos disponíveis dependem da solução contratada e das integrações necessárias para o negócio."));
+  assert.ok(s.includes("O atendimento automatizado não substitui necessariamente o atendimento humano em todas as situações."));
+  assert.ok(s.includes("Quando for utilizada a API oficial do WhatsApp, podem existir custos relacionados às mensagens"));
+  assert.equal(SERVICOS.filter((x) => x.destaque).length, 1);
+});
+
+test("sem promessas que não dá para garantir, e sem preços na página", () => {
+  assert.ok(!/vendas garantidas|primeiro lugar no Google|Pronto para aparecer no Google/i.test(texto));
+  assert.ok(!/R\$/.test(html), "nenhum valor em reais aparece na página");
+});
+
+test("modelo de contratação: implantação, mensalidade, pequenas alterações e o que é cobrado à parte", () => {
+  const c = secao("contratacao");
+  assert.ok(c.includes("Implantação uma vez. Suporte e manutenção todos os meses."));
+  for (const t of ["A implantação pode incluir", "A mensalidade pode incluir, conforme a proposta", "Exemplos de pequenas alterações", "O que pode ser cobrado à parte"]) {
+    assert.ok(c.includes(t), t);
   }
-  assert.ok(!/<h3>Jtech /.test(html), "o título do card não começa mais com 'Jtech'");
-  assert.equal((html.match(/class="ver-site"/g) || []).length, 6);
+  assert.ok(c.includes("Até duas pequenas alterações por mês"));
+  assert.ok(c.includes("Tudo deve ser combinado antes da execução."));
+  assert.ok(!html.includes("Toda mensalidade inclui"), "o quadro antigo saiu");
 });
 
-test("cada card tem o convite do nicho e o botão 'Pedir acesso ao painel' (o painel pede login de propósito)", () => {
-  assert.ok(html.includes("Quero um sistema assim para minha agenda →"));
-  assert.ok(html.includes("Quero uma loja virtual assim →"));
-  assert.equal((html.match(/Pedir acesso ao painel/g) || []).length, 6);
-  assert.ok(!html.includes("Testar painel"), "não oferecemos 'testar painel': ele pede login");
-  assert.ok(!html.includes("Quer conhecer mais do projeto?"), "o convite genérico saiu");
-  const links = html.match(/href="https:\/\/wa\.me\/5573988045634\?text=[^"]+"/g) || [];
-  assert.ok(links.length >= 12, `links de WhatsApp: ${links.length}`); // topo + 4 convites + 4 painéis + 4 serviços + contato
+test("como funciona: as quatro etapas do documento e o convite para conversar", () => {
+  const c = secao("como-funciona");
+  assert.ok(c.includes("Sem complicação e sem você precisar entender de tecnologia"));
+  for (const t of ["A gente conversa", "Você vê uma prévia", "Ajustamos juntos", "Seu negócio fica no ar"]) assert.ok(c.includes(t), t);
+  assert.ok(c.includes("Depois da aprovação, a solução é publicada."));
+  assert.ok(c.includes("Quero conversar sobre meu projeto"));
 });
 
-test("os serviços e o contato aparecem escritos no HTML", () => {
-  assert.ok(html.includes("Ideal para barbearias, academias"));
-  assert.match(html, /orçamento sem compromisso/i);
-  assert.ok(html.includes("Chamar no WhatsApp"));
-  assert.ok(html.includes("(73) 98804-5634"));
+test("sobre: quem está por trás da NOVAA On, com foto e a frase de destaque", () => {
+  const s = secao("sobre");
+  assert.match(html, /img\/jhemison\.jpg/);
+  assert.ok(s.includes("Quem está por trás da NOVAA On?"));
+  assert.ok(s.includes("Olá! Eu sou o Jhemison, desenvolvedor de sistemas e especialista em automação."));
+  assert.ok(s.includes("sem intermediários e sem precisar explicar o seu problema várias vezes para pessoas diferentes"));
+  assert.ok(s.includes("Tecnologia das grandes empresas, apresentada de um jeito simples para pequenos negócios."));
 });
 
-test("SEO: description rica, com o que é oferecido, e tamanho de resumo do Google", () => {
+test("confiança e transparência: o que fica combinado antes de começar", () => {
+  const c = secao("confianca");
+  assert.ok(c.includes("Antes de começar, você recebe uma explicação sobre o que será desenvolvido"));
+  for (const t of ["O que será entregue", "Prazo estimado", "Regras de cancelamento", "Condições para usar domínio próprio"]) assert.ok(c.includes(t), t);
+});
+
+test("contato: WhatsApp em destaque, número escrito e orçamento sem compromisso", () => {
+  const c = secao("contato");
+  assert.ok(c.includes("(73) 98804-5634"));
+  assert.match(c, /orçamento sem compromisso/i);
+  assert.ok(c.includes("Contar o que eu preciso"));
+  // No celular o botão do WhatsApp fica sempre à mão
+  assert.match(html, /<a id="zap-flutuante" class="zap-flutuante" href="https:\/\/wa\.me\/5573988045634\?text=[^"]+"[^>]*aria-label="Falar pelo WhatsApp"/);
+});
+
+test("SEO: nome novo, endereço atual, descrição do tamanho certo e cidade só para o Google", () => {
   const descricao = html.match(/<meta name="description" content="([^"]+)"/)[1];
   assert.ok(descricao.length >= 120 && descricao.length <= 175, `tamanho ${descricao.length}`);
-  for (const palavra of ["agendamento online", "loja virtual", "cardápio digital", "agentes de IA", "sem compromisso"]) {
+  for (const palavra of ["NOVAA On", "sites profissionais", "lojas virtuais", "agendamento", "agentes de IA", "sem compromisso"]) {
     assert.ok(descricao.toLowerCase().includes(palavra.toLowerCase()), palavra);
   }
   assert.match(html, /<link rel="canonical" href="https:\/\/jhemisontech\.web\.app\/">/);
-});
-
-test("Sobre mim: foto e texto, sem prender a página a uma cidade", () => {
-  assert.match(html, /<section id="sobre"/);
-  assert.match(html, /img\/jhemison\.jpg/);
-  assert.match(html, /Quem está por trás da JhemisonTech\?/);
-  assert.ok(html.includes("sem intermediários e sem enrolação"));
-  assert.ok(!/sem robôs/i.test(html), "a página vende agentes de IA: não dá para prometer 'sem robôs'");
-  // Itamaraju fica só no endereço dos dados estruturados (o Google usa, o visitante não vê)
-  const visivel = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, "");
-  assert.ok(!/Itamaraju|extremo sul/i.test(visivel), "Itamaraju e extremo sul saíram do texto da página");
+  assert.match(html, /<meta property="og:title" content="NOVAA On[^"]*">/);
+  assert.match(html, /"name":"NOVAA On"/);
+  assert.match(html, /"alternateName":"JhemisonTech"/);
   assert.match(html, /"addressLocality":"Itamaraju"/);
-  assert.match(html, /"areaServed":"Brasil"/);
-});
-
-test("topo: título da vitrine, para quem é, benefício e botão que leva aos projetos", () => {
-  assert.ok(html.includes('<h1>Seu negócio na <span class="brilho">vitrine da internet</span>.</h1>'));
-  assert.ok(html.includes("Sites, sistemas de agendamento e agentes de IA para barbearias, clínicas, restaurantes, lojas e prestadores de serviço."));
-  assert.ok(html.includes("Tudo para você vender mais, organizar sua rotina e atender clientes no WhatsApp 24 horas por dia."));
-  assert.ok(html.includes("<a id=\"ver-projetos\" class=\"btn-secundario\" href=\"#projetos\">Ver projetos funcionando</a>"));
+  assert.ok(!/Itamaraju|extremo sul/i.test(texto), "a cidade não aparece no texto da página");
 });

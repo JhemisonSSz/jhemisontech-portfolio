@@ -8,7 +8,7 @@
   --azul-fundo: #e3f1fd;
   --texto: #0f1b2d;
   --texto-suave: #3d5a80;
-  --texto-fraco: #7a93b0;
+  --texto-fraco: #587190; /* escurecido: contraste ~4,9:1 sobre o branco (o antigo #7a93b0 dava ~3:1) */
   --fundo: #ffffff;
   --fonte: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
 }
@@ -54,13 +54,14 @@ nav a:hover { color: var(--azul-escuro); }
 /* ---- Topo ---- */
 .topo { max-width: 1100px; margin: 0 auto; padding: 48px 16px 64px; }
 .topo h1 { font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.12; }
-.brilho { background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro), #8fd0ff, var(--azul-claro), var(--azul-escuro));
+/* Brilho do título: só azuis escuros, para o texto nunca ficar fraco sobre o branco */
+.brilho { background: linear-gradient(90deg, var(--azul-escuro), var(--azul), var(--azul-escuro));
   background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: correr 6s linear infinite; }
 @keyframes correr { to { background-position: 300% 0; } }
 .para-quem { font-size: clamp(1.05rem, 2.6vw, 1.35rem); margin: 10px 0 6px; }
 .sub { color: var(--texto-suave); margin-bottom: 22px; }
 .btn { display: inline-block; color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 999px; font-weight: 600;
-  background: linear-gradient(90deg, var(--azul-escuro), var(--azul), var(--azul-escuro)); background-size: 200% 100%;
+  background: linear-gradient(90deg, var(--azul-escuro), #1d78cf, var(--azul-escuro)); background-size: 200% 100%; /* branco com contraste ≥ 4,5:1 */
   animation: correr 4s linear infinite; box-shadow: 0 6px 20px rgba(47, 143, 230, .4); }
 
 .btn-secundario { display: inline-block; margin: 0 0 0 10px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid var(--azul); color: var(--azul-escuro);
@@ -126,11 +127,19 @@ nav a:hover { color: var(--azul-escuro); }
 .servico:nth-child(4) svg { animation-delay: -2.7s; }
 .servico:nth-child(5) svg { animation-delay: -3.2s; }
 @keyframes boiar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-.servico h3 { font-size: 1rem; }
+.servico-corpo { min-width: 0; }
+.servico .rotulo { font-size: .78rem; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: var(--azul-escuro); }
+.servico h3 { font-size: 1.05rem; margin: 2px 0 6px; }
 .servico p { color: var(--texto-suave); font-size: .9rem; }
-.servico .inclui { margin: 8px 0 0; padding-left: 18px; color: var(--texto-suave); font-size: .88rem; }
-.servico .inclui li { margin-bottom: 2px; }
-.servico .ideal { margin-top: 6px; font-size: .85rem; color: var(--azul-escuro); }
+.servico .lista-titulo { margin-top: 10px; font-size: .82rem; font-weight: 600; color: var(--texto); }
+/* Listas longas em colunas: o card não fica comprido demais */
+.servico .inclui { margin: 4px 0 0; padding-left: 18px; color: var(--texto-suave); font-size: .86rem; columns: 2 170px; column-gap: 24px; }
+.servico .inclui li { margin-bottom: 2px; break-inside: avoid; }
+.grupos { display: grid; gap: 10px 20px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-top: 4px; }
+.grupo h4 { font-size: .85rem; color: var(--azul-escuro); }
+.grupo .inclui { columns: 1; }
+.servico .ideal { margin-top: 8px; font-size: .85rem; color: var(--azul-escuro); }
+.servico .nota { margin-top: 8px; font-size: .8rem; color: var(--texto-fraco); padding-left: 10px; border-left: 2px solid var(--azul-borda); }
 .servico-acao { display: inline-block; margin-top: 8px; font-size: .9rem; font-weight: 600; color: var(--azul-escuro); text-decoration: none; border-bottom: 1px solid #9fcbf3; }
 .servico-acao:hover { border-bottom-color: var(--azul); }
 
@@ -138,10 +147,28 @@ nav a:hover { color: var(--azul-escuro); }
 .servico { position: relative; }
 .servico-destaque { border: 2px solid var(--azul); box-shadow: 0 10px 30px rgba(47, 143, 230, .22); }
 .selo { position: absolute; top: -12px; left: 18px; background: var(--azul-escuro); color: #fff; font-size: .78rem; font-weight: 600; padding: 3px 12px; border-radius: 999px; }
-.incluso { margin-top: 20px; padding: 18px 20px; border-radius: 14px; background: var(--azul-fundo); border: 1px solid var(--azul-borda); }
-.incluso h3 { font-size: 1rem; margin-bottom: 8px; }
-.incluso ul { padding-left: 18px; display: grid; gap: 4px 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); color: var(--texto-suave); font-size: .92rem; }
-.obs { margin-top: 12px; font-size: .85rem; color: var(--texto-fraco); max-width: 80ch; }
+/* Com 5 serviços: o destaque (Sites) ocupa a linha toda e os outros 4 ficam 2 x 2 */
+@media (min-width: 900px) { .servico-destaque { grid-column: 1 / -1; } .servico-destaque .inclui { columns: 3 170px; } }
+
+/* ---- Benefícios ---- */
+.beneficios { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 16px; }
+.beneficio { background: rgba(255, 255, 255, .8); border: 1px solid var(--azul-borda); border-radius: 14px; padding: 16px; }
+.beneficio h3 { font-size: 1rem; color: var(--azul-escuro); margin-bottom: 4px; }
+.beneficio p { color: var(--texto-suave); font-size: .9rem; }
+
+/* ---- Modelo de contratação ---- */
+.contratacao { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 16px; }
+.bloco-contratacao { padding: 16px 18px; border-radius: 14px; background: var(--azul-fundo); border: 1px solid var(--azul-borda); }
+.bloco-contratacao h3 { font-size: .95rem; margin-bottom: 6px; }
+.bloco-contratacao .inclui { padding-left: 18px; color: var(--texto-suave); font-size: .88rem; }
+.aviso { margin-top: 14px; font-size: .9rem; color: var(--texto-suave); max-width: 80ch; padding: 10px 14px; border-left: 3px solid var(--azul); background: rgba(255, 255, 255, .7); }
+.secao-cta { margin-top: 28px; }
+
+/* ---- Confiança e transparência: lista de "fica combinado" ---- */
+.confianca-lista { list-style: none; display: grid; gap: 8px 20px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); margin-top: 14px; }
+.confianca-lista li { position: relative; padding-left: 26px; color: var(--texto-suave); font-size: .92rem; }
+.confianca-lista li::before { content: ""; position: absolute; left: 0; top: .25em; width: 16px; height: 16px; border-radius: 50%; background: var(--azul-escuro)
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
 
 /* ---- Como funciona ---- */
 .passos { list-style: none; counter-reset: passo; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-top: 16px; }
@@ -154,16 +181,20 @@ nav a:hover { color: var(--azul-escuro); }
 /* ---- Perguntas frequentes ---- */
 .perguntas { margin-top: 12px; max-width: 760px; }
 .pergunta { border-bottom: 1px solid var(--azul-borda); }
-.pergunta summary { cursor: pointer; list-style: none; padding: 14px 32px 14px 0; position: relative; font-weight: 600; }
+/* Acordeão: cada pergunta é uma linha clicável; o "+" vira "−" quando a resposta está aberta */
+.pergunta summary { cursor: pointer; list-style: none; min-height: 48px; display: flex; align-items: center; padding: 12px 40px 12px 0; position: relative; font-weight: 600; }
 .pergunta summary::-webkit-details-marker { display: none; }
 .pergunta summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 1.4rem; color: var(--azul-escuro); }
-.pergunta[open] summary::after { content: "–"; }
+.pergunta[open] summary::after { content: "−"; }
+.pergunta summary:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; border-radius: 6px; }
 .pergunta p { color: var(--texto-suave); padding-bottom: 14px; max-width: 65ch; }
 
 /* ---- Sobre mim ---- */
 .sobre { display: flex; gap: 28px; align-items: center; }
 .foto-sobre { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid var(--azul-borda); box-shadow: 0 8px 24px rgba(11, 92, 173, .15); flex-shrink: 0; }
 .sobre-texto p { color: var(--texto-suave); margin-top: 10px; max-width: 62ch; }
+.frase-destaque { margin-top: 16px; padding: 12px 16px; border-left: 3px solid var(--azul); background: var(--azul-fundo); border-radius: 0 10px 10px 0;
+  font-weight: 600; color: var(--azul-escuro); max-width: 62ch; }
 @media (max-width: 700px) { .sobre { flex-direction: column; text-align: center; } .foto-sobre { width: 160px; height: 160px; } }
 
 /* ---- Contato ---- */
@@ -175,7 +206,16 @@ nav a:hover { color: var(--azul-escuro); }
 .contato-item svg { stroke: var(--azul-escuro); flex-shrink: 0; }
 .contato-item:hover { border-color: var(--azul); }
 
-.rodape { text-align: center; color: var(--texto-fraco); font-size: .85rem; padding: 32px 16px; }
+.rodape { text-align: center; color: var(--texto-fraco); font-size: .85rem; padding: 32px 16px 96px; }
+
+/* ---- Aviso da troca de nome (enquanto a marca estiver em transição) ---- */
+.transicao { position: relative; z-index: 2; margin: 0; padding: 8px 16px; text-align: center; font-size: .85rem; font-weight: 600;
+  color: var(--azul-escuro); background: var(--azul-fundo); border-bottom: 1px solid var(--azul-borda); }
+
+/* ---- Botão redondo do WhatsApp, sempre no canto (verde escuro: o ícone branco tem bom contraste) ---- */
+.zap-flutuante { position: fixed; right: 16px; bottom: 16px; z-index: 5; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+  background: #15803d; color: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, .25); transition: transform .2s, background .2s; }
+.zap-flutuante:hover { background: #166534; transform: translateY(-2px); }
 
 /* ---- Movimento (movimento.js liga a classe com-movimento no <html>) ---- */
 /* Topo: título, textos e botões entram um depois do outro ao abrir a página */
@@ -228,6 +268,9 @@ nav a:hover { color: var(--azul-escuro); }
 
 @media (max-width: 600px) {
   .print { aspect-ratio: 4 / 3; }
-  nav { gap: 14px; font-size: .9rem; }
+  /* Menu do celular: uma faixa só, que desliza para o lado (7 itens não cabem em uma linha) */
+  nav { width: 100%; gap: 6px; font-size: .9rem; overflow-x: auto; scrollbar-width: none; flex-wrap: nowrap; padding-bottom: 2px; }
+  nav::-webkit-scrollbar { display: none; }
+  nav a { flex: none; padding: 6px 12px; border: 1px solid var(--azul-borda); border-radius: 999px; background: rgba(255, 255, 255, .8); }
   .topo { padding-top: 28px; }
 }

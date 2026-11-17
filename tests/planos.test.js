@@ -1,50 +1,51 @@
-// Testes do "Toda mensalidade inclui", do "Como funciona" e das perguntas, e de como aparecem no index.html.
+// Testes dos dados de contratação, "Como funciona", confiança e perguntas (public/js/planos.js)
+// e de como as perguntas aparecem no index.html (acordeão: clica e abre a resposta).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { INCLUSO, OBSERVACAO, PASSOS, PERGUNTAS } from "../public/js/planos.js";
-import { SERVICOS } from "../public/js/servicos.js";
+import { CONTRATACAO, PASSOS, PERGUNTAS, CONFIANCA, BENEFICIOS } from "../public/js/planos.js";
 
-const INDEX = fileURLToPath(new URL("../public/index.html", import.meta.url));
-const html = readFileSync(INDEX, "utf8").replace(/\r\n/g, "\n");
+const ler = (c) => readFileSync(fileURLToPath(new URL(c, import.meta.url)), "utf8").replace(/\r\n/g, "\n");
+const html = ler("../public/index.html");
+const css = ler("../public/css/estilo.css");
 
-test("sem preços na página: cada serviço convida para um orçamento sem compromisso", () => {
-  assert.ok(!/R\$/.test(html), "nenhum valor em reais aparece na página");
-  assert.ok(!html.includes('class="valores"'));
-  for (const s of SERVICOS) assert.ok(!("precos" in s) && !("implantacao" in s), s.titulo);
-  assert.equal((html.match(/class="servico-acao"[^>]*>Pedir orçamento →</g) || []).length, SERVICOS.length);
-  assert.equal(SERVICOS.filter((s) => s.destaque).length, 1);
-  assert.ok(SERVICOS[0].destaque, "o destaque fica em Sites");
+test("contratação: quatro blocos com as listas do documento", () => {
+  assert.deepEqual(CONTRATACAO.blocos.map((b) => b.itens.length), [10, 7, 6, 9]);
+  assert.ok(!/R\$/.test(JSON.stringify(CONTRATACAO)));
 });
 
-test("o que a mensalidade inclui e a observação sobre custos extras", () => {
-  assert.ok(INCLUSO.some((i) => /hospedagem e domínio/i.test(i)));
-  assert.ok(INCLUSO.some((i) => /2 alterações pequenas/i.test(i)));
-  assert.ok(!/R\$/.test(OBSERVACAO));
-  assert.match(OBSERVACAO, /API oficial/);
-  assert.match(OBSERVACAO, /contrato/);
+test("benefícios e confiança têm o tamanho do documento", () => {
+  assert.equal(BENEFICIOS.length, 4);
+  assert.equal(CONFIANCA.itens.length, 14);
 });
 
-test("como funciona: quatro passos em ordem; perguntas com resposta", () => {
-  assert.equal(PASSOS.length, 4);
-  assert.ok(PERGUNTAS.length >= 5);
-  for (const q of PERGUNTAS) assert.ok(q.pergunta.endsWith("?") && q.resposta.length > 20, q.pergunta);
+test("como funciona: quatro etapas em ordem", () => {
+  assert.deepEqual(PASSOS.map((p) => p.titulo), ["A gente conversa", "Você vê uma prévia", "Ajustamos juntos", "Seu negócio fica no ar"]);
 });
 
-test("perguntas: explica a mensalidade do atendente de IA e o custo das mensagens na API oficial", () => {
-  const ia = PERGUNTAS.find((q) => /atendente de IA/i.test(q.pergunta));
-  assert.ok(ia, "falta a pergunta sobre o atendente de IA");
-  assert.match(ia.resposta, /WhatsApp comum/);
-  assert.match(ia.resposta, /API oficial/);
-  assert.match(ia.resposta, /contrato/);
+test("perguntas frequentes: as 12 do documento, na ordem", () => {
+  assert.deepEqual(PERGUNTAS.map((q) => q.pergunta), [
+    "Preciso entender de tecnologia para contratar?",
+    "Quanto tempo leva para ficar pronto?",
+    "A solução fica no meu nome?",
+    "Posso usar um domínio que já tenho?",
+    "O que a mensalidade inclui?",
+    "O domínio está incluído na mensalidade?",
+    "Posso alterar preços e horários depois?",
+    "O que não está incluído na mensalidade?",
+    "O atendente de IA funciona 24 horas?",
+    "O WhatsApp tem custo extra?",
+    "Vocês atendem apenas na minha cidade?",
+    "Posso cancelar quando quiser?",
+  ]);
+  for (const q of PERGUNTAS) assert.ok(q.resposta.length > 40, q.pergunta);
 });
 
-test("passos e perguntas estão escritos no HTML; a seção Planos saiu", () => {
-  assert.ok(!html.includes('id="planos"') && !html.includes('href="#planos"'), "não existe mais seção Planos");
-  assert.ok(!/class="plano[ "]/.test(html));
-  assert.ok(html.includes('id="como-funciona"') && html.includes('id="perguntas"'));
-  for (const s of SERVICOS) assert.ok(html.includes(`<h3>${s.titulo}</h3>`), s.titulo);
-  assert.equal((html.match(/<details class="pergunta">/g) || []).length, PERGUNTAS.length);
-  assert.ok(html.includes("Toda mensalidade inclui"));
+test("perguntas em acordeão: 12 blocos que abrem e fecham, com + que vira −", () => {
+  assert.equal((html.match(/<details class="pergunta">/g) || []).length, 12);
+  assert.match(css, /\.pergunta summary::after\s*\{[^}]*content:\s*"\+"/);
+  assert.match(css, /\.pergunta\[open\] summary::after\s*\{[^}]*content:\s*"−"/);
+  // área de toque boa no celular
+  assert.match(css, /\.pergunta summary\s*\{[^}]*min-height:\s*48px/);
 });

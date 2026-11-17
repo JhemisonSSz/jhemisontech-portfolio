@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "public/css/estilo.css"
+        ],
+        "createdAt": "2026-11-17T23:18:41.704Z",
+        "reason": "brilho azul do titulo aprovado pelo usuario no portfolio (mockup v20); gradiente agora so com azuis escuros"
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-11-17T23:18:41.910Z",
+        "reason": "brilho azul do titulo aprovado pelo usuario no portfolio"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-11-17T23:18:42.046Z",
+        "reason": "img vazia da janela #zoom e preenchida pelo pagina.js ao ampliar um print"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-11-17T23:21:19.491Z",
+        "reason": "aura azul da logo aprovada pelo usuario no portfolio (mockup v20)"
+      }
+    ]
+  }
+}

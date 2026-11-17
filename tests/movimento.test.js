@@ -29,7 +29,7 @@ test("quem pediu 'reduzir movimento' vê tudo parado", () => {
 });
 
 test("revela os blocos principais da página", () => {
-  for (const alvo of [".projeto", ".servico", ".incluso", ".passos li", ".pergunta"]) {
+  for (const alvo of [".projeto", ".servico", ".beneficio", ".bloco-contratacao", ".passos li", ".pergunta", ".confianca-lista li"]) {
     assert.ok(ALVOS.includes(alvo), alvo);
   }
 });

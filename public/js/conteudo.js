@@ -1,5 +1,6 @@
-// conteudo.js — Monta o HTML dos cards de projeto, dos serviços e do contato a partir dos dados
-// (projetos.js, servicos.js e contato.js). Não mexe na página: só devolve texto.
+// conteudo.js — Monta o HTML das partes da página que vêm dos dados: botões do topo, benefícios, serviços,
+// contratação, "Como funciona", projetos, confiança, perguntas, contato e o botão flutuante do WhatsApp
+// (projetos.js, servicos.js, planos.js e contato.js). Não mexe na página: só devolve texto.
 //
 // Quem usa:
 //   - scripts/gerar.mjs ("npm run gerar") grava esse HTML direto no index.html, entre os marcadores
@@ -7,7 +8,7 @@
 //   - pagina.js usa só como reserva, se por algum motivo os cards não estiverem no HTML.
 import { PROJETOS } from "./projetos.js";
 import { SERVICOS } from "./servicos.js";
-import { INCLUSO, OBSERVACAO, PASSOS, PERGUNTAS } from "./planos.js";
+import { BENEFICIOS, CONTRATACAO, PASSOS, PASSOS_CTA, CONFIANCA, PERGUNTAS } from "./planos.js";
 import { CONTATO, linkWhatsApp, mensagemConvite, mensagemPainel } from "./contato.js";
 
 // Protege textos antes de colocar no HTML
@@ -63,35 +64,62 @@ export function card(p) {
 
 export const htmlProjetos = () => PROJETOS.map(card).join("");
 
+// ---- Benefícios ----
+
+export const htmlBeneficios = () => BENEFICIOS.map((b) => `
+        <div class="beneficio">
+          <h3>${esc(b.titulo)}</h3>
+          <p>${esc(b.texto)}</p>
+        </div>`).join("");
+
 // ---- Serviços ----
+
+const lista = (itens) => `<ul class="inclui">${itens.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
+
+// Lista simples ou separada por tipo de negócio (Sistemas sob medida)
+const listaServico = (s) => s.grupos
+  ? `<div class="grupos">${s.grupos.map((g) => `<div class="grupo"><h4>${esc(g.nome)}</h4>${lista(g.itens)}</div>`).join("")}</div>`
+  : lista(s.itens);
 
 export const htmlServicos = () => SERVICOS.map((s) => `
         <div class="servico${s.destaque ? " servico-destaque" : ""}">
           ${s.destaque ? '<span class="selo">Mais procurado</span>' : ""}
           <svg viewBox="0 0 22 22" width="26" height="26" fill="none" stroke-width="1.5" aria-hidden="true">${s.icone}</svg>
-          <div>
+          <div class="servico-corpo">
+            <p class="rotulo">${esc(s.rotulo)}</p>
             <h3>${esc(s.titulo)}</h3>
             <p>${esc(s.texto)}</p>
-            <ul class="inclui">${s.inclui.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
-            <p class="ideal">${esc(s.ideal)}</p>
-            <a class="servico-acao" href="${esc(linkWhatsApp(s.mensagem))}" ${ZAP}>Pedir orçamento →</a>
+            <p class="lista-titulo">${esc(s.listaTitulo)}</p>
+            ${listaServico(s)}
+            ${s.publico ? `<p class="ideal"><strong>Público indicado:</strong> ${esc(s.publico)}</p>` : ""}
+            ${(s.notas || []).map((n) => `<p class="nota">${esc(n)}</p>`).join("")}
+            <a class="servico-acao" href="${esc(linkWhatsApp(s.mensagem))}" ${ZAP}>${esc(s.cta)} →</a>
           </div>
         </div>`).join("");
 
-// ---- "Toda mensalidade inclui", "Como funciona" e perguntas ----
+// ---- Modelo de contratação, "Como funciona", confiança e perguntas ----
 
-// O que toda mensalidade inclui + observação, embaixo dos cards de serviço
-export const htmlIncluso = () => `
-        <div class="incluso">
-          <h3>Toda mensalidade inclui</h3>
-          <ul>${INCLUSO.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
+export const htmlContratacao = () => `
+      <h2>${esc(CONTRATACAO.titulo)}</h2>
+      <p class="sub">${esc(CONTRATACAO.texto)}</p>
+        <div class="contratacao">${CONTRATACAO.blocos.map((b) => `
+          <div class="bloco-contratacao">
+            <h3>${esc(b.titulo)}</h3>
+            ${lista(b.itens)}
+          </div>`).join("")}
         </div>
-        <p class="obs">${esc(OBSERVACAO)}</p>`;
+        <p class="aviso">${esc(CONTRATACAO.aviso)}</p>
+        <p class="secao-cta"><a class="btn" href="${esc(linkWhatsApp(CONTRATACAO.mensagem))}" ${ZAP}>${esc(CONTRATACAO.cta)}</a></p>`;
 
 export const htmlPassos = () => `
         <ol class="passos">${PASSOS.map((p) => `
           <li><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p></li>`).join("")}
-        </ol>`;
+        </ol>
+        <p class="secao-cta"><a class="btn" href="${esc(linkWhatsApp(PASSOS_CTA.mensagem))}" ${ZAP}>${esc(PASSOS_CTA.texto)}</a></p>`;
+
+export const htmlConfianca = () => `
+        <p class="sub">${esc(CONFIANCA.texto)}</p>
+        <ul class="confianca-lista">${CONFIANCA.itens.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
 
 export const htmlPerguntas = () => PERGUNTAS.map((q) => `
         <details class="pergunta">
@@ -101,14 +129,22 @@ export const htmlPerguntas = () => PERGUNTAS.map((q) => `
 
 // ---- Topo e contato ----
 
+const MENSAGEM_GERAL = "Olá, Jhemison! Vim pelo site da NOVAA On e gostaria de fazer um orçamento sem compromisso.";
+
 export const htmlTopoCta = () =>
-  `<a id="zap-topo" class="btn" href="${esc(linkWhatsApp("Olá, Jhemison! Vim pelo seu site e gostaria de fazer um orçamento sem compromisso."))}" ${ZAP}>Falar no WhatsApp</a>
-   <a id="ver-projetos" class="btn-secundario" href="#projetos">Ver projetos funcionando</a>`;
+  `<a id="zap-topo" class="btn" href="${esc(linkWhatsApp(MENSAGEM_GERAL))}" ${ZAP}>Falar pelo WhatsApp</a>
+   <a id="ver-solucoes" class="btn-secundario" href="#servicos">Ver soluções</a>`;
+
+// Botão redondo do WhatsApp que fica sempre no canto da tela (principalmente para o celular)
+export const htmlZapFlutuante = () =>
+  `<a id="zap-flutuante" class="zap-flutuante" href="${esc(linkWhatsApp(MENSAGEM_GERAL))}" ${ZAP} aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c.3 2.6 2.4 4.9 5.6 6l1.4-1.4-2-1.2-1 .8c-.9-.4-1.6-1.1-2-2l.8-1-1.2-2z"/></svg>
+  </a>`;
 
 export const htmlContato = () => `
       <h2>Peça seu orçamento sem compromisso</h2>
       <p class="sub">Me conta o que você precisa. Respondo rapidinho, e o orçamento é sem compromisso.</p>
-      <a id="zap-contato" class="btn btn-grande" href="${esc(linkWhatsApp("Olá, Jhemison! Vim pelo seu site e gostaria de fazer um orçamento sem compromisso."))}" ${ZAP}>Chamar no WhatsApp</a>
+      <a id="zap-contato" class="btn btn-grande" href="${esc(linkWhatsApp(MENSAGEM_GERAL))}" ${ZAP}>Contar o que eu preciso</a>
       <p class="contato-numero">${esc(CONTATO.whatsappTexto)} · ou se preferir:</p>
       <div class="contatos">
         <a id="insta" class="contato-item" href="https://instagram.com/${esc(CONTATO.instagram)}" ${ZAP}>
@@ -123,7 +159,10 @@ export const htmlContato = () => `
 
 // ---- Gravação no index.html ----
 
-const REGIOES = { "topo-cta": htmlTopoCta, projetos: htmlProjetos, servicos: htmlServicos, incluso: htmlIncluso, passos: htmlPassos, perguntas: htmlPerguntas, contato: htmlContato };
+const REGIOES = {
+  "topo-cta": htmlTopoCta, beneficios: htmlBeneficios, servicos: htmlServicos, contratacao: htmlContratacao, passos: htmlPassos,
+  projetos: htmlProjetos, confianca: htmlConfianca, perguntas: htmlPerguntas, contato: htmlContato, "zap-flutuante": htmlZapFlutuante,
+};
 
 // Troca o que está entre os marcadores <!-- gerar:NOME --> e <!-- /gerar:NOME --> pelo conteúdo novo.
 // O texto do index.html precisa estar com quebras de linha "\n" (o gerar.mjs cuida disso).
