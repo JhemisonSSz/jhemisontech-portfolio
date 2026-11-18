@@ -3,7 +3,7 @@
 Este é o portfólio da NOVAA On (antes JhemisonTech), que faz sites, lojas virtuais, sistemas, agendamento online e agentes de IA para pequenos negócios. É uma página única e fixa: não tem banco de dados nem login.
 
 - **Endereço:** https://novaaon.web.app (o domínio próprio entra depois, veja abaixo).
-- O endereço antigo, https://jhemisontech.web.app, leva sozinho para o novo (redirecionamento 301 no `firebase.json`). Assim os links que você já espalhou continuam funcionando.
+- O endereço antigo, https://jhemisontech.web.app, foi apagado em 2026-11-18 e não funciona mais. Links antigos (Instagram, cartões etc.) precisam ser trocados pelo novo.
 - **Tecnologia:** HTML, CSS e JavaScript puros, sem build. A hospedagem é o Firebase Hosting.
 
 ## Arquivos
@@ -54,11 +54,7 @@ Serviços: edite `public/js/servicos.js`. Perguntas e "Como funciona": edite `pu
 
 ## Publicar
 
-Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d` (o ID de um projeto nunca pode ser trocado). Para não precisar digitar o nome antigo, o `.firebaserc` tem o apelido `novaa`, que aponta para esse mesmo projeto. Ele tem dois sites:
-- `novaaon` (novaaon.web.app): o portfólio de verdade;
-- `jhemisontech` (jhemisontech.web.app): só redireciona para o novo endereço.
-
-O comando abaixo publica os dois de uma vez.
+Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d` (o ID de um projeto nunca pode ser trocado). Para não precisar digitar o nome antigo, o `.firebaserc` tem o apelido `novaa`, que aponta para esse mesmo projeto. O portfólio fica no site `novaaon` (novaaon.web.app), e o `firebase.json` já aponta para ele.
 
 ```
 firebase deploy --project novaa --only hosting
@@ -69,4 +65,4 @@ firebase deploy --project novaa --only hosting
 1. No console do Firebase, abra o site **novaaon** em **Hosting → Adicionar domínio personalizado** e digite o domínio.
 2. O Firebase mostra os registros de DNS (um TXT e um ou dois A). Copie e cole na Hostinger, em **Domínios → DNS / Nameservers**.
 3. Espere a verificação, que pode levar algumas horas. O cadeado HTTPS vem sozinho.
-4. No `public/index.html`, troque `https://novaaon.web.app/` pelo domínio novo em `canonical`, `og:url`, `og:image` e nos dados para o Google (JSON-LD). No `firebase.json`, troque também o destino do redirecionamento. Depois publique de novo.
+4. No `public/index.html`, troque `https://novaaon.web.app/` pelo domínio novo em `canonical`, `og:url`, `og:image` e nos dados para o Google (JSON-LD). Depois publique de novo.

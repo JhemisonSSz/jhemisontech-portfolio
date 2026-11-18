@@ -163,16 +163,9 @@ test("SEO: nome novo, endereço atual, descrição do tamanho certo e cidade só
   }
   assert.match(html, /<link rel="canonical" href="https:\/\/novaaon\.web\.app\/">/);
   assert.ok(!html.includes("jhemisontech.web.app"), "endereço antigo na página");
-  // O endereço antigo continua no ar só para redirecionar ao novo
+  // O deploy vai só para o site novaaon (o site antigo "jhemisontech" foi apagado no Firebase)
   const firebase = JSON.parse(readFileSync(fileURLToPath(new URL("../firebase.json", import.meta.url)), "utf8"));
-  const [novo, antigo] = firebase.hosting;
-  assert.equal(novo.site, "novaaon");
-  assert.equal(antigo.site, "jhemisontech");
-  // A página inicial ("/") precisa de regra própria: "/:caminho*" não pega o endereço vazio
-  assert.deepEqual(antigo.redirects, [
-    { source: "/", destination: "https://novaaon.web.app/", type: 301 },
-    { source: "/:caminho*", destination: "https://novaaon.web.app/:caminho*", type: 301 },
-  ]);
+  assert.equal(firebase.hosting.site, "novaaon");
   assert.match(html, /<meta property="og:title" content="NOVAA On[^"]*">/);
   assert.match(html, /"name":"NOVAA On"/);
   assert.match(html, /"alternateName":"JhemisonTech"/);
