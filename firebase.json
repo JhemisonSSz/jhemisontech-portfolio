@@ -15,6 +15,7 @@
       "public": "public",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "redirects": [
+        { "source": "/", "destination": "https://novaaon.web.app/", "type": 301 },
         { "source": "/:caminho*", "destination": "https://novaaon.web.app/:caminho*", "type": 301 }
       ]
     }

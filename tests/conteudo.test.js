@@ -168,7 +168,11 @@ test("SEO: nome novo, endereço atual, descrição do tamanho certo e cidade só
   const [novo, antigo] = firebase.hosting;
   assert.equal(novo.site, "novaaon");
   assert.equal(antigo.site, "jhemisontech");
-  assert.deepEqual(antigo.redirects, [{ source: "/:caminho*", destination: "https://novaaon.web.app/:caminho*", type: 301 }]);
+  // A página inicial ("/") precisa de regra própria: "/:caminho*" não pega o endereço vazio
+  assert.deepEqual(antigo.redirects, [
+    { source: "/", destination: "https://novaaon.web.app/", type: 301 },
+    { source: "/:caminho*", destination: "https://novaaon.web.app/:caminho*", type: 301 },
+  ]);
   assert.match(html, /<meta property="og:title" content="NOVAA On[^"]*">/);
   assert.match(html, /"name":"NOVAA On"/);
   assert.match(html, /"alternateName":"JhemisonTech"/);
