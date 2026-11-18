@@ -11,7 +11,11 @@ const html = ler("../public/index.html");
 const css = ler("../public/css/estilo.css");
 
 test("contratação: quatro blocos com as listas do documento", () => {
-  assert.deepEqual(CONTRATACAO.blocos.map((b) => b.itens.length), [10, 7, 6, 9]);
+  assert.deepEqual(CONTRATACAO.blocos.map((b) => b.itens.length), [10, 5, 6, 9]);
+  // A página não diz que hospedagem e domínio estão na mensalidade
+  assert.ok(!/hospedagem/i.test(html), "hospedagem citada na página");
+  assert.ok(!CONTRATACAO.blocos[1].itens.some((i) => /domínio/i.test(i)));
+  assert.ok(!PERGUNTAS.some((q) => /domínio.*mensalidade|mensalidade.*domínio/i.test(q.pergunta + q.resposta)));
   assert.ok(!/R\$/.test(JSON.stringify(CONTRATACAO)));
 });
 
@@ -31,7 +35,7 @@ test("perguntas frequentes: as 12 do documento, na ordem", () => {
     "A solução fica no meu nome?",
     "Posso usar um domínio que já tenho?",
     "O que a mensalidade inclui?",
-    "O domínio está incluído na mensalidade?",
+    "Como funciona o domínio?",
     "Posso alterar preços e horários depois?",
     "O que não está incluído na mensalidade?",
     "O atendente de IA funciona 24 horas?",

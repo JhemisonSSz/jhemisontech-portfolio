@@ -34,7 +34,7 @@ export const CONTRATACAO = {
   blocos: [
     { titulo: "A implantação pode incluir", itens: ["Conversa inicial", "Entendimento da rotina", "Definição da solução", "Configuração", "Personalização",
       "Criação ou adaptação de páginas", "Cadastro inicial de informações", "Testes", "Publicação", "Orientação básica de uso"] },
-    { titulo: "A mensalidade pode incluir, conforme a proposta", itens: ["Hospedagem", "Domínio", "Manutenção básica", "Atualizações", "Site ou sistema no ar",
+    { titulo: "A mensalidade pode incluir, conforme a proposta", itens: ["Manutenção básica", "Atualizações", "Site ou sistema no ar",
       "Suporte direto pelo WhatsApp", "Até duas pequenas alterações por mês"] },
     { titulo: "Exemplos de pequenas alterações", itens: ["Troca de preço", "Substituição de foto", "Alteração de texto", "Mudança de horário",
       "Atualização de resposta do atendente", "Pequenas correções visuais"] },
@@ -77,9 +77,10 @@ export const PERGUNTAS = [
   { pergunta: "Posso usar um domínio que já tenho?",
     resposta: "Sim, desde que o endereço seja compatível e você tenha os dados de acesso da conta onde ele foi registrado para fazermos a configuração técnica." },
   { pergunta: "O que a mensalidade inclui?",
-    resposta: "Conforme o plano contratado, a mensalidade cobre a hospedagem para manter tudo no ar, manutenção básica, atualizações, suporte direto comigo pelo WhatsApp e até duas pequenas alterações por mês (como trocar preços, fotos, horários ou textos)." },
-  { pergunta: "O domínio está incluído na mensalidade?",
-    resposta: "O registro e a renovação do domínio podem estar incluídos dependendo do plano escolhido. Todos os detalhes sobre taxas de renovação ou condições do endereço ficam discriminados na proposta antes do fechamento." },
+    resposta: "Conforme o plano contratado, a mensalidade cobre a manutenção básica para manter tudo funcionando, atualizações, suporte direto comigo pelo WhatsApp e até duas pequenas alterações por mês (como trocar preços, fotos, horários ou textos)." },
+  // Hospedagem e domínio: não dizer que estão na mensalidade; fica tudo para a proposta
+  { pergunta: "Como funciona o domínio?",
+    resposta: "O domínio é o endereço do seu site, como seunegocio.com.br. Como ele será registrado, em nome de quem e como fica a renovação são combinados na proposta, antes do fechamento." },
   { pergunta: "Posso alterar preços e horários depois?",
     resposta: "Sim. Nos sistemas com painel administrativo você mesmo atualiza pelo celular, e nos sites institucionais basta me enviar uma mensagem dentro do seu limite mensal de pequenas alterações." },
   { pergunta: "O que não está incluído na mensalidade?",
