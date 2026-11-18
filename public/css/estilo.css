@@ -165,6 +165,9 @@ nav a:hover { color: var(--azul-escuro); }
 .dores li::before { content: "?"; position: absolute; left: 14px; top: 14px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
   background: var(--azul-fundo); border: 1px solid var(--azul-borda); color: var(--azul-escuro); font-size: .75rem; font-weight: 700; }
 
+/* No computador (3 por linha), se o último card sobrar sozinho, ele ocupa a linha inteira */
+@media (min-width: 900px) { .dores { grid-template-columns: repeat(3, 1fr); } .dores li:last-child:nth-child(3n+1) { grid-column: 1 / -1; } }
+
 /* ---- Benefícios ---- */
 .beneficios { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 16px; }
 .beneficio { background: rgba(255, 255, 255, .8); border: 1px solid var(--azul-borda); border-radius: 14px; padding: 16px; }

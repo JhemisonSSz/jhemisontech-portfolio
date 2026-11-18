@@ -5,13 +5,15 @@
 // "Você se identifica?": situações do dia a dia do cliente, logo depois do topo
 export const DORES = {
   texto: "Se alguma dessas situações acontece no seu negócio, dá para resolver com uma solução digital simples.",
+  // Uma situação para cada serviço: site (2), loja, sistema, agendamento, IA e automação (2)
   itens: [
-    "Passa o dia respondendo as mesmas perguntas no WhatsApp: preço, horário e endereço.",
-    "Perde clientes porque demorou para responder ou estava ocupado atendendo.",
+    "Quando procuram sua empresa no Google, o cliente não encontra um site, só um perfil de rede social ou nada.",
+    "Você precisa mandar foto, preço e endereço toda vez, porque não tem um lugar com todas as informações do seu negócio.",
+    "Vende pelo direct e pelo WhatsApp, anota pedido na mão e às vezes vende o que já não tem no estoque.",
+    "Clientes, mensalidades e caixa ficam em caderno ou planilha, e no fim do mês é difícil saber quanto entrou.",
     "A agenda fica no caderno ou nas conversas, e às vezes dois clientes marcam no mesmo horário.",
-    "O cliente procura sua empresa na internet e não encontra nada profissional.",
-    "Pedidos, estoque ou mensalidades ficam espalhados e dão trabalho para controlar.",
-    "Paga taxa de aplicativo para receber pedidos que poderiam chegar direto para você.",
+    "Perde clientes porque demorou para responder enquanto estava atendendo.",
+    "Tarefas repetitivas, como confirmar horário, avisar cliente e passar dados para planilha, tomam horas do seu dia.",
   ],
   cta: "Quero resolver isso no meu negócio",
   mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e me identifiquei com algumas situações. Quero conversar sobre o meu negócio.",

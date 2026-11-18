@@ -50,8 +50,10 @@ test("seções na ordem: topo, você se identifica, benefícios, serviços, proj
 test("você se identifica: as situações do dia a dia e o convite para conversar", () => {
   const d = secao("dores");
   assert.ok(d.includes("Você se identifica?"));
-  assert.equal((html.match(/<ul class="dores">([\s\S]*?)<\/ul>/)[1].match(/<li>/g) || []).length, 6);
-  assert.ok(d.includes("Passa o dia respondendo as mesmas perguntas no WhatsApp"));
+  // Uma situação por serviço (site e IA com duas), e só uma falando de responder mensagens
+  assert.equal((html.match(/<ul class="dores">([\s\S]*?)<\/ul>/)[1].match(/<li>/g) || []).length, 7);
+  for (const t of ["não encontra um site", "anota pedido na mão", "no fim do mês é difícil saber quanto entrou",
+    "dois clientes marcam no mesmo horário", "demorou para responder", "Tarefas repetitivas"]) assert.ok(d.includes(t), t);
   assert.ok(d.includes("Quero resolver isso no meu negócio"));
 });
 
