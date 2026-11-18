@@ -78,9 +78,6 @@ export const PERGUNTAS = [
     resposta: "Sim, desde que o endereço seja compatível e você tenha os dados de acesso da conta onde ele foi registrado para fazermos a configuração técnica." },
   { pergunta: "O que a mensalidade inclui?",
     resposta: "Conforme o plano contratado, a mensalidade cobre a manutenção básica para manter tudo funcionando, atualizações, suporte direto comigo pelo WhatsApp e até duas pequenas alterações por mês (como trocar preços, fotos, horários ou textos)." },
-  // Hospedagem e domínio: não dizer que estão na mensalidade; fica tudo para a proposta
-  { pergunta: "Como funciona o domínio?",
-    resposta: "O domínio é o endereço do seu site, como seunegocio.com.br. Como ele será registrado, em nome de quem e como fica a renovação são combinados na proposta, antes do fechamento." },
   { pergunta: "Posso alterar preços e horários depois?",
     resposta: "Sim. Nos sistemas com painel administrativo você mesmo atualiza pelo celular, e nos sites institucionais basta me enviar uma mensagem dentro do seu limite mensal de pequenas alterações." },
   { pergunta: "O que não está incluído na mensalidade?",

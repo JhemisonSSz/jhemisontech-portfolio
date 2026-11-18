@@ -28,14 +28,13 @@ test("como funciona: quatro etapas em ordem", () => {
   assert.deepEqual(PASSOS.map((p) => p.titulo), ["A gente conversa", "Você vê uma prévia", "Ajustamos juntos", "Seu negócio fica no ar"]);
 });
 
-test("perguntas frequentes: as 12 do documento, na ordem", () => {
+test("perguntas frequentes: 11, na ordem (a do domínio na mensalidade saiu)", () => {
   assert.deepEqual(PERGUNTAS.map((q) => q.pergunta), [
     "Preciso entender de tecnologia para contratar?",
     "Quanto tempo leva para ficar pronto?",
     "A solução fica no meu nome?",
     "Posso usar um domínio que já tenho?",
     "O que a mensalidade inclui?",
-    "Como funciona o domínio?",
     "Posso alterar preços e horários depois?",
     "O que não está incluído na mensalidade?",
     "O atendente de IA funciona 24 horas?",
@@ -46,8 +45,8 @@ test("perguntas frequentes: as 12 do documento, na ordem", () => {
   for (const q of PERGUNTAS) assert.ok(q.resposta.length > 40, q.pergunta);
 });
 
-test("perguntas em acordeão: 12 blocos que abrem e fecham, com + que vira −", () => {
-  assert.equal((html.match(/<details class="pergunta">/g) || []).length, 12);
+test("perguntas em acordeão: 11 blocos que abrem e fecham, com + que vira −", () => {
+  assert.equal((html.match(/<details class="pergunta">/g) || []).length, 11);
   assert.match(css, /\.pergunta summary::after\s*\{[^}]*content:\s*"\+"/);
   assert.match(css, /\.pergunta\[open\] summary::after\s*\{[^}]*content:\s*"−"/);
   // área de toque boa no celular
