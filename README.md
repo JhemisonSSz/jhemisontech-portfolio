@@ -54,14 +54,14 @@ Serviços: edite `public/js/servicos.js`. Perguntas e "Como funciona": edite `pu
 
 ## Publicar
 
-Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d` (o ID do projeto não muda) e tem dois sites:
+Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d` (o ID de um projeto nunca pode ser trocado). Para não precisar digitar o nome antigo, o `.firebaserc` tem o apelido `novaa`, que aponta para esse mesmo projeto. Ele tem dois sites:
 - `novaaon` (novaaon.web.app): o portfólio de verdade;
 - `jhemisontech` (jhemisontech.web.app): só redireciona para o novo endereço.
 
 O comando abaixo publica os dois de uma vez.
 
 ```
-firebase deploy --project jhemisontech-a080d --only hosting
+firebase deploy --project novaa --only hosting
 ```
 
 ## Ligar um domínio próprio (quando tiver)

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "jhemisontech-a080d"
+    "default": "jhemisontech-a080d",
+    "novaa": "jhemisontech-a080d"
   }
 }
