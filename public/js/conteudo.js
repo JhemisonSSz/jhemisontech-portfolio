@@ -1,4 +1,4 @@
-// conteudo.js — Monta o HTML das partes da página que vêm dos dados: botões do topo, benefícios, serviços,
+// conteudo.js — Monta o HTML das partes da página que vêm dos dados: botões do topo, "Você se identifica?", benefícios, serviços,
 // contratação, "Como funciona", projetos, confiança, perguntas, contato e o botão flutuante do WhatsApp
 // (projetos.js, servicos.js, planos.js e contato.js). Não mexe na página: só devolve texto.
 //
@@ -8,7 +8,7 @@
 //   - pagina.js usa só como reserva, se por algum motivo os cards não estiverem no HTML.
 import { PROJETOS } from "./projetos.js";
 import { SERVICOS } from "./servicos.js";
-import { BENEFICIOS, CONTRATACAO, PASSOS, PASSOS_CTA, CONFIANCA, PERGUNTAS } from "./planos.js";
+import { DORES, BENEFICIOS, CONTRATACAO, PASSOS, PASSOS_CTA, CONFIANCA, PERGUNTAS } from "./planos.js";
 import { CONTATO, linkWhatsApp, mensagemConvite, mensagemPainel } from "./contato.js";
 
 // Protege textos antes de colocar no HTML
@@ -64,6 +64,13 @@ export function card(p) {
 
 export const htmlProjetos = () => PROJETOS.map(card).join("");
 
+// ---- Você se identifica? ----
+
+export const htmlDores = () => `
+      <p class="sub">${esc(DORES.texto)}</p>
+        <ul class="dores">${DORES.itens.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
+        <p class="secao-cta"><a class="btn" href="${esc(linkWhatsApp(DORES.mensagem))}" ${ZAP}>${esc(DORES.cta)}</a></p>`;
+
 // ---- Benefícios ----
 
 export const htmlBeneficios = () => BENEFICIOS.map((b) => `
@@ -81,6 +88,13 @@ const listaServico = (s) => s.grupos
   ? `<div class="grupos">${s.grupos.map((g) => `<div class="grupo"><h4>${esc(g.nome)}</h4>${lista(g.itens)}</div>`).join("")}</div>`
   : lista(s.itens);
 
+// No celular, as listas longas mostram só o começo e um botão "Ver todos" (o pagina.js liga isso).
+// Sem JavaScript, o botão fica escondido e a lista aparece inteira.
+export const ITENS_CURTOS = 5;
+export const escondidos = (s) => s.grupos ? s.grupos.length - 1 : Math.max(0, s.itens.length - ITENS_CURTOS);
+const verTodos = (s) => !escondidos(s) ? "" :
+  `<button type="button" class="ver-todos" hidden>${s.grupos ? "Ver todos os exemplos" : "Ver todos os recursos"} (+${escondidos(s)})</button>`;
+
 export const htmlServicos = () => SERVICOS.map((s) => `
         <div class="servico${s.destaque ? " servico-destaque" : ""}">
           ${s.destaque ? '<span class="selo">Mais procurado</span>' : ""}
@@ -91,6 +105,7 @@ export const htmlServicos = () => SERVICOS.map((s) => `
             <p>${esc(s.texto)}</p>
             <p class="lista-titulo">${esc(s.listaTitulo)}</p>
             ${listaServico(s)}
+            ${verTodos(s)}
             ${s.publico ? `<p class="ideal"><strong>Público indicado:</strong> ${esc(s.publico)}</p>` : ""}
             ${(s.notas || []).map((n) => `<p class="nota">${esc(n)}</p>`).join("")}
             <a class="servico-acao" href="${esc(linkWhatsApp(s.mensagem))}" ${ZAP}>${esc(s.cta)} →</a>
@@ -160,7 +175,7 @@ export const htmlContato = () => `
 // ---- Gravação no index.html ----
 
 const REGIOES = {
-  "topo-cta": htmlTopoCta, beneficios: htmlBeneficios, servicos: htmlServicos, contratacao: htmlContratacao, passos: htmlPassos,
+  "topo-cta": htmlTopoCta, dores: htmlDores, beneficios: htmlBeneficios, servicos: htmlServicos, contratacao: htmlContratacao, passos: htmlPassos,
   projetos: htmlProjetos, confianca: htmlConfianca, perguntas: htmlPerguntas, contato: htmlContato, "zap-flutuante": htmlZapFlutuante,
 };
 

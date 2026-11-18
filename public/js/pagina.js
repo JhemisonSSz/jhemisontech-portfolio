@@ -47,6 +47,14 @@ function aoClicar(evento) {
   if (print) ampliar(print);
 }
 
+// ---- Serviços: no celular, listas longas mostram só o começo até a pessoa tocar em "Ver todos" ----
+document.querySelectorAll(".ver-todos").forEach((botao) => {
+  const servico = botao.closest(".servico");
+  servico.classList.add("lista-curta");
+  botao.hidden = false;
+  botao.addEventListener("click", () => { servico.classList.remove("lista-curta"); botao.remove(); });
+});
+
 $("#lista-projetos").addEventListener("click", aoClicar);
 $("#lista-projetos").addEventListener("keydown", (e) => {
   const print = e.target.closest(".print");

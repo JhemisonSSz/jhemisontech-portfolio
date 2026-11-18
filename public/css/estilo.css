@@ -150,6 +150,21 @@ nav a:hover { color: var(--azul-escuro); }
 /* Com 5 serviços: o destaque (Sites) ocupa a linha toda e os outros 4 ficam 2 x 2 */
 @media (min-width: 900px) { .servico-destaque { grid-column: 1 / -1; } .servico-destaque .inclui { columns: 3 170px; } }
 
+/* Botão "Ver todos os recursos": só no celular. No computador a lista aparece inteira. */
+.ver-todos { display: none; }
+@media (max-width: 600px) {
+  .lista-curta .inclui li:nth-child(n+6), .lista-curta .grupo:nth-child(n+2) { display: none; }
+  .lista-curta .ver-todos { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; padding: 0 14px; border-radius: 999px;
+    border: 1px solid var(--azul-borda); background: #fff; color: var(--azul-escuro); font: inherit; font-size: .86rem; font-weight: 600; cursor: pointer; }
+}
+
+/* ---- Você se identifica? ---- */
+.dores { list-style: none; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 16px; }
+.dores li { position: relative; padding: 14px 16px 14px 44px; border-radius: 14px; background: rgba(255, 255, 255, .8); border: 1px solid var(--azul-borda);
+  color: var(--texto-suave); font-size: .92rem; }
+.dores li::before { content: "?"; position: absolute; left: 14px; top: 14px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--azul-fundo); border: 1px solid var(--azul-borda); color: var(--azul-escuro); font-size: .75rem; font-weight: 700; }
+
 /* ---- Benefícios ---- */
 .beneficios { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 16px; }
 .beneficio { background: rgba(255, 255, 255, .8); border: 1px solid var(--azul-borda); border-radius: 14px; padding: 16px; }
@@ -207,10 +222,6 @@ nav a:hover { color: var(--azul-escuro); }
 .contato-item:hover { border-color: var(--azul); }
 
 .rodape { text-align: center; color: var(--texto-fraco); font-size: .85rem; padding: 32px 16px 96px; }
-
-/* ---- Aviso da troca de nome (enquanto a marca estiver em transição) ---- */
-.transicao { position: relative; z-index: 2; margin: 0; padding: 8px 16px; text-align: center; font-size: .85rem; font-weight: 600;
-  color: var(--azul-escuro); background: var(--azul-fundo); border-bottom: 1px solid var(--azul-borda); }
 
 /* ---- Botão redondo do WhatsApp, sempre no canto (verde escuro: o ícone branco tem bom contraste) ---- */
 .zap-flutuante { position: fixed; right: 16px; bottom: 16px; z-index: 5; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;

@@ -36,7 +36,7 @@ test("perguntas frequentes: as 12 do documento, na ordem", () => {
     "O que não está incluído na mensalidade?",
     "O atendente de IA funciona 24 horas?",
     "O WhatsApp tem custo extra?",
-    "Vocês atendem apenas na minha cidade?",
+    "Você atende apenas na minha cidade?",
     "Posso cancelar quando quiser?",
   ]);
   for (const q of PERGUNTAS) assert.ok(q.resposta.length > 40, q.pergunta);

@@ -23,28 +23,45 @@ test("o index.html está em dia com os dados (rode 'npm run gerar' se este teste
   assert.equal(injetar(html), html);
 });
 
-test("marca NOVAA On: nome, título da aba, rodapé e aviso da transição", () => {
+test("marca NOVAA On: nome, título da aba e rodapé, sem o nome antigo no texto", () => {
   assert.match(html, /<title>NOVAA On[^<]*<\/title>/);
   assert.ok(html.includes('<span class="nome1">NOVAA</span> <span class="nome2">On</span>'), "nome com espaço: NOVAA On");
-  assert.ok(texto.includes("A JhemisonTech está evoluindo para NOVAA On."));
-  // "JhemisonTech" só aparece no aviso da transição (o @ e o e-mail continuam, em minúsculas)
-  assert.equal((texto.match(/JhemisonTech/g) || []).length, 1, "JhemisonTech fora do aviso");
+  // O aviso da transição saiu: "JhemisonTech" fica só nos dados para o Google (alternateName)
+  assert.ok(!/jhemisontech/i.test(texto), "nome antigo no texto da página");
+  assert.ok(!html.includes('class="transicao"'));
   assert.match(html, /<footer class="rodape">© 2026 NOVAA On<\/footer>/);
   assert.ok(texto.includes("Seu negócio na vitrine da internet, sem complicação."));
 });
 
-test("menu com as sete seções, na ordem do documento", () => {
+test("menu com as sete seções, na ordem da página (Projetos logo depois de Serviços)", () => {
   const nav = html.match(/<nav[^>]*>([\s\S]*?)<\/nav>/)[1];
   const links = [...nav.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map((m) => [m[1], m[2]]);
   assert.deepEqual(links, [
-    ["#topo", "Início"], ["#servicos", "Serviços"], ["#como-funciona", "Como funciona"], ["#projetos", "Projetos"],
+    ["#topo", "Início"], ["#servicos", "Serviços"], ["#projetos", "Projetos"], ["#como-funciona", "Como funciona"],
     ["#sobre", "Sobre"], ["#perguntas", "Perguntas frequentes"], ["#contato", "Contato"],
   ]);
 });
 
-test("seções na ordem: topo, benefícios, serviços, contratação, como funciona, projetos, sobre, confiança, perguntas, contato", () => {
+test("seções na ordem: topo, você se identifica, benefícios, serviços, projetos, contratação, como funciona, sobre, confiança, perguntas, contato", () => {
   const ids = [...html.matchAll(/<section id="([^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(ids, ["topo", "beneficios", "servicos", "contratacao", "como-funciona", "projetos", "sobre", "confianca", "perguntas", "contato"]);
+  assert.deepEqual(ids, ["topo", "dores", "beneficios", "servicos", "projetos", "contratacao", "como-funciona", "sobre", "confianca", "perguntas", "contato"]);
+});
+
+test("você se identifica: as situações do dia a dia e o convite para conversar", () => {
+  const d = secao("dores");
+  assert.ok(d.includes("Você se identifica?"));
+  assert.equal((html.match(/<ul class="dores">([\s\S]*?)<\/ul>/)[1].match(/<li>/g) || []).length, 6);
+  assert.ok(d.includes("Passa o dia respondendo as mesmas perguntas no WhatsApp"));
+  assert.ok(d.includes("Quero resolver isso no meu negócio"));
+});
+
+test("serviços no celular: listas longas com botão 'Ver todos', escondido sem JavaScript", () => {
+  const botoes = [...html.matchAll(/<button type="button" class="ver-todos" hidden>([^<]+)<\/button>/g)].map((m) => m[1]);
+  assert.deepEqual(botoes, ["Ver todos os recursos (+6)", "Ver todos os recursos (+10)", "Ver todos os exemplos (+2)",
+    "Ver todos os recursos (+2)", "Ver todos os recursos (+5)"]);
+  const css = readFileSync(fileURLToPath(new URL("../public/css/estilo.css", import.meta.url)), "utf8");
+  assert.match(css, /\.lista-curta \.inclui li:nth-child\(n\+6\)/, "esconde a partir do 6º item");
+  assert.match(css, /\.ver-todos \{ display: none; \}/, "no computador o botão não aparece");
 });
 
 test("topo: título, subtítulo, texto complementar e os dois botões", () => {
@@ -129,6 +146,8 @@ test("contato: WhatsApp em destaque, número escrito e orçamento sem compromiss
   assert.ok(c.includes("(73) 98804-5634"));
   assert.match(c, /orçamento sem compromisso/i);
   assert.ok(c.includes("Contar o que eu preciso"));
+  assert.ok(c.includes("@novaa_on") && html.includes('href="https://instagram.com/novaa_on"'));
+  assert.ok(c.includes("contato.novaaon@gmail.com") && html.includes('href="mailto:contato.novaaon@gmail.com"'));
   // No celular o botão do WhatsApp fica sempre à mão
   assert.match(html, /<a id="zap-flutuante" class="zap-flutuante" href="https:\/\/wa\.me\/5573988045634\?text=[^"]+"[^>]*aria-label="Falar pelo WhatsApp"/);
 });

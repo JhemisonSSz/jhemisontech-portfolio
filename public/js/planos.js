@@ -2,7 +2,22 @@
 // (textos do documento "NOVAA On atualizado"). Os serviços ficam em servicos.js.
 // Para mudar um texto, edite aqui e rode "npm run gerar".
 
-// Seção de benefícios, logo depois do topo
+// "Você se identifica?": situações do dia a dia do cliente, logo depois do topo
+export const DORES = {
+  texto: "Se alguma dessas situações acontece no seu negócio, dá para resolver com uma solução digital simples.",
+  itens: [
+    "Passa o dia respondendo as mesmas perguntas no WhatsApp: preço, horário e endereço.",
+    "Perde clientes porque demorou para responder ou estava ocupado atendendo.",
+    "A agenda fica no caderno ou nas conversas, e às vezes dois clientes marcam no mesmo horário.",
+    "O cliente procura sua empresa na internet e não encontra nada profissional.",
+    "Pedidos, estoque ou mensalidades ficam espalhados e dão trabalho para controlar.",
+    "Paga taxa de aplicativo para receber pedidos que poderiam chegar direto para você.",
+  ],
+  cta: "Quero resolver isso no meu negócio",
+  mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e me identifiquei com algumas situações. Quero conversar sobre o meu negócio.",
+};
+
+// Seção de benefícios, depois do "Você se identifica?"
 export const BENEFICIOS = [
   { titulo: "Mais profissionalismo", texto: "Apresente sua empresa com um site ou sistema que transmite confiança aos clientes." },
   { titulo: "Mais organização", texto: "Centralize pedidos, agendamentos, informações, estoque ou mensalidades em um só lugar." },
@@ -56,7 +71,7 @@ export const PERGUNTAS = [
   { pergunta: "Quanto tempo leva para ficar pronto?",
     resposta: "O prazo varia conforme o tipo de projeto (um site institucional é mais rápido que um sistema completo ou agente de IA) e a agilidade no envio das informações e aprovações. Antes de começarmos, eu passo a previsão exata de entrega na nossa conversa." },
   { pergunta: "A solução fica no meu nome?",
-    resposta: "Sim. As condições de titularidade, registro do domínio e acessos ficam definidas claramente na proposta antes do início do projeto para garantir sua segurança e autonomia." },
+    resposta: "Os dados do seu negócio são seus, e o domínio pode ser registrado no seu nome. As condições de titularidade, registro do domínio e acessos ficam definidas claramente na proposta antes do início do projeto, para garantir sua segurança e autonomia." },
   { pergunta: "Posso usar um domínio que já tenho?",
     resposta: "Sim, desde que o endereço seja compatível e você tenha os dados de acesso da conta onde ele foi registrado para fazermos a configuração técnica." },
   { pergunta: "O que a mensalidade inclui?",
@@ -71,7 +86,7 @@ export const PERGUNTAS = [
     resposta: "Sim, o agente fica ativo continuamente para responder dúvidas, apresentar serviços e realizar agendamentos conforme as regras configuradas para a sua empresa. Quando surge um caso fora do padrão, ele encaminha a conversa para o atendimento humano." },
   { pergunta: "O WhatsApp tem custo extra?",
     resposta: "Quando o projeto utiliza a API oficial do WhatsApp, a Meta pode cobrar taxas de acordo com o volume e o tipo de mensagem enviada. Esses valores e limites são sempre informados com transparência antes da contratação." },
-  { pergunta: "Vocês atendem apenas na minha cidade?",
+  { pergunta: "Você atende apenas na minha cidade?",
     resposta: "Não. Todo o processo de criação, acompanhamento e suporte funciona de forma online pelo WhatsApp para negócios de qualquer lugar, com possibilidade de atendimento presencial conforme localização e disponibilidade de agenda." },
   { pergunta: "Posso cancelar quando quiser?",
     resposta: "Sim. As regras de cancelamento, prazos de aviso prévio e entrega dos acessos ou dados do seu negócio ficam registrados com clareza no contrato desde o início." },

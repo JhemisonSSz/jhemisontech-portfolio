@@ -4,8 +4,8 @@
 export const CONTATO = {
   whatsapp: "5573988045634",          // com 55 e DDD, só números
   whatsappTexto: "(73) 98804-5634",   // como aparece escrito na página
-  instagram: "jhemisontech",          // sem o @
-  email: "jhemisontech@gmail.com",
+  instagram: "novaa_on",              // sem o @
+  email: "contato.novaaon@gmail.com",
 };
 
 // Link que abre o WhatsApp do Jhemison já com a mensagem escrita
