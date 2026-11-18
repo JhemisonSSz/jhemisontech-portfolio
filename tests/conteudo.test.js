@@ -161,7 +161,14 @@ test("SEO: nome novo, endereço atual, descrição do tamanho certo e cidade só
   for (const palavra of ["NOVAA On", "sites profissionais", "lojas virtuais", "agendamento", "agentes de IA", "sem compromisso"]) {
     assert.ok(descricao.toLowerCase().includes(palavra.toLowerCase()), palavra);
   }
-  assert.match(html, /<link rel="canonical" href="https:\/\/jhemisontech\.web\.app\/">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/novaaon\.web\.app\/">/);
+  assert.ok(!html.includes("jhemisontech.web.app"), "endereço antigo na página");
+  // O endereço antigo continua no ar só para redirecionar ao novo
+  const firebase = JSON.parse(readFileSync(fileURLToPath(new URL("../firebase.json", import.meta.url)), "utf8"));
+  const [novo, antigo] = firebase.hosting;
+  assert.equal(novo.site, "novaaon");
+  assert.equal(antigo.site, "jhemisontech");
+  assert.deepEqual(antigo.redirects, [{ source: "/:caminho*", destination: "https://novaaon.web.app/:caminho*", type: 301 }]);
   assert.match(html, /<meta property="og:title" content="NOVAA On[^"]*">/);
   assert.match(html, /"name":"NOVAA On"/);
   assert.match(html, /"alternateName":"JhemisonTech"/);

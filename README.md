@@ -1,8 +1,9 @@
-# JhemisonTech: portfólio
+# NOVAA On: portfólio
 
-Este é o portfólio da JhemisonTech, que faz Sites, sistemas de agendamento e agentes de IA para barbearias, clínicas, restaurantes, lojas e prestadores de serviço. É uma página única e fixa: não tem banco de dados nem login.
+Este é o portfólio da NOVAA On (antes JhemisonTech), que faz sites, lojas virtuais, sistemas, agendamento online e agentes de IA para pequenos negócios. É uma página única e fixa: não tem banco de dados nem login.
 
-- **Endereço:** https://jhemisontech.web.app (o domínio próprio entra depois, veja abaixo).
+- **Endereço:** https://novaaon.web.app (o domínio próprio entra depois, veja abaixo).
+- O endereço antigo, https://jhemisontech.web.app, leva sozinho para o novo (redirecionamento 301 no `firebase.json`). Assim os links que você já espalhou continuam funcionando.
 - **Tecnologia:** HTML, CSS e JavaScript puros, sem build. A hospedagem é o Firebase Hosting.
 
 ## Arquivos
@@ -53,7 +54,11 @@ Serviços: edite `public/js/servicos.js`. Perguntas e "Como funciona": edite `pu
 
 ## Publicar
 
-Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d`, e o site dentro dele se chama `jhemisontech`, que fica em jhemisontech.web.app. O `firebase.json` já aponta para esse site.
+Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d` (o ID do projeto não muda) e tem dois sites:
+- `novaaon` (novaaon.web.app): o portfólio de verdade;
+- `jhemisontech` (jhemisontech.web.app): só redireciona para o novo endereço.
+
+O comando abaixo publica os dois de uma vez.
 
 ```
 firebase deploy --project jhemisontech-a080d --only hosting
@@ -61,7 +66,7 @@ firebase deploy --project jhemisontech-a080d --only hosting
 
 ## Ligar um domínio próprio (quando tiver)
 
-1. No console do Firebase, vá em **Hosting → Adicionar domínio personalizado** e digite o domínio.
+1. No console do Firebase, abra o site **novaaon** em **Hosting → Adicionar domínio personalizado** e digite o domínio.
 2. O Firebase mostra os registros de DNS (um TXT e um ou dois A). Copie e cole na Hostinger, em **Domínios → DNS / Nameservers**.
 3. Espere a verificação, que pode levar algumas horas. O cadeado HTTPS vem sozinho.
-4. No `public/index.html`, troque `https://jhemisontech.web.app/` pelo domínio novo em `og:url` e `og:image`. Depois publique de novo.
+4. No `public/index.html`, troque `https://novaaon.web.app/` pelo domínio novo em `canonical`, `og:url`, `og:image` e nos dados para o Google (JSON-LD). No `firebase.json`, troque também o destino do redirecionamento. Depois publique de novo.
