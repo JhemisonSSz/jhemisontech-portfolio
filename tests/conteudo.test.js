@@ -132,7 +132,8 @@ test("sobre: quem está por trás da NOVAA On, com foto e a frase de destaque", 
   const s = secao("sobre");
   assert.match(html, /img\/jhemison\.jpg/);
   assert.ok(s.includes("Quem está por trás da NOVAA On?"));
-  assert.ok(s.includes("Olá! Eu sou o Jhemison, desenvolvedor de sistemas e especialista em automação."));
+  assert.ok(s.includes("Olá! Eu sou o Jhemison, desenvolvedor de sites e sistemas. Também crio automações e atendimentos com inteligência artificial para pequenos negócios."));
+  assert.ok(!/especialista/i.test(s), "sem se apresentar como especialista");
   assert.ok(s.includes("sem intermediários e sem precisar explicar o seu problema várias vezes para pessoas diferentes"));
   assert.ok(s.includes("Tecnologia das grandes empresas, apresentada de um jeito simples para pequenos negócios."));
 });
