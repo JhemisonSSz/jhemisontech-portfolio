@@ -64,8 +64,18 @@ test("seis protótipos com nome genérico do segmento, título pelo tipo de sist
   assert.equal(serena.convite, "Quero um site assim para minha clínica");
 });
 
-test("protótipos sem link para sistemas publicados", () => {
-  for (const p of PROJETOS) assert.equal(p.url, undefined, `${p.id}: não deve ter link`);
+test("Agendanov é produto próprio: rótulo 'Sistema' e link para o sistema no ar", () => {
+  const agendanov = PROJETOS.find((p) => p.id === "agendanov");
+  assert.equal(agendanov.rotulo, "Sistema");
+  assert.equal(agendanov.url, "https://seuagendamentofacil.web.app/");
+  assert.equal(agendanov.mensagem, "Olá, Jhemison! Vi o Agendanov no seu portfólio e tenho interesse em um agendamento online para o meu negócio. Podemos conversar?");
+});
+
+test("os outros cards são protótipos: sem rótulo próprio e sem link para sistemas publicados", () => {
+  for (const p of PROJETOS.filter((x) => x.id !== "agendanov")) {
+    assert.equal(p.url, undefined, `${p.id}: não deve ter link`);
+    assert.equal(p.rotulo, undefined, `${p.id}: deve aparecer como Protótipo`);
+  }
 });
 
 test("todo protótipo tem os campos e 3 a 4 etiquetas", () => {

@@ -5,11 +5,13 @@
 // Campos:
 //   id         nome curto, sem espaço (usado nos nomes dos prints)
 //   titulo     título do card, pelo tipo de sistema (ex.: "Sistema para Academias")
-//   nome       nome genérico do protótipo, que aparece embaixo do título (ex.: "Academia Modelo 1")
+//   rotulo     (opcional) o que aparece antes do nome; padrão "Protótipo". Use "Sistema" para um produto publicado.
+//   nome       nome que aparece embaixo do título (ex.: "Academia Modelo 1" ou "Agendanov")
 //   frase      o benefício em uma ou duas frases curtas
 //   etiquetas  3 ou 4 funções principais
 //   convite    o texto do link do card (sem a seta): "Quero um sistema assim para minha academia"
 //   mensagem   o texto que já aparece escrito no WhatsApp quando o visitante clica no convite
+//   url        (opcional) endereço do sistema publicado; sem url, o card não tem o botão "Ver site"
 //   prints     print do protótipo no computador (pc) e no celular (cel), dentro de public/
 //   painel     prints de DENTRO do painel administrativo (opcional), em img/prints/painel/.
 //              Se tiver algum, o card ganha as abas "Site | Painel"; com 2 ou mais, aparecem bolinhas.
@@ -44,11 +46,13 @@ export const PROJETOS = [
   {
     id: "agendanov",
     titulo: "Agendamento Online para Qualquer Negócio",
+    rotulo: "Sistema", // produto próprio (SaaS de agendamento), não é protótipo
     nome: "Agendanov",
+    url: "https://seuagendamentofacil.web.app/",
     frase: "Seu cliente marca o horário sozinho e a confirmação chega no seu WhatsApp. Serve para barbearia, salão, manicure, lash e clínica.",
     etiquetas: ["Agendamento online", "Confirmação no WhatsApp", "Sem horário duplicado", "Painel simples"],
     convite: "Quero um agendamento online assim",
-    mensagem: "Olá, Jhemison! Vi o protótipo de agendamento online no seu portfólio e tenho interesse para o meu negócio. Podemos conversar?",
+    mensagem: "Olá, Jhemison! Vi o Agendanov no seu portfólio e tenho interesse em um agendamento online para o meu negócio. Podemos conversar?",
     prints: prints("agendanov"),
     painel: [], // o painel pede login e ainda não tem prints próprios para mostrar
   },

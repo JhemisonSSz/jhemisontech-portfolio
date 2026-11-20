@@ -50,10 +50,11 @@ export function card(p) {
       ${abasPainel(p)}
       <div class="projeto-corpo">
         <h3>${esc(p.titulo)}</h3>
-        <p class="demo">Protótipo: ${esc(p.nome)}</p>
+        <p class="demo">${esc(p.rotulo || "Protótipo")}: ${esc(p.nome)}</p>
         <p>${esc(p.frase)}</p>
         <ul class="etiquetas">${p.etiquetas.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>
         <div class="acoes">
+          ${p.url ? `<a class="ver-site" href="${esc(p.url)}" ${ZAP}>Ver site</a>` : ""}
           <a class="pedir-painel" href="${esc(linkWhatsApp(mensagemPainel(p)))}" ${ZAP} hidden>Pedir acesso ao painel</a>
         </div>
         <p class="conhecer"><a class="zap-projeto" href="${esc(linkWhatsApp(mensagemConvite(p)))}" ${ZAP}>${esc(p.convite)} →</a></p>
