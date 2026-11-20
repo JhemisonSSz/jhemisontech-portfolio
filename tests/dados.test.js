@@ -29,7 +29,7 @@ test("mensagens do card citam o protótipo e o que a pessoa quer", () => {
 
 test("seis protótipos com nome genérico do segmento, título pelo tipo de sistema e a frase com o benefício", () => {
   assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "agendanov", "volt", "espetaria", "serena"]);
-  assert.deepEqual(PROJETOS.map((p) => p.nome), ["Loja Modelo", "Barbearia Modelo", "Salão Modelo", "Academia Modelo", "Restaurante Modelo", "Clínica Modelo"]);
+  assert.deepEqual(PROJETOS.map((p) => p.nome), ["Loja Modelo", "Barbearia Modelo", "Agendanov", "Academia Modelo", "Restaurante Modelo", "Clínica Modelo"]);
   const [loja, barbearia, agendanov, volt, espetaria, serena] = PROJETOS;
 
   assert.equal(loja.titulo, "Loja Virtual com PDV e Estoque");

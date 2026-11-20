@@ -44,7 +44,7 @@ export const PROJETOS = [
   {
     id: "agendanov",
     titulo: "Agendamento Online para Qualquer Negócio",
-    nome: "Salão Modelo",
+    nome: "Agendanov",
     frase: "Seu cliente marca o horário sozinho e a confirmação chega no seu WhatsApp. Serve para barbearia, salão, manicure, lash e clínica.",
     etiquetas: ["Agendamento online", "Confirmação no WhatsApp", "Sem horário duplicado", "Painel simples"],
     convite: "Quero um agendamento online assim",
