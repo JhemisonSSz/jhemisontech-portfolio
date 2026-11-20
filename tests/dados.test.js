@@ -24,12 +24,12 @@ test("mensagens do card citam o protótipo e o que a pessoa quer", () => {
   assert.equal(mensagemConvite(barbearia),
     "Olá, Jhemison! Vi o protótipo do sistema de agendamento no seu portfólio e tenho interesse em colocar no meu negócio. Podemos conversar?");
   assert.equal(mensagemPainel(barbearia),
-    "Olá! Vi o painel da demonstração Academia Modelo 2 no seu portfólio e quero pedir acesso para testar.");
+    "Olá! Vi o painel da demonstração Barbearia Modelo no seu portfólio e quero pedir acesso para testar.");
 });
 
-test("seis protótipos com nome genérico de academia, título pelo tipo de sistema e a frase com o benefício", () => {
+test("seis protótipos com nome genérico do segmento, título pelo tipo de sistema e a frase com o benefício", () => {
   assert.deepEqual(PROJETOS.map((p) => p.id), ["loja", "barbearia", "agendanov", "volt", "espetaria", "serena"]);
-  assert.deepEqual(PROJETOS.map((p) => p.nome), ["Academia Modelo 1", "Academia Modelo 2", "Academia Modelo 3", "Academia Modelo 4", "Academia Modelo 5", "Academia Modelo 6"]);
+  assert.deepEqual(PROJETOS.map((p) => p.nome), ["Loja Modelo", "Barbearia Modelo", "Salão Modelo", "Academia Modelo", "Restaurante Modelo", "Clínica Modelo"]);
   const [loja, barbearia, agendanov, volt, espetaria, serena] = PROJETOS;
 
   assert.equal(loja.titulo, "Loja Virtual com PDV e Estoque");

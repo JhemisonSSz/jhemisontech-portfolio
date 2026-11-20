@@ -22,7 +22,7 @@ export const PROJETOS = [
   {
     id: "loja",
     titulo: "Loja Virtual com PDV e Estoque",
-    nome: "Academia Modelo 1",
+    nome: "Loja Modelo",
     frase: "Venda pela internet e no balcão em um só lugar. Controle seu estoque automaticamente e deixe o cliente acompanhar o pedido.",
     etiquetas: ["Catálogo", "Acompanhamento", "PDV", "Estoque"],
     convite: "Quero uma loja virtual assim",
@@ -33,7 +33,7 @@ export const PROJETOS = [
   {
     id: "barbearia",
     titulo: "Sistema para Barbearias e Salões",
-    nome: "Academia Modelo 2",
+    nome: "Barbearia Modelo",
     frase: "Acabe com os furos na agenda. Seus clientes marcam horário sozinhos e você gerencia assinaturas e faturamento no painel.",
     etiquetas: ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"],
     convite: "Quero um sistema assim para minha agenda",
@@ -44,7 +44,7 @@ export const PROJETOS = [
   {
     id: "agendanov",
     titulo: "Agendamento Online para Qualquer Negócio",
-    nome: "Academia Modelo 3",
+    nome: "Salão Modelo",
     frase: "Seu cliente marca o horário sozinho e a confirmação chega no seu WhatsApp. Serve para barbearia, salão, manicure, lash e clínica.",
     etiquetas: ["Agendamento online", "Confirmação no WhatsApp", "Sem horário duplicado", "Painel simples"],
     convite: "Quero um agendamento online assim",
@@ -55,7 +55,7 @@ export const PROJETOS = [
   {
     id: "volt",
     titulo: "Sistema para Academias",
-    nome: "Academia Modelo 4",
+    nome: "Academia Modelo",
     frase: "Seus alunos reservam aula sozinhos e você controla vagas, lista de espera e mensalidades no painel.",
     etiquetas: ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"],
     convite: "Quero um sistema assim para minha academia",
@@ -66,7 +66,7 @@ export const PROJETOS = [
   {
     id: "espetaria",
     titulo: "Cardápio Digital com Pedido pelo WhatsApp",
-    nome: "Academia Modelo 5",
+    nome: "Restaurante Modelo",
     frase: "Receba pedidos organizados direto no WhatsApp, sem pagar taxas de aplicativos e com painel fácil para atualizar preços.",
     etiquetas: ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"],
     convite: "Quero um cardápio digital assim",
@@ -77,7 +77,7 @@ export const PROJETOS = [
   {
     id: "serena",
     titulo: "Site para Clínicas Odontológicas",
-    nome: "Academia Modelo 6",
+    nome: "Clínica Modelo",
     frase: "Apresente sua clínica com um site rápido e transmita confiança. O paciente conhece os serviços e agenda a consulta direto pelo WhatsApp.",
     etiquetas: ["Site da clínica", "Agendamento pelo WhatsApp", "Mapa de localização", "Rápido no celular"],
     convite: "Quero um site assim para minha clínica",
