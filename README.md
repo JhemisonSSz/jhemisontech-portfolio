@@ -2,7 +2,7 @@
 
 Este é o portfólio da NovJ Digital (antes JhemisonTech), que faz sites, lojas virtuais, sistemas, agendamento online e agentes de IA para pequenos negócios. É uma página única e fixa: não tem banco de dados nem login.
 
-- **Endereço:** https://novaaon.web.app (o domínio próprio entra depois, veja abaixo).
+- **Endereço:** https://novj.web.app (o domínio próprio entra depois, veja abaixo).
 - O endereço antigo, https://jhemisontech.web.app, foi apagado em 2026-11-18 e não funciona mais. Links antigos (Instagram, cartões etc.) precisam ser trocados pelo novo.
 - **Tecnologia:** HTML, CSS e JavaScript puros, sem build. A hospedagem é o Firebase Hosting.
 
@@ -52,15 +52,15 @@ Serviços: edite `public/js/servicos.js`. Perguntas e "Como funciona": edite `pu
 
 ## Publicar
 
-Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase tem o ID `jhemisontech-a080d` (o ID de um projeto nunca pode ser trocado). Para não precisar digitar o nome antigo, o `.firebaserc` tem o apelido `novaa`, que aponta para esse mesmo projeto. O portfólio fica no site `novaaon` (novaaon.web.app), e o `firebase.json` já aponta para ele.
+Faça o commit primeiro e depois publique, **sempre com `--project`**. O projeto no Firebase se chama `novjdigital` (o nome aparece como NovJ Digital no console). O portfólio fica no site `novj` (novj.web.app), e o `firebase.json` já aponta para ele.
 
 ```
-firebase deploy --project novaa --only hosting
+firebase deploy --project novj --only hosting
 ```
 
 ## Ligar um domínio próprio (quando tiver)
 
-1. No console do Firebase, abra o site **novaaon** em **Hosting → Adicionar domínio personalizado** e digite o domínio.
+1. No console do Firebase, abra o site **novj** em **Hosting → Adicionar domínio personalizado** e digite o domínio.
 2. O Firebase mostra os registros de DNS (um TXT e um ou dois A). Copie e cole na Hostinger, em **Domínios → DNS / Nameservers**.
 3. Espere a verificação, que pode levar algumas horas. O cadeado HTTPS vem sozinho.
-4. No `public/index.html`, troque `https://novaaon.web.app/` pelo domínio novo em `canonical`, `og:url`, `og:image` e nos dados para o Google (JSON-LD). Depois publique de novo.
+4. No `public/index.html`, troque `https://novj.web.app/` pelo domínio novo em `canonical`, `og:url`, `og:image` e nos dados para o Google (JSON-LD). Depois publique de novo.

@@ -161,11 +161,11 @@ test("SEO: nome novo, endereço atual, descrição do tamanho certo e cidade só
   for (const palavra of ["NovJ Digital", "sites profissionais", "lojas virtuais", "agendamento", "agentes de IA", "sem compromisso"]) {
     assert.ok(descricao.toLowerCase().includes(palavra.toLowerCase()), palavra);
   }
-  assert.match(html, /<link rel="canonical" href="https:\/\/novaaon\.web\.app\/">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/novj\.web\.app\/">/);
   assert.ok(!html.includes("jhemisontech.web.app"), "endereço antigo na página");
-  // O deploy vai só para o site novaaon (o site antigo "jhemisontech" foi apagado no Firebase)
+  // O deploy vai só para o site novj, no projeto novjdigital
   const firebase = JSON.parse(readFileSync(fileURLToPath(new URL("../firebase.json", import.meta.url)), "utf8"));
-  assert.equal(firebase.hosting.site, "novaaon");
+  assert.equal(firebase.hosting.site, "novj");
   assert.match(html, /<meta property="og:title" content="NovJ Digital[^"]*">/);
   assert.match(html, /"name":"NovJ Digital"/);
   assert.match(html, /"alternateName":"JhemisonTech"/);
