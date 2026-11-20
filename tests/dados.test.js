@@ -11,8 +11,8 @@ const PUBLIC = fileURLToPath(new URL("../public/", import.meta.url));
 test("contatos do Jhemison", () => {
   assert.equal(CONTATO.whatsapp, "5573988045634");
   assert.equal(CONTATO.whatsappTexto, "(73) 98804-5634");
-  assert.equal(CONTATO.instagram, "novaa_on");
-  assert.equal(CONTATO.email, "contato.novaaon@gmail.com");
+  assert.equal(CONTATO.instagram, "novj.jhemison");
+  assert.equal(CONTATO.email, "novj@outlook.com.br");
 });
 
 test("link do WhatsApp com a mensagem codificada", () => {

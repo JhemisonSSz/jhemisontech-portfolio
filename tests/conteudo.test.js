@@ -149,8 +149,8 @@ test("contato: WhatsApp em destaque, número escrito e orçamento sem compromiss
   assert.ok(c.includes("(73) 98804-5634"));
   assert.match(c, /orçamento sem compromisso/i);
   assert.ok(c.includes("Contar o que eu preciso"));
-  assert.ok(c.includes("@novaa_on") && html.includes('href="https://instagram.com/novaa_on"'));
-  assert.ok(c.includes("contato.novaaon@gmail.com") && html.includes('href="mailto:contato.novaaon@gmail.com"'));
+  assert.ok(c.includes("@novj.jhemison") && html.includes('href="https://instagram.com/novj.jhemison"'));
+  assert.ok(c.includes("novj@outlook.com.br") && html.includes('href="mailto:novj@outlook.com.br"'));
   // No celular o botão do WhatsApp fica sempre à mão
   assert.match(html, /<a id="zap-flutuante" class="zap-flutuante" href="https:\/\/wa\.me\/5573988045634\?text=[^"]+"[^>]*aria-label="Falar pelo WhatsApp"/);
 });
