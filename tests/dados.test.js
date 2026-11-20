@@ -67,7 +67,7 @@ test("seis protótipos com nome genérico do segmento, título pelo tipo de sist
 test("Agendanov é produto próprio: rótulo 'Sistema' e link para o sistema no ar", () => {
   const agendanov = PROJETOS.find((p) => p.id === "agendanov");
   assert.equal(agendanov.rotulo, "Sistema");
-  assert.equal(agendanov.url, "https://seuagendamentofacil.web.app/");
+  assert.equal(agendanov.url, "https://agendanov.web.app/");
   assert.equal(agendanov.mensagem, "Olá, Jhemison! Vi o Agendanov no seu portfólio e tenho interesse em um agendamento online para o meu negócio. Podemos conversar?");
 });
 

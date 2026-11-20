@@ -48,7 +48,7 @@ export const PROJETOS = [
     titulo: "Agendamento Online para Qualquer Negócio",
     rotulo: "Sistema", // produto próprio (SaaS de agendamento), não é protótipo
     nome: "Agendanov",
-    url: "https://seuagendamentofacil.web.app/",
+    url: "https://agendanov.web.app/",
     frase: "Seu cliente marca o horário sozinho e a confirmação chega no seu WhatsApp. Serve para barbearia, salão, manicure, lash e clínica.",
     etiquetas: ["Agendamento online", "Confirmação no WhatsApp", "Sem horário duplicado", "Painel simples"],
     convite: "Quero um agendamento online assim",
