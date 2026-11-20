@@ -22,7 +22,8 @@ function mostrar(artigo, foto) {
   const bolinhas = artigo.querySelector(".bolinhas");
   if (bolinhas) bolinhas.hidden = !painel;
   artigo.querySelectorAll("[data-foto]").forEach((b) => b.classList.toggle("ativa", Number(b.dataset.foto) === foto));
-  artigo.querySelector(".ver-site").hidden = painel;
+  const verSite = artigo.querySelector(".ver-site");
+  if (verSite) verSite.hidden = painel;
   artigo.querySelector(".pedir-painel").hidden = !painel;
 }
 

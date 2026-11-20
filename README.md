@@ -1,6 +1,6 @@
-# NOVAA On: portfólio
+# NovJ Digital: portfólio
 
-Este é o portfólio da NOVAA On (antes JhemisonTech), que faz sites, lojas virtuais, sistemas, agendamento online e agentes de IA para pequenos negócios. É uma página única e fixa: não tem banco de dados nem login.
+Este é o portfólio da NovJ Digital (antes JhemisonTech), que faz sites, lojas virtuais, sistemas, agendamento online e agentes de IA para pequenos negócios. É uma página única e fixa: não tem banco de dados nem login.
 
 - **Endereço:** https://novaaon.web.app (o domínio próprio entra depois, veja abaixo).
 - O endereço antigo, https://jhemisontech.web.app, foi apagado em 2026-11-18 e não funciona mais. Links antigos (Instagram, cartões etc.) precisam ser trocados pelo novo.
@@ -36,9 +36,7 @@ docs/               design aprovado e plano de construção
 
    O Claude tem um script que tira os dois automaticamente. Se for tirar à mão, use a primeira tela do site, sem rolar.
 3. Em `public/js/projetos.js`, copie um bloco e troque `id`, `titulo` (pelo tipo de negócio do cliente), `nome` (nome da demonstração), `frase` (o benefício), `etiquetas` (3 ou 4), `convite` ("Quero um sistema assim para...") e `url`.
-4. Opcional: coloque prints de **dentro** do painel em `public/img/prints/painel/` (nome em minúsculas, sem espaço, por exemplo `loja-estoque.jpg`) e liste os arquivos em `painel: painel("loja-estoque.jpg", ...)`. O card ganha sozinho as abas **Site | Painel**, e com 2 ou mais prints aparecem as bolinhas.
-   - **Antes de colocar, confira o print.** Não use a tela de login. Não use print da tela inteira, que mostra as abas do navegador, os favoritos e a barra do Windows. Tudo o que está em `public/` vai para a internet.
-   - Os prints que não vão para o site ficam em `prints-painel-nao-usados/`, que fica fora do Git e fora do site.
+4. Não coloque prints do painel administrativo: os cards mostram só as telas do site. Os prints de dentro do painel ficam fora do projeto, para não aparecerem na internet.
 5. Rode **`npm run gerar`**: ele grava os cards no `index.html`. Depois rode `npm test`. Ele confere se todo print citado existe e **avisa se você esqueceu de rodar o `gerar`**.
 
 ## Mudar um serviço ou uma pergunta

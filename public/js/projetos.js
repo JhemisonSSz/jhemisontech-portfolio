@@ -1,95 +1,87 @@
 // projetos.js — A lista de projetos que aparece no portfólio, na ordem dos cards.
-// Para colocar um projeto novo: copie um bloco, troque os textos, gere os prints (veja o README)
-// e rode "npm run gerar" para gravar o card no index.html.
+// Os cards são protótipos: mostram só as telas (sem link para sistemas publicados).
+// Para mudar um texto: edite aqui, gere os prints (veja o README) e rode "npm run gerar".
 //
 // Campos:
 //   id         nome curto, sem espaço (usado nos nomes dos prints)
-//   titulo     título do card, pelo tipo de negócio do cliente (ex.: "Sistema para Barbearias e Salões")
-//   nome       nome da demonstração, que aparece em letra menor embaixo do título
+//   titulo     título do card, pelo tipo de sistema (ex.: "Sistema para Academias")
+//   nome       nome genérico do protótipo, que aparece embaixo do título (ex.: "Academia Modelo 1")
 //   frase      o benefício em uma ou duas frases curtas
 //   etiquetas  3 ou 4 funções principais
-//   convite    o texto do link do card (sem a seta): "Quero um sistema assim para minha agenda"
+//   convite    o texto do link do card (sem a seta): "Quero um sistema assim para minha academia"
 //   mensagem   o texto que já aparece escrito no WhatsApp quando o visitante clica no convite
-//   url        endereço do site publicado
-//   prints     print do site no computador (pc) e no celular (cel), dentro de public/
-//   painel     prints de DENTRO do painel (opcional), em img/prints/painel/.
+//   prints     print do protótipo no computador (pc) e no celular (cel), dentro de public/
+//   painel     prints de DENTRO do painel administrativo (opcional), em img/prints/painel/.
 //              Se tiver algum, o card ganha as abas "Site | Painel"; com 2 ou mais, aparecem bolinhas.
 //              Na aba Painel o botão vira "Pedir acesso ao painel" (os painéis pedem login de propósito).
 //              Não use print da tela de login nem print com abas do navegador ou barra do Windows.
 
 const prints = (id) => ({ pc: `img/prints/${id}-pc.jpg`, cel: `img/prints/${id}-cel.jpg` });
-const painel = (...arquivos) => arquivos.map((a) => `img/prints/painel/${a}`);
 
 export const PROJETOS = [
   {
     id: "loja",
     titulo: "Loja Virtual com PDV e Estoque",
-    nome: "Jtech Loja Online",
+    nome: "Academia Modelo 1",
     frase: "Venda pela internet e no balcão em um só lugar. Controle seu estoque automaticamente e deixe o cliente acompanhar o pedido.",
     etiquetas: ["Catálogo", "Acompanhamento", "PDV", "Estoque"],
     convite: "Quero uma loja virtual assim",
-    mensagem: "Olá, Jhemison! Vi a demonstração da Loja Virtual com PDV no seu portfólio e gostaria de saber como funciona para o meu negócio.",
-    url: "https://jtech-loja-online.web.app/",
+    mensagem: "Olá, Jhemison! Vi o protótipo da loja virtual no seu portfólio e gostaria de saber como funciona para o meu negócio.",
     prints: prints("loja"),
-    painel: painel("loja-pdv.png", "loja-dashboard.png", "loja-pedidos.png", "loja-produtos.png", "loja-relatorios.png"),
+    painel: [], // sem prints do painel administrativo (ficam fora do site)
   },
   {
     id: "barbearia",
     titulo: "Sistema para Barbearias e Salões",
-    nome: "Jtech Barbearia",
+    nome: "Academia Modelo 2",
     frase: "Acabe com os furos na agenda. Seus clientes marcam horário sozinhos e você gerencia assinaturas e faturamento no painel.",
     etiquetas: ["Agenda online", "Clube de assinatura", "PDV", "Relatórios"],
     convite: "Quero um sistema assim para minha agenda",
-    mensagem: "Olá, Jhemison! Testei o Sistema de Agendamento (Barbearia) no seu site e tenho interesse em colocar no meu negócio. Podemos conversar?",
-    url: "https://jtech-barbearia.web.app/",
+    mensagem: "Olá, Jhemison! Vi o protótipo do sistema de agendamento no seu portfólio e tenho interesse em colocar no meu negócio. Podemos conversar?",
     prints: prints("barbearia"),
-    painel: painel("barbearia-agenda.png", "barbearia-relatorios.png", "barbearia-contas-a-pagar.png"),
+    painel: [], // sem prints do painel administrativo (ficam fora do site)
   },
   {
     id: "agendanov",
     titulo: "Agendamento Online para Qualquer Negócio",
-    nome: "Agendanov",
+    nome: "Academia Modelo 3",
     frase: "Seu cliente marca o horário sozinho e a confirmação chega no seu WhatsApp. Serve para barbearia, salão, manicure, lash e clínica.",
     etiquetas: ["Agendamento online", "Confirmação no WhatsApp", "Sem horário duplicado", "Painel simples"],
     convite: "Quero um agendamento online assim",
-    mensagem: "Olá, Jhemison! Vi o Agendanov no seu portfólio e tenho interesse em um agendamento online para o meu negócio. Podemos conversar?",
-    url: "https://seuagendamentofacil.web.app/",
+    mensagem: "Olá, Jhemison! Vi o protótipo de agendamento online no seu portfólio e tenho interesse para o meu negócio. Podemos conversar?",
     prints: prints("agendanov"),
     painel: [], // o painel pede login e ainda não tem prints próprios para mostrar
   },
   {
     id: "volt",
     titulo: "Sistema para Academias",
-    nome: "Volt Academia",
+    nome: "Academia Modelo 4",
     frase: "Seus alunos reservam aula sozinhos e você controla vagas, lista de espera e mensalidades no painel.",
     etiquetas: ["Reserva de aulas", "Lista de espera", "Mensalidade", "Painel do dono"],
     convite: "Quero um sistema assim para minha academia",
-    mensagem: "Olá, Jhemison! Vi a demonstração da Volt Academia no seu portfólio e tenho interesse em um sistema assim para a minha academia. Podemos conversar?",
-    url: "https://volt-academia.web.app/",
+    mensagem: "Olá, Jhemison! Vi o protótipo de sistema para academias no seu portfólio e tenho interesse em um sistema assim para a minha academia. Podemos conversar?",
     prints: prints("volt"),
-    painel: painel("volt-agenda.png", "volt-alunos.png", "volt-resumo.png"),
+    painel: [], // sem prints do painel administrativo (ficam fora do site)
   },
   {
     id: "espetaria",
     titulo: "Cardápio Digital com Pedido pelo WhatsApp",
-    nome: "Jtech Espetaria",
+    nome: "Academia Modelo 5",
     frase: "Receba pedidos organizados direto no WhatsApp, sem pagar taxas de aplicativos e com painel fácil para atualizar preços.",
     etiquetas: ["Cardápio", "Pedido pelo WhatsApp", "Painel do dono"],
     convite: "Quero um cardápio digital assim",
-    mensagem: "Olá, Jhemison! Vi o modelo de Cardápio Digital com pedido pelo WhatsApp no seu portfólio e queria tirar algumas dúvidas sobre valores e prazos.",
-    url: "https://jtech-espetaria.web.app/",
+    mensagem: "Olá, Jhemison! Vi o protótipo de cardápio digital no seu portfólio e queria tirar algumas dúvidas sobre valores e prazos.",
     prints: prints("espetaria"),
-    painel: painel("espetaria-editar-cardapio.jpg"),
+    painel: [], // sem prints do painel administrativo (ficam fora do site)
   },
   {
     id: "serena",
     titulo: "Site para Clínicas Odontológicas",
-    nome: "Serena Odonto",
+    nome: "Academia Modelo 6",
     frase: "Apresente sua clínica com um site rápido e transmita confiança. O paciente conhece os serviços e agenda a consulta direto pelo WhatsApp.",
     etiquetas: ["Site da clínica", "Agendamento pelo WhatsApp", "Mapa de localização", "Rápido no celular"],
     convite: "Quero um site assim para minha clínica",
-    mensagem: "Olá, Jhemison! Vi o site da Serena Odonto no seu portfólio e tenho interesse em um site assim para a minha clínica. Podemos conversar?",
-    url: "https://serena-odonto.web.app/",
+    mensagem: "Olá, Jhemison! Vi o protótipo de site no seu portfólio e tenho interesse em um site assim para a minha clínica. Podemos conversar?",
     prints: prints("serena"),
     painel: [], // site institucional: não tem painel
   },

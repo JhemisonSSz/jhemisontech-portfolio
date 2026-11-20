@@ -50,11 +50,10 @@ export function card(p) {
       ${abasPainel(p)}
       <div class="projeto-corpo">
         <h3>${esc(p.titulo)}</h3>
-        <p class="demo">Demonstração: ${esc(p.nome)}</p>
+        <p class="demo">Protótipo: ${esc(p.nome)}</p>
         <p>${esc(p.frase)}</p>
         <ul class="etiquetas">${p.etiquetas.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>
         <div class="acoes">
-          <a class="ver-site" href="${esc(p.url)}" ${ZAP}>Ver site</a>
           <a class="pedir-painel" href="${esc(linkWhatsApp(mensagemPainel(p)))}" ${ZAP} hidden>Pedir acesso ao painel</a>
         </div>
         <p class="conhecer"><a class="zap-projeto" href="${esc(linkWhatsApp(mensagemConvite(p)))}" ${ZAP}>${esc(p.convite)} →</a></p>
@@ -144,7 +143,7 @@ export const htmlPerguntas = () => PERGUNTAS.map((q) => `
 
 // ---- Topo e contato ----
 
-const MENSAGEM_GERAL = "Olá, Jhemison! Vim pelo site da NOVAA On e gostaria de fazer um orçamento sem compromisso.";
+const MENSAGEM_GERAL = "Olá, Jhemison! Vim pelo site da NovJ Digital e gostaria de fazer um orçamento sem compromisso.";
 
 export const htmlTopoCta = () =>
   `<a id="zap-topo" class="btn" href="${esc(linkWhatsApp(MENSAGEM_GERAL))}" ${ZAP}>Falar pelo WhatsApp</a>

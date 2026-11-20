@@ -1,4 +1,4 @@
-// Testes do conteúdo da página: a marca NOVAA On e as seções do documento "NOVAA On atualizado".
+// Testes do conteúdo da página: a marca NovJ Digital e as seções do documento "NovJ Digital atualizado".
 // O index.html traz tudo escrito direto no HTML (para o Google e para quem não roda JavaScript).
 // Se alguém mudar os dados e esquecer de rodar "npm run gerar", o teste avisa.
 import { test } from "node:test";
@@ -23,13 +23,13 @@ test("o index.html está em dia com os dados (rode 'npm run gerar' se este teste
   assert.equal(injetar(html), html);
 });
 
-test("marca NOVAA On: nome, título da aba e rodapé, sem o nome antigo no texto", () => {
-  assert.match(html, /<title>NOVAA On[^<]*<\/title>/);
-  assert.ok(html.includes('<span class="nome1">NOVAA</span> <span class="nome2">On</span>'), "nome com espaço: NOVAA On");
+test("marca NovJ Digital: nome, título da aba e rodapé, sem o nome antigo no texto", () => {
+  assert.match(html, /<title>NovJ Digital[^<]*<\/title>/);
+  assert.ok(html.includes('<span class="nome1">NovJ</span> <span class="nome2">Digital</span>'), "nome com espaço: NovJ Digital");
   // O aviso da transição saiu: "JhemisonTech" fica só nos dados para o Google (alternateName)
   assert.ok(!/jhemisontech/i.test(texto), "nome antigo no texto da página");
   assert.ok(!html.includes('class="transicao"'));
-  assert.match(html, /<footer class="rodape">© 2026 NOVAA On<\/footer>/);
+  assert.match(html, /<footer class="rodape">© 2026 NovJ Digital<\/footer>/);
   assert.ok(texto.includes("Seu negócio na vitrine da internet, sem complicação."));
 });
 
@@ -70,7 +70,7 @@ test("topo: título, subtítulo, texto complementar e os dois botões", () => {
   const t = secao("topo");
   assert.ok(t.includes("Seu negócio na vitrine da internet , sem complicação.") || t.includes("Seu negócio na vitrine da internet, sem complicação."));
   assert.ok(t.includes("Sites profissionais, lojas virtuais, sistemas sob medida e automações para ajudar pequenos negócios a vender mais, organizar a rotina e atender melhor seus clientes."));
-  assert.ok(t.includes("Você explica como funciona o seu negócio. A NOVAA On ajuda a transformar essa rotina em uma solução digital simples e funcional."));
+  assert.ok(t.includes("Você explica como funciona o seu negócio. A NovJ Digital ajuda a transformar essa rotina em uma solução digital simples e funcional."));
   assert.match(html, /<a id="zap-topo" class="btn" href="https:\/\/wa\.me\/5573988045634\?text=[^"]+"[^>]*>Falar pelo WhatsApp<\/a>/);
   assert.ok(html.includes('<a id="ver-solucoes" class="btn-secundario" href="#servicos">Ver soluções</a>'));
 });
@@ -128,10 +128,10 @@ test("como funciona: as quatro etapas do documento e o convite para conversar", 
   assert.ok(c.includes("Quero conversar sobre meu projeto"));
 });
 
-test("sobre: quem está por trás da NOVAA On, com foto e a frase de destaque", () => {
+test("sobre: quem está por trás da NovJ Digital, com foto e a frase de destaque", () => {
   const s = secao("sobre");
   assert.match(html, /img\/jhemison\.jpg/);
-  assert.ok(s.includes("Quem está por trás da NOVAA On?"));
+  assert.ok(s.includes("Quem está por trás da NovJ Digital?"));
   assert.ok(s.includes("Olá! Eu sou o Jhemison, desenvolvedor de sites e sistemas. Também crio automações e atendimentos com inteligência artificial para pequenos negócios."));
   assert.ok(!/especialista/i.test(s), "sem se apresentar como especialista");
   assert.ok(s.includes("sem intermediários e sem precisar explicar o seu problema várias vezes para pessoas diferentes"));
@@ -158,7 +158,7 @@ test("contato: WhatsApp em destaque, número escrito e orçamento sem compromiss
 test("SEO: nome novo, endereço atual, descrição do tamanho certo e cidade só para o Google", () => {
   const descricao = html.match(/<meta name="description" content="([^"]+)"/)[1];
   assert.ok(descricao.length >= 120 && descricao.length <= 175, `tamanho ${descricao.length}`);
-  for (const palavra of ["NOVAA On", "sites profissionais", "lojas virtuais", "agendamento", "agentes de IA", "sem compromisso"]) {
+  for (const palavra of ["NovJ Digital", "sites profissionais", "lojas virtuais", "agendamento", "agentes de IA", "sem compromisso"]) {
     assert.ok(descricao.toLowerCase().includes(palavra.toLowerCase()), palavra);
   }
   assert.match(html, /<link rel="canonical" href="https:\/\/novaaon\.web\.app\/">/);
@@ -166,8 +166,8 @@ test("SEO: nome novo, endereço atual, descrição do tamanho certo e cidade só
   // O deploy vai só para o site novaaon (o site antigo "jhemisontech" foi apagado no Firebase)
   const firebase = JSON.parse(readFileSync(fileURLToPath(new URL("../firebase.json", import.meta.url)), "utf8"));
   assert.equal(firebase.hosting.site, "novaaon");
-  assert.match(html, /<meta property="og:title" content="NOVAA On[^"]*">/);
-  assert.match(html, /"name":"NOVAA On"/);
+  assert.match(html, /<meta property="og:title" content="NovJ Digital[^"]*">/);
+  assert.match(html, /"name":"NovJ Digital"/);
   assert.match(html, /"alternateName":"JhemisonTech"/);
   assert.match(html, /"addressLocality":"Itamaraju"/);
   assert.ok(!/Itamaraju|extremo sul/i.test(texto), "a cidade não aparece no texto da página");

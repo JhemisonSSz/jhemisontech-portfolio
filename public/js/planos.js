@@ -1,5 +1,5 @@
 // planos.js — Benefícios, modelo de contratação, "Como funciona", confiança e perguntas frequentes
-// (textos do documento "NOVAA On atualizado"). Os serviços ficam em servicos.js.
+// (textos do documento "NovJ Digital atualizado"). Os serviços ficam em servicos.js.
 // Para mudar um texto, edite aqui e rode "npm run gerar".
 
 // "Você se identifica?": situações do dia a dia do cliente, logo depois do topo
@@ -16,7 +16,7 @@ export const DORES = {
     "Tarefas repetitivas, como confirmar horário, avisar cliente e passar dados para planilha, tomam horas do seu dia.",
   ],
   cta: "Quero resolver isso no meu negócio",
-  mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e me identifiquei com algumas situações. Quero conversar sobre o meu negócio.",
+  mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e me identifiquei com algumas situações. Quero conversar sobre o meu negócio.",
 };
 
 // Seção de benefícios, depois do "Você se identifica?"
@@ -43,7 +43,7 @@ export const CONTRATACAO = {
   ],
   aviso: "Mudanças pequenas podem estar incluídas na mensalidade, conforme o plano contratado. Novas funções, páginas ou alterações maiores são avaliadas e orçadas separadamente. Tudo deve ser combinado antes da execução.",
   cta: "Pedir orçamento",
-  mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e gostaria de pedir um orçamento sem compromisso.",
+  mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e gostaria de pedir um orçamento sem compromisso.",
 };
 
 // "Como funciona": é uma sequência de verdade, por isso aparece numerado
@@ -56,7 +56,7 @@ export const PASSOS = [
 
 export const PASSOS_CTA = {
   texto: "Quero conversar sobre meu projeto",
-  mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e quero conversar sobre o meu projeto.",
+  mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e quero conversar sobre o meu projeto.",
 };
 
 // Confiança e transparência: o que fica combinado antes de começar
@@ -69,7 +69,7 @@ export const CONFIANCA = {
 
 export const PERGUNTAS = [
   { pergunta: "Preciso entender de tecnologia para contratar?",
-    resposta: "Não. Você só precisa me explicar como funciona o seu negócio e o que deseja melhorar. Toda a parte técnica de criação, configuração e publicação fica por conta da NOVAA On." },
+    resposta: "Não. Você só precisa me explicar como funciona o seu negócio e o que deseja melhorar. Toda a parte técnica de criação, configuração e publicação fica por conta da NovJ Digital." },
   { pergunta: "Quanto tempo leva para ficar pronto?",
     resposta: "O prazo varia conforme o tipo de projeto (um site institucional é mais rápido que um sistema completo ou agente de IA) e a agilidade no envio das informações e aprovações. Antes de começarmos, eu passo a previsão exata de entrega na nossa conversa." },
   { pergunta: "A solução fica no meu nome?",

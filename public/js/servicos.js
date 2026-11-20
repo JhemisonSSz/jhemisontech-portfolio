@@ -1,4 +1,4 @@
-// servicos.js — Os cards da seção "Serviços" (textos do documento "NOVAA On atualizado").
+// servicos.js — Os cards da seção "Serviços" (textos do documento "NovJ Digital atualizado").
 // Os valores não aparecem na página: cada card leva a uma conversa no WhatsApp.
 // Para mudar um texto, edite aqui e rode "npm run gerar".
 //
@@ -24,7 +24,7 @@ export const SERVICOS = [
       "Formulário de contato", "Agenda online", "Integração com redes sociais", "Estrutura preparada para mecanismos de busca", "Layout adaptado para celular"],
     publico: "Salões, barbearias, manicures, clínicas, profissionais autônomos, prestadores de serviço e pequenas empresas locais.",
     cta: "Quero criar meu site",
-    mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e quero criar o site do meu negócio.",
+    mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e quero criar o site do meu negócio.",
     destaque: true,
     icone: '<circle cx="11" cy="11" r="8"/><path d="M3 11h16M11 3c3 3 3 13 0 16M11 3c-3 3-3 13 0 16"/>',
   },
@@ -38,13 +38,13 @@ export const SERVICOS = [
       "Pagamento por cartão", "Pagamento em dinheiro"],
     notas: ["Os recursos disponíveis dependem da solução contratada e das integrações necessárias para o negócio."],
     cta: "Quero vender pela internet",
-    mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e quero uma loja virtual para vender pela internet.",
+    mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e quero uma loja virtual para vender pela internet.",
     icone: '<path d="M4 7h14l-1.3 13H5.3z"/><path d="M8 7a3 3 0 0 1 6 0"/>',
   },
   {
     rotulo: "Sistemas sob medida",
     titulo: "Um sistema adaptado ao seu negócio",
-    texto: "Nem todo negócio funciona da mesma maneira. Por isso, a NOVAA On pode adaptar sistemas existentes ou desenvolver uma solução de acordo com as regras e necessidades da sua empresa.",
+    texto: "Nem todo negócio funciona da mesma maneira. Por isso, a NovJ Digital pode adaptar sistemas existentes ou desenvolver uma solução de acordo com as regras e necessidades da sua empresa.",
     listaTitulo: "Exemplos",
     grupos: [
       { nome: "Barbearias e salões", itens: ["Agenda", "Cadastro de clientes", "Clube de assinatura", "Controle de mensalidades", "PDV", "Relatórios"] },
@@ -52,7 +52,7 @@ export const SERVICOS = [
       { nome: "Lanchonetes e restaurantes", itens: ["Cardápio", "Pedidos", "Painel de atendimento", "Organização de produtos", "Controle de caixa"] },
     ],
     cta: "Quero organizar meu negócio",
-    mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e quero um sistema para organizar o meu negócio.",
+    mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e quero um sistema para organizar o meu negócio.",
     icone: '<rect x="3" y="5" width="16" height="15" rx="2"/><path d="M3 9h16M7 13h3M7 16h6"/>',
   },
   {
@@ -63,7 +63,7 @@ export const SERVICOS = [
     itens: ["Escolha do serviço", "Escolha do profissional", "Seleção de data e horário", "Confirmação do agendamento",
       "Organização da agenda", "Lembretes, conforme a configuração", "Integração com o site ou WhatsApp"],
     cta: "Quero uma agenda online",
-    mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e quero uma agenda online para o meu negócio.",
+    mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e quero uma agenda online para o meu negócio.",
     icone: '<rect x="3" y="5" width="16" height="15" rx="2"/><path d="M3 9h16M7 2v4M15 2v4M8 14l2 2 4-4"/>',
   },
   {
@@ -79,7 +79,7 @@ export const SERVICOS = [
       "Quando for utilizada a API oficial do WhatsApp, podem existir custos relacionados às mensagens e às regras da plataforma. Esses custos devem ser informados antes da contratação e podem ser cobrados diretamente pela plataforma ou repassados conforme o contrato.",
     ],
     cta: "Quero automatizar meu atendimento",
-    mensagem: "Olá, Jhemison! Vim pelo site da NOVAA On e quero automatizar o atendimento do meu negócio.",
+    mensagem: "Olá, Jhemison! Vim pelo site da NovJ Digital e quero automatizar o atendimento do meu negócio.",
     icone: '<rect x="4" y="7" width="14" height="11" rx="3"/><path d="M11 3v4M8 12h.01M14 12h.01M9 15h4"/>',
   },
 ];
